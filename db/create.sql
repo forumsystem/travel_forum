@@ -66,19 +66,6 @@ create table comments
         foreign key (user_id) references users (user_id)
 );
 
-create table likes
-(
-    like_id int auto_increment
-        primary key,
-    `like`  int not null,
-    post_id int null,
-    user_id int null,
-    constraint likes_posts_post_id_fk
-        foreign key (post_id) references posts (post_id),
-    constraint likes_users_user_id_fk
-        foreign key (user_id) references users (user_id)
-);
-
 create table profile_photos
 (
     photo_id   int auto_increment
@@ -89,4 +76,18 @@ create table profile_photos
     constraint profile_photos_users_user_id_fk
         foreign key (user_id) references users (user_id)
 );
+
+create table votes
+(
+    vote_id   int auto_increment
+        primary key,
+    vote_type tinyint(1) not null,
+    post_id   int        null,
+    user_id   int        null,
+    constraint votes_posts_post_id_fk
+        foreign key (post_id) references posts (post_id),
+    constraint votes_users_user_id_fk
+        foreign key (user_id) references users (user_id)
+);
+
 

@@ -2,17 +2,14 @@ package com.project.travel_forum.models;
 
 import java.util.Objects;
 
-public class Post {
+public class Comment {
     private int id;
-    private String title;
     private String content;
     private User createdBy;
+    private Post post;
 
-    //TODO -- comment and likes
-
-    public Post() {
+    public Comment() {
     }
-
 
     public int getId() {
         return id;
@@ -20,14 +17,6 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
@@ -46,12 +35,19 @@ public class Post {
         this.createdBy = createdBy;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Post post = (Post) obj;
-        return id == post.id;
+        Comment comment = (Comment) obj;
+        return id == comment.id;
     }
 
     @Override

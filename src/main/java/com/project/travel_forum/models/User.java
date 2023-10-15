@@ -1,5 +1,7 @@
 package com.project.travel_forum.models;
 
+import java.util.Objects;
+
 public class User {
     private int id;
     private String firstName;
@@ -7,6 +9,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    //private String photoName; todo
 
     public User() {
     }
@@ -61,7 +64,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(id);
     }
 
     @Override
