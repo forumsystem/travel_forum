@@ -2,12 +2,13 @@ package com.project.travel_forum.models;
 
 import java.util.Objects;
 
-public class Admin {
-    private int id;
-    private User user;
-    //private String phoneNumber; todo:confirm if we need an object
+public class PhoneNumber {
 
-    public Admin() {
+    private int id;
+    private String phoneNumber;
+    private User user;
+
+    public PhoneNumber() {
     }
 
     public int getId() {
@@ -18,20 +19,28 @@ public class Admin {
         this.id = id;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAdmin(User user) {
+        this.user= user;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Admin admin = (Admin) obj;
-        return id == admin.id;
+        PhoneNumber phoneNumber = (PhoneNumber) obj;
+        return id == phoneNumber.id;
     }
 
     @Override

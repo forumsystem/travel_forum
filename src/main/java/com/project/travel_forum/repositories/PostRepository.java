@@ -11,5 +11,6 @@ public interface PostRepository {
     void updatePost(Post post);
     void deletePost(int id);
 
-// TODO -- void addComment(Comment comment);
+    //todo: posts and comments (with the option to filter and sort them)
+
 }

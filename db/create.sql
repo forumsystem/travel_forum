@@ -7,29 +7,10 @@ create table users
     email      varchar(64) not null,
     username   varchar(32) not null,
     password   varchar(32) not null,
+    is_blocked tinyint(1)  not null,
+    is_admin   tinyint(1)  not null,
     constraint users_pk2
         unique (email)
-);
-
-create table admins
-(
-    admin_id int auto_increment
-        primary key,
-    user_id  int null,
-    constraint admins_users_user_id_fk
-        foreign key (user_id) references users (user_id)
-);
-
-create table blocked_users
-(
-    blocked_id int auto_increment
-        primary key,
-    user_id    int null,
-    admin_id   int null,
-    constraint blocked_users_admins_admin_id_fk
-        foreign key (admin_id) references admins (admin_id),
-    constraint blocked_users_users_user_id_fk
-        foreign key (user_id) references users (user_id)
 );
 
 create table phone_numbers
@@ -37,9 +18,9 @@ create table phone_numbers
     phone_number_id int auto_increment
         primary key,
     phone_number    varchar(32) not null,
-    admin_id        int         null,
-    constraint phone_numbers_admins_admin_id_fk
-        foreign key (admin_id) references admins (admin_id)
+    user_id         int         not null,
+    constraint phone_numbers_users_user_id_fk
+        foreign key (user_id) references users (user_id)
 );
 
 create table posts
@@ -66,28 +47,15 @@ create table comments
         foreign key (user_id) references users (user_id)
 );
 
-create table profile_photos
+create table likes
 (
-    photo_id   int auto_increment
+    like_id int auto_increment
         primary key,
-    photo_name varchar(32) not null,
-    photo_data blob        not null,
-    user_id    int         null,
-    constraint profile_photos_users_user_id_fk
-        foreign key (user_id) references users (user_id)
-);
-
-create table votes
-(
-    vote_id   int auto_increment
-        primary key,
-    vote_type tinyint(1) not null,
-    post_id   int        null,
-    user_id   int        null,
-    constraint votes_posts_post_id_fk
+    post_id int not null,
+    user_id int not null,
+    constraint likes_posts_post_id_fk
         foreign key (post_id) references posts (post_id),
-    constraint votes_users_user_id_fk
+    constraint likes_users_user_id_fk
         foreign key (user_id) references users (user_id)
 );
-
 
