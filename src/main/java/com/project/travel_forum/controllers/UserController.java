@@ -70,7 +70,7 @@ public class UserController {
     public User update(@RequestHeader HttpHeaders headers, @PathVariable int id, @Valid @RequestBody UserDto userDto) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
-            User userToUpdate = userMapper.fromDto(id, userDto);
+            User userToUpdate = userMapper.fromDto(id, userDto, user);
             userService.updateUser(user, userToUpdate);
             return userToUpdate;
         } catch (EntityNotFoundException e) {

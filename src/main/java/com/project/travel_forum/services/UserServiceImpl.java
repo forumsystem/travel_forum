@@ -70,14 +70,14 @@ public class UserServiceImpl implements UserService {
 
         boolean emailExists = true;
         try {
-            userRepository.getByEmail(user.getEmail());
+            userRepository.getByEmail(userToUpdate.getEmail());
         } catch (EntityNotFoundException e) {
             emailExists = false;
         }
         if (emailExists) {
             throw new EntityDuplicateException("User", "email", user.getEmail());
         }
-        userRepository.updateUser(user);
+        userRepository.updateUser(userToUpdate);
     }
 
     @Override
