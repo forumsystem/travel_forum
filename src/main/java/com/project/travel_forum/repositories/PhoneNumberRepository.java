@@ -4,11 +4,11 @@ import com.project.travel_forum.models.PhoneNumber;
 import com.project.travel_forum.models.User;
 
 public interface PhoneNumberRepository {
-    PhoneNumber get(User user);
+    PhoneNumber get(int id);
 
     void create(PhoneNumber phoneNumber);
 
     void update(PhoneNumber phoneNumber);
 
-    void delete(PhoneNumber phoneNumber);
+    void delete(User user);
 }

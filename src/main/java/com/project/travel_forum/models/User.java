@@ -1,16 +1,49 @@
 package com.project.travel_forum.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int id;
+
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "username")
     private String username;
+    @JsonIgnore
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "is_admin")
+    private boolean isAdmin;
+
+    @Column(name = "is_blocked")
+    private boolean isBlocked;
+
     public User() {
+    }
+
+    public User(int id, String firstName, String lastName, String email, String username,
+                String password, boolean isAdmin, boolean isBlocked) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+        this.isBlocked = isBlocked;
     }
 
     public int getId() {
@@ -59,6 +92,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 
     @Override
