@@ -1,11 +1,21 @@
 package com.project.travel_forum.models;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
+import java.util.Objects;
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="post_id")
     private int id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "content")
     private String content;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User createdBy;
 
     //TODO -- comment and likes

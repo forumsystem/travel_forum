@@ -15,9 +15,10 @@ public class UserMapper {
         this.userService = userService;
     }
 
-    public User fromDto(int id, UserDto dto) {
+    public User fromDto(int id, UserDto dto) { //todo look it up
         User user = fromDto(dto);
         user.setId(id);
+//        beer.setCreatedBy(repositoryBeer.getCreatedBy());
         return user;
     }
 
