@@ -1,11 +1,22 @@
 package com.project.travel_forum.models;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "phone_numbers")
 public class PhoneNumber {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "phone_number_id")
     private int id;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public PhoneNumber() {

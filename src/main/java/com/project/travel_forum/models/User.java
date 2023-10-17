@@ -8,6 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -34,17 +35,17 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstName, String lastName, String email, String username,
-                String password, boolean isAdmin, boolean isBlocked) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.isAdmin = isAdmin;
-        this.isBlocked = isBlocked;
-    }
+//    public User(int id, String firstName, String lastName, String email, String username,
+//                String password, boolean isAdmin, boolean isBlocked) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.username = username;
+//        this.password = password;
+//        this.isAdmin = isAdmin;
+//        this.isBlocked = isBlocked;
+//    }
 
     public int getId() {
         return id;
