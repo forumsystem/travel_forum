@@ -1,6 +1,8 @@
 package com.project.travel_forum.repositories;
 
+import com.project.travel_forum.models.PhoneNumber;
 import com.project.travel_forum.models.Post;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,11 +35,22 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public void updatePost(Post post) {
+        try(Session session = sessionFactory.openSession()){
+            session.beginTransaction();
+            session.merge(post);
+            session.getTransaction().commit();
+        }
         //todo: implement
     }
 
     @Override
     public void deletePost(int id) {
+        Post postToDelete = getById(id);
+        try(Session session =sessionFactory.openSession()){
+            session.beginTransaction();
+            session.remove(postToDelete);
+            session.getTransaction().commit();
+        }
       //todo: implement
     }
 }
