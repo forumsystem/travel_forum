@@ -99,7 +99,6 @@ public class UserServiceImpl implements UserService {
             throw new AuthorizationException(USER_IS_NOT_ADMIN);
         }
         user.setAdmin(false);
-
     }
 
     @Override
