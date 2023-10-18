@@ -103,12 +103,15 @@ public class UserRepositoryImpl implements UserRepository {
             session.remove(userToDelete);
             session.getTransaction().commit();
         }
-
     }
 
     @Override
-    public void makeAdmin(User user) {
-        //todo: implement
+    public void modifyPermissions(User userToMakeAdmin) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(userToMakeAdmin);
+            session.getTransaction().commit();
+        }
     }
 
     @Override

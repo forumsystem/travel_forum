@@ -104,4 +104,21 @@ public class UserController {
         }
     }
 
+    ///users/{id}?isAdmin=true / false
+    @PatchMapping("/{id}")
+    public void modifyPermissions(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isAdmin) {
+        try {
+            boolean adminFlag = isAdmin;
+            User user = authenticationHelper.tryGetUser(headers);
+            userService.modifyPermissions(id, user, adminFlag);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (EntityDuplicateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
+
+
 }

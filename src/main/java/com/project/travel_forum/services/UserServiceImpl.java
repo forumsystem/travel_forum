@@ -82,23 +82,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int id) {
-        // -- TODO --
+        userRepository.deleteUser(id);
     }
 
     @Override
-    public void makeAdmin(User user) {
-        if (user.isAdmin()) {
-            throw new AuthorizationException(USER_IS_ADMIN);
-        }
-        user.setAdmin(true);
-    }
+    public void modifyPermissions(int id, User user, boolean adminFlag) {
 
-    @Override
-    public void makeUser(User user) {
-        if (!user.isAdmin()) {
-            throw new AuthorizationException(USER_IS_NOT_ADMIN);
+        checkIfAdmin(user);
+
+        User userToMakeAdmin = userRepository.getById(id);
+
+        if (adminFlag) {
+            userToMakeAdmin.setAdmin(true);
+            userRepository.modifyPermissions(userToMakeAdmin);
         }
-        user.setAdmin(false);
+        if (!adminFlag) {
+            userToMakeAdmin.setAdmin(false);
+            userRepository.modifyPermissions(userToMakeAdmin);
+        }
     }
 
     @Override
@@ -116,4 +117,11 @@ public class UserServiceImpl implements UserService {
             throw new AuthorizationException(NOT_USER_TO_UPDATE);
         }
     }
+
+    private static void checkIfAdmin(User user) {
+        if (!user.isAdmin()) {
+            throw new AuthorizationException(USER_IS_NOT_ADMIN);
+        }
+    }
+
 }

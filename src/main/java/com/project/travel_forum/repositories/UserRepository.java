@@ -22,7 +22,7 @@ public interface UserRepository {
 
     void deleteUser(int id);
 
-    void makeAdmin(User user);
+    void modifyPermissions(User user);
 
     void makeUser(User user);
 

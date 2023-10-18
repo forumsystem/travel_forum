@@ -13,8 +13,7 @@ public interface UserService {
     void createUser(User user);
     void updateUser(User user, User userToUpdate);
     void deleteUser(int id);
-    void makeAdmin (User user);
-    void makeUser(User user);
+    void modifyPermissions(int id, User user, boolean adminFlag);
     void blockUser (User user);
     void unblockUser(User user);
 
