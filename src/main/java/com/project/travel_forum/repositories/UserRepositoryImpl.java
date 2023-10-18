@@ -106,26 +106,34 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void modifyPermissions(User userToMakeAdmin) {
+    public void modifyPermissions(User userToModify) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.merge(userToMakeAdmin);
+            session.merge(userToModify);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public void makeUser(User user) {
-        //todo: implement
+    public void modifyBlock(User userToModify) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(userToModify);
+            session.getTransaction().commit();
+        }
     }
 
-    @Override
-    public void blockUser(User user) {
-        //todo: implement
-    }
-
-    @Override
-    public void unblockUser(User user) {
-        //todo: implement
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

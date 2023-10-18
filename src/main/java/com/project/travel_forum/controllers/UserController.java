@@ -22,7 +22,6 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
     public static final String ERROR_MESSAGE = "You are not authorized to browse user information.";
-
     private final UserService userService;
     private final AuthenticationHelper authenticationHelper;
     private final UserMapper userMapper;
@@ -105,7 +104,7 @@ public class UserController {
     }
 
     ///users/{id}?isAdmin=true / false
-    @PatchMapping("/{id}")
+    @PatchMapping("admin/{id}")
     public void modifyPermissions(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isAdmin) {
         try {
             boolean adminFlag = isAdmin;
@@ -120,5 +119,34 @@ public class UserController {
         }
     }
 
+    @PatchMapping("block/{id}")
+    public void modifyBlock(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isBlocked) {
+        try {
+            boolean blockFlag = isBlocked;
+            User user = authenticationHelper.tryGetUser(headers);
+            userService.modifyBlock(id, user, blockFlag);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (EntityDuplicateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

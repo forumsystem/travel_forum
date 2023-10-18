@@ -38,11 +38,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(int id, User headersUser) {
+        //todo: change to checkIfAdmin(user);
         if (id == headersUser.getId() || headersUser.isAdmin()) {
             return userRepository.getById(id);
         } else {
             throw new UnauthorizedOperationException(NOT_AUTHORIZED_USER);
         }
+    }
+
+    @Override
+    public User getById(int id) {
+        return userRepository.getById(id);
     }
 
     @Override
@@ -89,27 +95,35 @@ public class UserServiceImpl implements UserService {
     public void modifyPermissions(int id, User user, boolean adminFlag) {
 
         checkIfAdmin(user);
+        //todo: blocked?
 
-        User userToMakeAdmin = userRepository.getById(id);
+        User userToModify = userRepository.getById(id);
 
         if (adminFlag) {
-            userToMakeAdmin.setAdmin(true);
-            userRepository.modifyPermissions(userToMakeAdmin);
+            userToModify.setAdmin(true);
+            userRepository.modifyPermissions(userToModify);
         }
         if (!adminFlag) {
-            userToMakeAdmin.setAdmin(false);
-            userRepository.modifyPermissions(userToMakeAdmin);
+            userToModify.setAdmin(false);
+            userRepository.modifyPermissions(userToModify);
         }
     }
 
     @Override
-    public void blockUser(User user) {
-        // -- TODO --
-    }
+    public void modifyBlock(int id, User user, boolean blockFlag) {
 
-    @Override
-    public void unblockUser(User user) {
-        // -- TODO --
+        checkIfAdmin(user);
+
+        User userToModify = userRepository.getById(id);
+
+        if (blockFlag) {
+            userToModify.setBlocked(true);
+            userRepository.modifyBlock(userToModify);
+        }
+        if (!blockFlag) {
+            userToModify.setBlocked(false);
+            userRepository.modifyBlock(userToModify);
+        }
     }
 
     private void checkModifyPermissions(User user, User userToUpdate) {

@@ -1,5 +1,7 @@
 package com.project.travel_forum.services;
 
+import com.project.travel_forum.exceptions.AuthorizationException;
+import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.repositories.PostRepositoryImpl;
@@ -9,7 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PostServiceImpl implements PostService{
+public class PostServiceImpl implements PostService {
+
+    public static final String USER_IS_NOT_ADMIN = "This user is not admin";
+    public static final String BLOCKED_USER_CREATE_ERR = "Blocked users cannot create new posts.";
 
     // -- TODO --
     // not autowired in Beans
@@ -22,18 +27,24 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<Post> get() {
-        return null;
+    public List<Post> getAll() {
+        return postRepository.getAll();
     }
 
     @Override
     public Post getById(int id) {
-        return null;
+        return postRepository.getById(id);
     }
 
     @Override
     public void createPost(Post post, User user) {
 
+        if (user.isBlocked()) {
+            throw new UnauthorizedOperationException(BLOCKED_USER_CREATE_ERR);
+        }
+
+        post.setCreatedBy(user);
+        postRepository.createPost(post);
     }
 
     @Override
@@ -44,5 +55,12 @@ public class PostServiceImpl implements PostService{
     @Override
     public void deletePost(int id, User user) {
 
+    }
+
+
+    private static void checkIfAdmin(User user) {
+        if (!user.isAdmin()) {
+            throw new AuthorizationException(USER_IS_NOT_ADMIN);
+        }
     }
 }

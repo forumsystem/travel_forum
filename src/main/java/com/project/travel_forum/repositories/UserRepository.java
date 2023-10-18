@@ -13,7 +13,9 @@ public interface UserRepository {
     List<User> getAll();
 
     User getById(int id);
+
     User getByEmail(String email);
+
     User getByUsername(String username);
 
     void createUser(User user);
@@ -24,12 +26,6 @@ public interface UserRepository {
 
     void modifyPermissions(User user);
 
-    void makeUser(User user);
-
-    void blockUser(User user);
-
-    void unblockUser(User user);
-
-
+    void modifyBlock(User user);
 
 }
