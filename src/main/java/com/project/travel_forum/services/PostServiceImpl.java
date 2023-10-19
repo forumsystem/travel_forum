@@ -1,6 +1,7 @@
 package com.project.travel_forum.services;
 
 import com.project.travel_forum.exceptions.AuthorizationException;
+import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
@@ -49,18 +50,13 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void updatePost(Post post, User user) {
-
+        // -- TODO -- check if user method or block user
+        postRepository.updatePost(post);
     }
 
     @Override
     public void deletePost(int id, User user) {
-
-    }
-
-
-    private static void checkIfAdmin(User user) {
-        if (!user.isAdmin()) {
-            throw new AuthorizationException(USER_IS_NOT_ADMIN);
-        }
+        // -- TODO -- check if admin or user - admin can delete every post
+        postRepository.deletePost(id);
     }
 }

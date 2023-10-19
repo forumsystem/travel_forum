@@ -60,7 +60,6 @@ public class PostRepositoryImpl implements PostRepository {
             session.merge(post);
             session.getTransaction().commit();
         }
-        //todo: implement
     }
 
     @Override
@@ -71,6 +70,5 @@ public class PostRepositoryImpl implements PostRepository {
             session.remove(postToDelete);
             session.getTransaction().commit();
         }
-        //todo: implement
     }
 }

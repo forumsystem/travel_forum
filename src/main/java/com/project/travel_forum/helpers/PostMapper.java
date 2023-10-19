@@ -19,7 +19,7 @@ public class PostMapper {
         this.userService = userService;
     }
 
-    public Post fromDto(int id, PostDto dto, User user) {
+    public Post fromDto(int id, PostDto dto) {
         Post existingPost = postService.getById(id);
 
         existingPost.setTitle(dto.getTitle());
@@ -33,7 +33,6 @@ public class PostMapper {
 
         post.setTitle(dto.getTitle());
         post.setContent(dto.getContent());
-        post.setCreatedBy(userService.getById(dto.getUserId()));
 
         return post;
     }

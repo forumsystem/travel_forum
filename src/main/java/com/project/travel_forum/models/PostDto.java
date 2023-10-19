@@ -11,8 +11,6 @@ public class PostDto {
     @NotNull(message = "Content can't be empty")
     @Size(min = 32, max = 8192, message = "Content should be between 31 and 8192 symbols")
     private String content;
-    @Positive(message = "UserId should be positive")
-    private int userId;
 
     public PostDto() {
     }
@@ -33,11 +31,5 @@ public class PostDto {
         this.content = content;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }
