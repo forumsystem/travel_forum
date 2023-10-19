@@ -2,6 +2,7 @@ package com.project.travel_forum.services;
 
 import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
+import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.repositories.PostRepositoryImpl;
@@ -28,8 +29,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getAll() {
-        return postRepository.getAll();
+    public List<Post> get(FilterOptions filterOptions) {
+        return postRepository.get(filterOptions);
     }
 
     @Override

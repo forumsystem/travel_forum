@@ -6,10 +6,7 @@ import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.helpers.PostMapper;
 import com.project.travel_forum.helpers.UserMapper;
-import com.project.travel_forum.models.Post;
-import com.project.travel_forum.models.PostDto;
-import com.project.travel_forum.models.User;
-import com.project.travel_forum.models.UserDto;
+import com.project.travel_forum.models.*;
 import com.project.travel_forum.services.PostService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +33,12 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> getAll() {
-        return postService.getAll();
-        //todo: default + sort&filter
+    public List<Post> get(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) String createdBy) {
+        FilterOptions filterOptions = new FilterOptions(title, content, createdBy);
+        return postService.get(filterOptions);
     }
 
     @GetMapping("/{id}")
