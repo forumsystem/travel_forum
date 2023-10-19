@@ -1,6 +1,5 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
@@ -12,12 +11,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.project.travel_forum.helpers.CheckPermissions.*;
+
 @Service
 public class UserServiceImpl implements UserService {
-    public static final String USER_IS_ADMIN = "This user is admin";
-    public static final String USER_IS_NOT_ADMIN = "This user is not admin";
-    public static final String NOT_AUTHORIZED_USER = "You are not authorized user.";
-    public static final String NOT_USER_TO_UPDATE = "You are not user to update.";
+
+    public static final String NOT_AUTHORIZED_USER = "This user is not authorized";
+
     private final UserRepository userRepository;
 
     @Autowired
@@ -33,13 +33,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
+        //todo: add filter/sort here?
         return userRepository.getAll();
     }
 
     @Override
-    public User getById(int id, User headersUser) {
-        //todo: change to checkIfAdmin(user);
-        if (id == headersUser.getId() || headersUser.isAdmin()) {
+    public User getById(int id, User user) {
+        if (id == user.getId() || user.isAdmin()) {
             return userRepository.getById(id);
         } else {
             throw new UnauthorizedOperationException(NOT_AUTHORIZED_USER);
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user, User userToUpdate) {
-        checkModifyPermissions(user, userToUpdate);
+        checkIfSameUser(user, userToUpdate);
 
         boolean emailExists = true;
         try {
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
     public void modifyPermissions(int id, User user, boolean adminFlag) {
 
         checkIfAdmin(user);
-        //todo: blocked?
+        checkIfBlocked(user);
 
         User userToModify = userRepository.getById(id);
 
@@ -113,6 +113,7 @@ public class UserServiceImpl implements UserService {
     public void modifyBlock(int id, User user, boolean blockFlag) {
 
         checkIfAdmin(user);
+        checkIfBlocked(user);
 
         User userToModify = userRepository.getById(id);
 
@@ -126,16 +127,5 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private void checkModifyPermissions(User user, User userToUpdate) {
-        if (!(user.getId() == userToUpdate.getId())) {
-            throw new AuthorizationException(NOT_USER_TO_UPDATE);
-        }
-    }
-
-    private static void checkIfAdmin(User user) {
-        if (!user.isAdmin()) {
-            throw new AuthorizationException(USER_IS_NOT_ADMIN);
-        }
-    }
 
 }

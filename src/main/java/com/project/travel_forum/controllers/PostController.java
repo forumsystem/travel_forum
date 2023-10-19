@@ -50,7 +50,6 @@ public class PostController {
         }
     }
 
-    //TODO: Simona
     @PostMapping
     public Post create(@RequestHeader HttpHeaders headers, @Valid @RequestBody PostDto postDto) {
         try {
@@ -60,8 +59,6 @@ public class PostController {
             return post;
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (EntityDuplicateException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         } catch (UnauthorizedOperationException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
@@ -96,6 +93,7 @@ public class PostController {
     }
 
     //todo: getPostByUser method in the PostService + PostRepository
+    //todo: filterOptions - Simona/Dora watch lecture + implement in Post + User
 
     //todo: likes - Marian
     //Всичко се случва в Post, няма модел, репо и service за likes изобщо
@@ -107,9 +105,6 @@ public class PostController {
 
     //todo: comments (with the option to filter and sort them) - Marian
 
-    //todo: Навсякъде да добавим (в user) проверка ако си блокиран - пр. Ако си блокиран не можеш да станеш Админ - Simona
-
-    //todo: filterOptions - Simona/Dora watch lecture + implement in Post + User
 
 }
 

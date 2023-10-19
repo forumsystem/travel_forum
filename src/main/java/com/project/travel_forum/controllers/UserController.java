@@ -103,7 +103,7 @@ public class UserController {
         }
     }
 
-    ///users/{id}?isAdmin=true / false
+    ///users/admin/{id}?isAdmin=true / false
     @PatchMapping("admin/{id}")
     public void modifyPermissions(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isAdmin) {
         try {

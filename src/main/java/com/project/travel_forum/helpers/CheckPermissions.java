@@ -1,0 +1,30 @@
+package com.project.travel_forum.helpers;
+
+import com.project.travel_forum.exceptions.AuthorizationException;
+import com.project.travel_forum.models.User;
+
+public class CheckPermissions {
+
+    public static final String USER_IS_NOT_ADMIN = "This user is not admin";
+    public static final String NOT_USER_TO_UPDATE = "You are not user to update.";
+    public static final String BLOCKED_USER = "This user is blocked.";
+
+    public static void checkIfSameUser(User user, User userToUpdate) {
+        if (!(user.getId() == userToUpdate.getId())) {
+            throw new AuthorizationException(NOT_USER_TO_UPDATE);
+        }
+    }
+
+    public static void checkIfAdmin(User user) {
+        if (!user.isAdmin()) {
+            throw new AuthorizationException(USER_IS_NOT_ADMIN);
+        }
+    }
+
+    public static void checkIfBlocked(User user) {
+        if (user.isBlocked()) {
+            throw new AuthorizationException(BLOCKED_USER);
+        }
+    }
+
+}

@@ -1,7 +1,6 @@
 package com.project.travel_forum.services;
 
 import com.project.travel_forum.exceptions.AuthorizationException;
-import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import static com.project.travel_forum.helpers.CheckPermissions.checkIfBlocked;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -40,9 +40,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void createPost(Post post, User user) {
 
-        if (user.isBlocked()) {
-            throw new UnauthorizedOperationException(BLOCKED_USER_CREATE_ERR);
-        }
+        checkIfBlocked(user);
 
         post.setCreatedBy(user);
         postRepository.createPost(post);
