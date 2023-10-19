@@ -55,12 +55,36 @@ public class PostRepositoryImpl implements PostRepository {
 
 
             //todo: comments after Marian
-
+            queryString.append(generateOrderBy(filterOptions));
             Query<Post> query = session.createQuery(queryString.toString(), Post.class);
             query.setProperties(params);
             return query.list();
         }
 
+    }
+    private String generateOrderBy(FilterOptions filterOptions){
+        if (filterOptions.getSortBy().isEmpty()){
+            return "";
+        }
+        String orderBy = "";
+        switch (filterOptions.getSortBy().get()){
+            case "title":
+                orderBy = "title";
+                break;
+            case "content":
+                orderBy = "content";
+                break;
+            case "createdBy":
+                orderBy = "createdBy.username";
+                break;
+            default:
+                return "";
+        }
+         orderBy = String.format(" order by %s", orderBy);
+        if (filterOptions.getSortOrder().isPresent() && filterOptions.getSortOrder().get().equalsIgnoreCase("desc")){
+            orderBy = String.format("%s desc", orderBy);
+        }
+        return orderBy;
     }
 
     @Override

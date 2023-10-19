@@ -36,8 +36,10 @@ public class PostController {
     public List<Post> get(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String content,
-            @RequestParam(required = false) String createdBy) {
-        FilterOptions filterOptions = new FilterOptions(title, content, createdBy);
+            @RequestParam(required = false) String createdBy,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String sortOrder) {
+        FilterOptions filterOptions = new FilterOptions(title, content, createdBy, sortBy, sortOrder);
         return postService.get(filterOptions);
     }
 
