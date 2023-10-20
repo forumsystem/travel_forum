@@ -1,11 +1,22 @@
 package com.project.travel_forum.models;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
+import java.util.Objects;
+@Entity
+@Table(name = "comments")
 public class Comment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="post_id")
     private int id;
-    private String content;
+    @Column(name = "comment")
+    private String comment;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User createdBy;
+    @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
 
     public Comment() {
@@ -19,12 +30,12 @@ public class Comment {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getComment() {
+        return comment;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public User getCreatedBy() {

@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface CommentRepository {
 
-    List<Comment> get(Post post);
+    List<Comment> getByPost(Post post);
+
+    Comment getById(int id);
 
     void create(Comment comment);
 
     void update(Comment comment);
 
-    void delete(Comment comment);
+    void delete(int id);
 }
