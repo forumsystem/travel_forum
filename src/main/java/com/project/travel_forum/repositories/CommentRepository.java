@@ -2,12 +2,14 @@ package com.project.travel_forum.repositories;
 
 import com.project.travel_forum.models.Comment;
 import com.project.travel_forum.models.Post;
+import com.project.travel_forum.models.User;
 
 import java.util.List;
 
 public interface CommentRepository {
 
     List<Comment> getByPost(Post post);
+    List<Comment> getByUser(User user);
 
     Comment getById(int id);
 

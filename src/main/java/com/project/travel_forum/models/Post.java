@@ -1,8 +1,11 @@
 package com.project.travel_forum.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -18,7 +21,15 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User createdBy;
 
-    //TODO -- comment and likes
+    //TODO -- comment
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinTable(name = "likes",
+                joinColumns = @JoinColumn(name = "post_id"),
+                inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> likes;
+    //boolean isLiked and delete like_id
 
     public Post() {
     }
@@ -54,6 +65,14 @@ public class Post {
 
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Set<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
     }
 
     @Override

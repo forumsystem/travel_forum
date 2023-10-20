@@ -3,6 +3,7 @@ package com.project.travel_forum.repositories;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.models.Comment;
 import com.project.travel_forum.models.Post;
+import com.project.travel_forum.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,14 +20,19 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public List<Comment> getByPost(Post post) { //needs filter?
+    public List<Comment> getByPost(Post post) {
         try (
                 Session session = sessionFactory.openSession()
         ) {
-            Query<Comment> query = session.createQuery("from Comment c where c.post = :post", Comment.class); //TODO LOOK UP
+            Query<Comment> query = session.createQuery("from Comment c where c.post = :post", Comment.class);
             query.setParameter("post", post);
             return query.list();
         }
+    }
+    @Override
+    public List<Comment> getByUser(User user){
+        //-- TODO --
+        return null;
     }
     @Override
     public Comment getById(int id) {
