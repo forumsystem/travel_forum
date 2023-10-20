@@ -2,9 +2,7 @@ package com.project.travel_forum.repositories;
 
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.models.FilterOptions;
-import com.project.travel_forum.models.PhoneNumber;
 import com.project.travel_forum.models.Post;
-import com.project.travel_forum.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -127,4 +125,14 @@ public class PostRepositoryImpl implements PostRepository {
             session.getTransaction().commit();
         }
     }
+    @Override
+    public void modifyLike(Post post){
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(post);
+            session.getTransaction().commit();
+        }
+    }
+
+
 }

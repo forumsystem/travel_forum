@@ -36,17 +36,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void create(int postId, User user,Comment content) {
+    public void create(int postId, User user,Comment comment) {
         checkIfBlocked(user);
         Post post=postRepository.getById(postId);
-        if(post==null){
-            throw new EntityNotFoundException("Post with id not found: ",postId);
-        }
-        content.setComment(content.getComment());
-        content.setCreatedBy(user);
-        content.setPost(post);
-
-        commentRepository.create(content);
+        comment.setCreatedBy(user);
+        comment.setPost(post);
+        commentRepository.create(comment);
     }
 
     @Override
@@ -60,7 +55,7 @@ public class CommentServiceImpl implements CommentService {
         checkModifyPermissions(id, user);
         commentRepository.delete(id);
     }
-    private void checkModifyPermissions(int id, User user) {
+    private void checkModifyPermissions(int id, User user) { //todo Move to Check Permission
         Comment comment = commentRepository.getById(id);
         if (!(user.isAdmin() || comment.getCreatedBy().equals(user))) {
             throw new AuthorizationException("You don't have such permission!");

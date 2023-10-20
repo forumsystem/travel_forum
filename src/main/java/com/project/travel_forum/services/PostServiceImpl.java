@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import static com.project.travel_forum.helpers.CheckPermissions.checkIfBlocked;
+import java.util.Set;
+
+import static com.project.travel_forum.helpers.CheckPermissions.*;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -49,13 +51,30 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void updatePost(Post post, User user) {
-        // -- TODO -- check if user method or block user
+        checkIfBlocked(user);
+        checkIfSameUser(user,post.getCreatedBy());
         postRepository.updatePost(post);
     }
 
     @Override
     public void deletePost(int id, User user) {
         // -- TODO -- check if admin or user - admin can delete every post
+        checkIfAdmin(user);
+        checkIfBlocked(user);
         postRepository.deletePost(id);
+    }
+
+    @Override
+    public void modifyLike(int id, User user, boolean likeFlag) {
+        checkIfBlocked(user);
+        Post postToModify=postRepository.getById(id);
+
+        if(likeFlag){
+            postToModify.setLikes(user);
+        }
+        if(!likeFlag){
+            postToModify.removeLikes(user);
+        }
+        postRepository.modifyLike(postToModify);
     }
 }

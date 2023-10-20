@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="post_id")
+    @Column(name="comment_id")
     private int id;
     @Column(name = "comment")
     private String comment;

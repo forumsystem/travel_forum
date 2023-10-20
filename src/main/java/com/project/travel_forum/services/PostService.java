@@ -12,4 +12,6 @@ public interface PostService {
     void createPost(Post post, User user);
     void updatePost(Post post, User user);
     void deletePost(int id, User user);
+
+    void modifyLike(int id,User user, boolean likeFlag);
 }

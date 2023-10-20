@@ -3,6 +3,7 @@ package com.project.travel_forum.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class Post {
     @JoinTable(name = "likes",
                 joinColumns = @JoinColumn(name = "post_id"),
                 inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> likes;
+    private Set<User> likes=new HashSet<>();
     //boolean isLiked and delete like_id
 
     public Post() {
@@ -71,9 +72,13 @@ public class Post {
         return likes;
     }
 
-    public void setLikes(Set<User> likes) {
-        this.likes = likes;
+    public void setLikes(User user) {
+        likes.add(user);
     }
+    public void removeLikes(User user) {
+        likes.remove(user);
+    }
+
 
     @Override
     public boolean equals(Object obj) {

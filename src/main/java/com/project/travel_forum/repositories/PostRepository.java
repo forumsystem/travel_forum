@@ -12,4 +12,5 @@ public interface PostRepository {
     void updatePost(Post post);
     void deletePost(int id);
 
+    void modifyLike(Post post);
 }

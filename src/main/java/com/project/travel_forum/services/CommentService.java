@@ -11,7 +11,7 @@ public interface CommentService {
 
     List<Comment> get(Post post);
 
-    void create(int postId, User user,Comment content);
+    void create(int postId, User user,Comment comment);
 
     void update(Comment comment,User user);
 

@@ -5,7 +5,6 @@ import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.helpers.PostMapper;
-import com.project.travel_forum.helpers.UserMapper;
 import com.project.travel_forum.models.*;
 import com.project.travel_forum.services.PostService;
 import jakarta.validation.Valid;
@@ -90,6 +89,22 @@ public class PostController {
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (AuthorizationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
+
+    @PatchMapping("like/{id}")
+    public void modifyLike(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isLiked) {
+        try {
+            boolean likeFlag = isLiked;
+
+            User user = authenticationHelper.tryGetUser(headers);
+            postService.modifyLike(id, user, likeFlag);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (EntityDuplicateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
     }
