@@ -50,8 +50,6 @@ public class UserController {
         }
     }
 
-    // -- TODO --
-    //filter options
 
     @PostMapping
     public User create(@Valid @RequestBody UserDto userDto) {
@@ -84,6 +82,10 @@ public class UserController {
         }
     }
 
+    //TODO: fix logic, when you delete a user, if a user needs to be deleted, sensitive data is deleted
+    // (email, username, password) - add 2nd validation - if a person is deleted re-name him as "DELETED USER"
+    // add validation that user cannot create a "DELETED USER" (optional) with CODE GENERATOR for unique ID of the deleted user
+    // --- @Dora
     @DeleteMapping("/{id}")
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {
@@ -97,6 +99,7 @@ public class UserController {
         }
     }
 
+    //TODO: move to CheckPermissions class --- @Dora
     private static void checkAccessPermissions(int targetUserId, User executingUser) {
         if (!executingUser.isAdmin() && executingUser.getId() != targetUserId) {
             throw new AuthorizationException(ERROR_MESSAGE);

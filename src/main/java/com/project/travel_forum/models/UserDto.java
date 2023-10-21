@@ -13,8 +13,6 @@ public class UserDto {
     @Size(min = 4, max = 32, message = "Name should be between 4 and 32 symbols")
     private String lastName;
 
-    // -- TODO --
-    //  need to check email unique in service
     @Email
     private String email;
 

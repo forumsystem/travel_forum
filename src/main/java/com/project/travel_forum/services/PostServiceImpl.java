@@ -20,9 +20,6 @@ public class PostServiceImpl implements PostService {
     public static final String USER_IS_NOT_ADMIN = "This user is not admin";
     public static final String BLOCKED_USER_CREATE_ERR = "Blocked users cannot create new posts.";
 
-    // -- TODO --
-    // not autowired in Beans
-
     private final PostRepositoryImpl postRepository;
 
     @Autowired
@@ -58,7 +55,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(int id, User user) {
-        // -- TODO -- check if admin or user - admin can delete every post
+        // -- TODO -- check if admin or user - admin can delete every post --- @Simona
         checkIfAdmin(user);
         checkIfBlocked(user);
         postRepository.deletePost(id);

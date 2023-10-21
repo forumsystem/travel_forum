@@ -29,7 +29,8 @@ public class CommentController {
         this.authenticationHelper = authenticationHelper;
         this.commentMapper = commentMapper;
     }
-    //TODO FILTER COMMENTS?
+
+    //TODO: re-name to getByCommentId in Controller, Service & Repo --- @Marian
     @GetMapping("/{id}")
     public Comment getById(@PathVariable int id) {
         try {
@@ -39,7 +40,7 @@ public class CommentController {
         }
 
     }
-    @PostMapping("{id}")
+    @PostMapping("/{id}")
     public Comment create(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto,@PathVariable int id) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
@@ -52,7 +53,7 @@ public class CommentController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
     }
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public Comment update(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto,@PathVariable int id){
         try{
             User user = authenticationHelper.tryGetUser(headers);

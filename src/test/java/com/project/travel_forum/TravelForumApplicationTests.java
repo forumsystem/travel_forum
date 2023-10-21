@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class TravelForumApplicationTests {
 
+    //TODO: --- AFTER FINISH FINAL TODOs
+
     @Test
     void contextLoads() {
     }

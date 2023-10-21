@@ -31,6 +31,9 @@ public class PostController {
         this.postMapper = postMapper;
     }
 
+
+    //@ResponseEntity - this needs to be returned instead of <Post> there we structure the whole response back to PostMan
+    //where we add the list of posts, count and offset - NOT AN URGENT TASK (good to have)
     @GetMapping
     public List<Post> get(
             @RequestParam(required = false) String title,
@@ -81,6 +84,7 @@ public class PostController {
         }
     }
 
+    //TODO: implement when deleting the post, delete comments with it -> with Repo method --- @Simona
     @DeleteMapping("/{id}")
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {
@@ -108,23 +112,6 @@ public class PostController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
     }
-
-
-
-    //todo: getPostByUser method in the PostService + PostRepository
-    //todo: filterOptions - Simona/Dora watch lecture + implement in Post + User
-
-    //todo: likes - Marian
-    //Всичко се случва в Post, няма модел, репо и service за likes изобщо
-    //В поста слагаме един Сет<Юзър> и той съдържа всички юзъри, които са харесали поста;
-    //така си решаваш и проблема, че един юзър не може да спеми хиляди лайкове на един пост,
-    // просто щото сет-а няма да ги записва.
-    //Сътоветно и броя лайкове се намира само с едно .size()
-    //трябва ти заявка в репо-то + бизнес-логика, която да я вика с сървис - в ПОСТ
-    //минаваш през свързваща таблица: post_id + user_id -> дори не ти трябва primary key
-
-    //todo: comments (with the option to filter and sort them) - Marian
-
 
 }
 

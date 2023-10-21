@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        //todo: add filter/sort here?
+        //todo: add filter/sort here --- @Dora
         return userRepository.getAll();
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserRepository {
 
-    //todo: filter & sort
+    //todo: filter & sort --- @Dora
     List<User> getUser(FilterOptions filterOptions); //username, email, name
 
     List<User> getAll();

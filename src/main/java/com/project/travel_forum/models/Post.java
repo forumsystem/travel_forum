@@ -22,15 +22,13 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User createdBy;
 
-    //TODO -- comment
-
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnore
     @JoinTable(name = "likes",
                 joinColumns = @JoinColumn(name = "post_id"),
                 inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> likes=new HashSet<>();
-    //boolean isLiked and delete like_id
+
+    //TODO: add field when the post was created --- @Marian | research
 
     public Post() {
     }
@@ -68,8 +66,8 @@ public class Post {
         this.createdBy = createdBy;
     }
 
-    public Set<User> getLikes() {
-        return likes;
+    public int getLikes() {
+        return likes.size();
     }
 
     public void setLikes(User user) {

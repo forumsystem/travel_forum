@@ -23,6 +23,8 @@ public class PostRepositoryImpl implements PostRepository {
         this.sessionFactory = sessionFactory;
     }
 
+    //can add how many posts to show (as count) OR offset - from which index on? - good to have to be RESTful
+
     @Override
     public List<Post> get(FilterOptions filterOptions) {
         try (
@@ -52,7 +54,6 @@ public class PostRepositoryImpl implements PostRepository {
             }
 
 
-            //todo: comments after Marian
             queryString.append(generateOrderBy(filterOptions));
             Query<Post> query = session.createQuery(queryString.toString(), Post.class);
             query.setProperties(params);
