@@ -84,7 +84,6 @@ public class PostController {
         }
     }
 
-    //TODO: implement when deleting the post, delete comments with it -> with Repo method --- @Simona
     @DeleteMapping("/{id}")
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {

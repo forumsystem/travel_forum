@@ -53,11 +53,6 @@ public class UserController {
         }
     }
 
-//    @GetMapping
-//    public List<User> getAll() {
-//        return userService.getAll();
-//    }
-
     @GetMapping("/{id}")
     public User getById(@PathVariable int id, @RequestHeader HttpHeaders headers) {
         try {
@@ -110,7 +105,6 @@ public class UserController {
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
-            checkUserAuthorization(id, user);
             userService.deleteUser(id, user);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

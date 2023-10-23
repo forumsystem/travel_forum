@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public class CommentRepositoryImpl implements CommentRepository {
     private final SessionFactory sessionFactory;
+
     @Autowired
     public CommentRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -29,11 +31,13 @@ public class CommentRepositoryImpl implements CommentRepository {
             return query.list();
         }
     }
+
     @Override
-    public List<Comment> getByUser(User user){
+    public List<Comment> getByUser(User user) {
         //-- TODO --
         return null;
     }
+
     @Override
     public Comment getByCommentId(int id) {
         try (
@@ -75,4 +79,16 @@ public class CommentRepositoryImpl implements CommentRepository {
             session.getTransaction().commit();
         }
     }
+
+    @Override
+    public void deleteAllCommentsByPost(Post post) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Query resultQuery = session.createQuery("DELETE FROM Comment WHERE post.id =:id ");
+            resultQuery.setParameter("id", post.getId());
+            resultQuery.executeUpdate();
+            session.getTransaction().commit();
+        }
+    }
+
 }

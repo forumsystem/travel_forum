@@ -1,30 +1,27 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.exceptions.AuthorizationException;
-import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
-import com.project.travel_forum.repositories.PostRepositoryImpl;
+import com.project.travel_forum.repositories.CommentRepository;
+import com.project.travel_forum.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 import static com.project.travel_forum.helpers.CheckPermissions.*;
 
 @Service
 public class PostServiceImpl implements PostService {
 
-    public static final String USER_IS_NOT_ADMIN = "This user is not admin";
-    public static final String BLOCKED_USER_CREATE_ERR = "Blocked users cannot create new posts.";
-
-    private final PostRepositoryImpl postRepository;
+    private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public PostServiceImpl(PostRepositoryImpl postRepository) {
+    public PostServiceImpl(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -55,9 +52,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(int id, User user) {
-        // -- TODO -- check if admin or user - admin can delete every post --- @Simona
-        checkIfAdmin(user);
+        Post post = getById(id);
+        checkIfSameUserOrAdmin(user, post);
         checkIfBlocked(user);
+        if (!commentRepository.getByPost(post).isEmpty()) {
+            commentRepository.deleteAllCommentsByPost(post);
+        }
         postRepository.deletePost(id);
     }
 

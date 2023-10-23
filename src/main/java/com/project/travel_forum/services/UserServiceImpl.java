@@ -34,11 +34,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return userRepository.getAll();
-    }
-
-    @Override
     public User getById(int id, User user) {
         if (id == user.getId() || user.isAdmin()) {
             return userRepository.getById(id);
@@ -89,10 +84,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int id, User user) {
-        if (user.getUsername().equals("DELETED USER")){
-            throw new EntityNotFoundException("Can't delete DELETED USER with ", id);
+        checkUserAuthorization(id, user);
+
+        boolean userExists = true;
+
+        try {
+            userRepository.getById(id);
+        } catch (EntityNotFoundException e) {
+            userExists = false;
         }
-        userRepository.deleteUser(id);
+        if (userExists) {
+            userRepository.deleteUser(id);
+        }
+
+//        if (user.getUsername().equals("DELETED USER")){
+//            throw new EntityNotFoundException("Can't delete DELETED USER with ", id);
+//        }
     }
 
 

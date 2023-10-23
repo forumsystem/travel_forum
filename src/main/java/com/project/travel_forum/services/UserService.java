@@ -9,8 +9,6 @@ import java.util.List;
 public interface UserService {
     List<User> get(User user, FilterUserOptions filterUserOptions);
 
-    List<User> getAll();
-
     User getById(int id, User headersUser);
 
     User getById(int id);

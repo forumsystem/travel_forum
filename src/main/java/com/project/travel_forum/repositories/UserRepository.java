@@ -11,8 +11,6 @@ public interface UserRepository {
 
     List<User> get(FilterUserOptions filterUserOptions);
 
-    List<User> getAll();
-
     User getById(int id);
 
     User getByEmail(String email);

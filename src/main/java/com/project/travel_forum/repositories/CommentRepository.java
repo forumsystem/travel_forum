@@ -9,6 +9,7 @@ import java.util.List;
 public interface CommentRepository {
 
     List<Comment> getByPost(Post post);
+
     List<Comment> getByUser(User user);
 
     Comment getByCommentId(int id);
@@ -18,4 +19,6 @@ public interface CommentRepository {
     void update(Comment comment);
 
     void delete(int id);
+
+    void deleteAllCommentsByPost(Post post);
 }
