@@ -4,6 +4,7 @@ import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.FilterOptions;
+import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,15 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    @Override
-    public List<User> getUser(FilterOptions filterOptions) {
 
-        return userRepository.getUser(filterOptions);
+    @Override
+    public List<User> get(User user, FilterUserOptions filterUserOptions) {
+        checkIfAdmin(user);
+        return userRepository.get(filterUserOptions);
     }
 
     @Override
     public List<User> getAll() {
-        //todo: add filter/sort here --- @Dora
         return userRepository.getAll();
     }
 
@@ -87,9 +88,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(int id, User user) {
+        if (user.getUsername().equals("DELETED USER")){
+            throw new EntityNotFoundException("Can't delete DELETED USER with ", id);
+        }
         userRepository.deleteUser(id);
     }
+
+
 
     @Override
     public void modifyPermissions(int id, User user, boolean adminFlag) {

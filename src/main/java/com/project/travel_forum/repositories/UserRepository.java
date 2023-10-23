@@ -1,14 +1,15 @@
 package com.project.travel_forum.repositories;
 
 import com.project.travel_forum.models.FilterOptions;
+import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.User;
 
 import java.util.List;
 
 public interface UserRepository {
 
-    //todo: filter & sort --- @Dora
-    List<User> getUser(FilterOptions filterOptions); //username, email, name
+
+    List<User> get(FilterUserOptions filterUserOptions);
 
     List<User> getAll();
 

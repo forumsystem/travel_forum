@@ -5,8 +5,7 @@ import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.helpers.UserMapper;
-import com.project.travel_forum.models.User;
-import com.project.travel_forum.models.UserDto;
+import com.project.travel_forum.models.*;
 import com.project.travel_forum.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +14,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import static com.project.travel_forum.helpers.CheckPermissions.checkUserAuthorization;
+
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    public static final String ERROR_MESSAGE = "You are not authorized to browse user information.";
     private final UserService userService;
     private final AuthenticationHelper authenticationHelper;
     private final UserMapper userMapper;
@@ -34,9 +34,29 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAll() {
-        return userService.getAll();
+    public List<User> get(
+            @RequestHeader HttpHeaders headers,
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String sortOrder) {
+        FilterUserOptions filterUserOptions = new FilterUserOptions(firstName, email, username, sortBy, sortOrder);
+        try {
+            User headersUser = authenticationHelper.tryGetUser(headers);
+            return userService.get(headersUser, filterUserOptions);
+
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
     }
+
+//    @GetMapping
+//    public List<User> getAll() {
+//        return userService.getAll();
+//    }
 
     @GetMapping("/{id}")
     public User getById(@PathVariable int id, @RequestHeader HttpHeaders headers) {
@@ -90,19 +110,12 @@ public class UserController {
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
-            checkAccessPermissions(id, user);
-            userService.deleteUser(id);
+            checkUserAuthorization(id, user);
+            userService.deleteUser(id, user);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (UnauthorizedOperationException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-        }
-    }
-
-    //TODO: move to CheckPermissions class --- @Dora
-    private static void checkAccessPermissions(int targetUserId, User executingUser) {
-        if (!executingUser.isAdmin() && executingUser.getId() != targetUserId) {
-            throw new AuthorizationException(ERROR_MESSAGE);
         }
     }
 

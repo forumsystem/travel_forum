@@ -3,6 +3,8 @@ package com.project.travel_forum.repositories;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.models.FilterOptions;
+import com.project.travel_forum.models.FilterUserOptions;
+import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Repository
@@ -24,8 +29,61 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getUser(FilterOptions filterOptions) {
-        return null;
+    public List<User> get(FilterUserOptions filterUserOptions) {
+        try (
+                Session session = sessionFactory.openSession()) {
+            List<String> filters = new ArrayList<>();
+            Map<String, Object> params = new HashMap<>();
+
+            filterUserOptions.getFirstName().ifPresent(value -> {
+                filters.add(" firstName like :firstName ");
+                params.put("firstName", String.format("%%%s%%", value));
+            });
+            filterUserOptions.getEmail().ifPresent(value -> {
+                filters.add(" email = :email ");
+                params.put("email", value);
+            });
+            filterUserOptions.getUsername().ifPresent(value -> {
+                filters.add(" username = :username ");
+                params.put("username", value);
+            });
+            StringBuilder queryString = new StringBuilder("from User ");
+            if (!filters.isEmpty()) {
+                queryString.append(" where ")
+                        .append(String.join(" and ", filters));
+            }
+
+
+            queryString.append(generateOrderBy(filterUserOptions));
+            Query<User> query = session.createQuery(queryString.toString(), User.class);
+            query.setProperties(params);
+            return query.list();
+        }
+    }
+
+    private String generateOrderBy(FilterUserOptions filterUserOptions) {
+        if (filterUserOptions.getSortBy().isEmpty()) {
+            return "";
+        }
+        String orderBy = "";
+        switch (filterUserOptions.getSortBy().get()) {
+            case "firstName":
+                orderBy = "firstName";
+                break;
+            case "email":
+                orderBy = "email";
+                break;
+            case "username":
+                orderBy = "username";
+                break;
+            default:
+                return "";
+        }
+        orderBy = String.format(" order by %s", orderBy);
+        if (filterUserOptions.getSortOrder().isPresent() && filterUserOptions.getSortOrder().get().equalsIgnoreCase("desc")) {
+            orderBy = String.format("%s desc", orderBy);
+        }
+        return orderBy;
     }
 
     @Override
@@ -66,11 +124,11 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getByUsername(String username) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Query<User> query = session.createQuery("from User where username = :username", User.class);
             query.setParameter("username", username);
             List<User> result = query.list();
-            if (result.isEmpty()){
+            if (result.isEmpty()) {
                 throw new EntityNotFoundException("User", "username", username);
             }
             return result.get(0);

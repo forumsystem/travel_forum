@@ -46,6 +46,7 @@ public class AuthenticationHelper {
         }
     }
 
+
     private String getUsername(String userInfo) {
         int firstSpace = userInfo.indexOf(" ");
         {

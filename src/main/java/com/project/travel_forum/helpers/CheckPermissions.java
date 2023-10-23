@@ -8,6 +8,8 @@ public class CheckPermissions {
     public static final String USER_IS_NOT_ADMIN = "This user is not admin";
     public static final String NOT_USER_TO_UPDATE = "You are not user to update.";
     public static final String BLOCKED_USER = "This user is blocked.";
+    public static final String ERROR_MESSAGE = "You are not authorized to browse user information.";
+
 
     public static void checkIfSameUser(User user, User userToUpdate) {
         if (!(user.getId() == userToUpdate.getId())) {
@@ -24,6 +26,11 @@ public class CheckPermissions {
     public static void checkIfBlocked(User user) {
         if (user.isBlocked()) {
             throw new AuthorizationException(BLOCKED_USER);
+        }
+    }
+    public static void checkUserAuthorization(int targetUserId, User executingUser) {
+        if (!executingUser.isAdmin() && executingUser.getId() != targetUserId) {
+            throw new AuthorizationException(ERROR_MESSAGE);
         }
     }
 
