@@ -30,11 +30,10 @@ public class CommentController {
         this.commentMapper = commentMapper;
     }
 
-    //TODO: re-name to getByCommentId in Controller, Service & Repo --- @Marian
     @GetMapping("/{id}")
-    public Comment getById(@PathVariable int id) {
+    public Comment getByCommentId(@PathVariable int id) {
         try {
-            return commentService.getById(id);
+            return commentService.getByCommentId(id);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }

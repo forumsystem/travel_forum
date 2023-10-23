@@ -2,8 +2,6 @@ package com.project.travel_forum.helpers;
 
 import com.project.travel_forum.models.Comment;
 import com.project.travel_forum.models.CommentDto;
-import com.project.travel_forum.models.Post;
-import com.project.travel_forum.models.PostDto;
 import com.project.travel_forum.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +14,7 @@ public class CommentMapper {
         this.commentService = commentService;
     }
     public Comment fromDto(int id, CommentDto dto){
-        Comment existingComment=commentService.getById(id);
+        Comment existingComment=commentService.getByCommentId(id);
 
         existingComment.setComment(dto.getComment());
         return existingComment;

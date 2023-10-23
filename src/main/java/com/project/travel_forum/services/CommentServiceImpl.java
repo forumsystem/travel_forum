@@ -1,7 +1,6 @@
 package com.project.travel_forum.services;
 
 import com.project.travel_forum.exceptions.AuthorizationException;
-import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.models.Comment;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
@@ -26,8 +25,8 @@ public class CommentServiceImpl implements CommentService {
         this.postRepository = postRepository;
     }
     @Override
-    public Comment getById(int id) {
-        return commentRepository.getById(id);
+    public Comment getByCommentId(int id) {
+        return commentRepository.getByCommentId(id);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.delete(id);
     }
     private void checkModifyPermissions(int id, User user) { //todo Move to Check Permission
-        Comment comment = commentRepository.getById(id);
+        Comment comment = commentRepository.getByCommentId(id);
         if (!(user.isAdmin() || comment.getCreatedBy().equals(user))) {
             throw new AuthorizationException("You don't have such permission!");
         }

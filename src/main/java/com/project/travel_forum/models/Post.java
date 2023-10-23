@@ -2,7 +2,10 @@ package com.project.travel_forum.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -21,6 +24,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User createdBy;
+    @Column(name = "time_stamp")
+    @CreationTimestamp
+    private Timestamp timestamp;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "likes",
@@ -28,7 +34,7 @@ public class Post {
                 inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> likes=new HashSet<>();
 
-    //TODO: add field when the post was created --- @Marian | research
+
 
     public Post() {
     }
@@ -77,6 +83,13 @@ public class Post {
         likes.remove(user);
     }
 
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
 
     @Override
     public boolean equals(Object obj) {

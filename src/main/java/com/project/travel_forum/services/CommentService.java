@@ -7,7 +7,7 @@ import com.project.travel_forum.models.User;
 import java.util.List;
 
 public interface CommentService {
-    Comment getById(int id);
+    Comment getByCommentId(int id);
 
     List<Comment> get(Post post);
 

@@ -11,7 +11,7 @@ public interface CommentRepository {
     List<Comment> getByPost(Post post);
     List<Comment> getByUser(User user);
 
-    Comment getById(int id);
+    Comment getByCommentId(int id);
 
     void create(Comment comment);
 

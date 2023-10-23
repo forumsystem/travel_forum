@@ -35,7 +35,7 @@ public class CommentRepositoryImpl implements CommentRepository {
         return null;
     }
     @Override
-    public Comment getById(int id) {
+    public Comment getByCommentId(int id) {
         try (
                 Session session = sessionFactory.openSession()
         ) {
@@ -67,8 +67,8 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public void delete(int id) { //todo
-        Comment commentToDelete = getById(id);
+    public void delete(int id) {
+        Comment commentToDelete = getByCommentId(id);
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             session.remove(commentToDelete);

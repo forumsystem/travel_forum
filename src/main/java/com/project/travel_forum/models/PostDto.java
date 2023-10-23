@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
+import java.sql.Timestamp;
+
 public class PostDto {
     @NotNull(message = "Title can't be empty")
     @Size(min = 16, max = 64, message = "Title should be between 16 and 64 symbols")
