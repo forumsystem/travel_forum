@@ -152,15 +152,9 @@ public class UserRepositoryImpl implements UserRepository {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            Query<User> deleteLikesQuery = session.createNativeQuery("DELETE FROM likes WHERE user_id = :userId", User.class);
-            deleteLikesQuery.setParameter("userId", id);
-            deleteLikesQuery.executeUpdate();
+            deleteLikes(id, session);
 
-            Query<User> updatePostsAndCommentsQuery = session.createNativeQuery(
-                    "UPDATE posts SET user_id = :deletedUserId WHERE user_id = :userId", User.class);
-            updatePostsAndCommentsQuery.setParameter("deletedUserId", deletedUserId);
-            updatePostsAndCommentsQuery.setParameter("userId", id);
-            updatePostsAndCommentsQuery.executeUpdate();
+            updatePostAndComment(id, session, deletedUserId);
 
             session.remove(userToDelete);
             session.getTransaction().commit();
@@ -183,6 +177,21 @@ public class UserRepositoryImpl implements UserRepository {
             session.merge(userToModify);
             session.getTransaction().commit();
         }
+    }
+
+    private static void deleteLikes(int id, Session session) {
+        Query<User> deleteLikesQuery = session.createNativeQuery("DELETE FROM likes WHERE user_id = :userId",
+                User.class);
+        deleteLikesQuery.setParameter("userId", id);
+        deleteLikesQuery.executeUpdate();
+    }
+
+    private static void updatePostAndComment(int id, Session session, int deletedUserId) {
+        Query<User> updatePostsAndCommentsQuery = session.createNativeQuery(
+                "UPDATE posts SET user_id = :deletedUserId WHERE user_id = :userId", User.class);
+        updatePostsAndCommentsQuery.setParameter("deletedUserId", deletedUserId);
+        updatePostsAndCommentsQuery.setParameter("userId", id);
+        updatePostsAndCommentsQuery.executeUpdate();
     }
 
 }
