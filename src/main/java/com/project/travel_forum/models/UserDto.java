@@ -5,21 +5,21 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UserDto {
-    @NotNull(message = "Name can't be empty")
+    @NotNull(message = "Name cannot be empty")
     @Size(min = 4, max = 32, message = "Name should be between 4 and 32 symbols")
     private String firstName;
 
-    @NotNull(message = "Last name can't be empty")
+    @NotNull(message = "Last name cannot be empty")
     @Size(min = 4, max = 32, message = "Name should be between 4 and 32 symbols")
     private String lastName;
 
     @Email
     private String email;
 
-    @NotNull(message = "Username can't be empty")
+    @NotNull(message = "Username cannot be empty")
     private String username;
 
-    @NotNull(message = "Password can't be empty")
+    @NotNull(message = "Password cannot be empty")
     private String password;
 
 

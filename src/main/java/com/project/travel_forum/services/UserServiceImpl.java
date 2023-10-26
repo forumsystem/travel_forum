@@ -17,8 +17,6 @@ import static com.project.travel_forum.helpers.CheckPermissions.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    public static final String NOT_AUTHORIZED_USER = "This user is not authorized";
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -35,17 +33,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(int id, User user) {
-        if (id == user.getId() || user.isAdmin()) {
-            return userRepository.getById(id);
-        } else {
-            throw new UnauthorizedOperationException(NOT_AUTHORIZED_USER);
-        }
-    }
-
-    @Override
-    public User getById(int id) {
+        checkIfSameUserOrAdmin(id, user);
         return userRepository.getById(id);
     }
+
 
     @Override
     public User getByUsername(String username) {
@@ -101,7 +92,6 @@ public class UserServiceImpl implements UserService {
 //            throw new EntityNotFoundException("Can't delete DELETED USER with ", id);
 //        }
     }
-
 
 
     @Override

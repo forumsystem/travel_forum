@@ -123,5 +123,6 @@ public class User {
         User user = (User) obj;
         return id == user.id;
     }
+
 }
 

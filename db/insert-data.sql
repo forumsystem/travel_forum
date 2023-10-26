@@ -1,1 +1,2 @@
 INSERT INTO users (first_name, last_name, email, username, password, is_blocked, is_admin)VALUES ('deletedUser', 'Deleted', 'deletedUser@example.com', 'deletedUser', 'deletedUser', 0, 0);
+//TODO: Simona

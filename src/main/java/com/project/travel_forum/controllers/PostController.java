@@ -96,7 +96,7 @@ public class PostController {
         }
     }
 
-    @PatchMapping("like/{id}")
+    @PatchMapping("/{id}/like")
     public void modifyLike(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isLiked) {
         try {
             boolean likeFlag = isLiked;

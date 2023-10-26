@@ -42,7 +42,7 @@ public class PhoneNumber {
         return user;
     }
 
-    public void setAdmin(User user) {
+    public void setUser(User user) {
         this.user= user;
     }
 

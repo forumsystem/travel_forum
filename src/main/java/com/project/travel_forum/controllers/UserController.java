@@ -4,8 +4,10 @@ import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
+import com.project.travel_forum.helpers.PhoneNumberMapper;
 import com.project.travel_forum.helpers.UserMapper;
 import com.project.travel_forum.models.*;
+import com.project.travel_forum.services.PhoneNumberService;
 import com.project.travel_forum.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +25,20 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
+    private final PhoneNumberService phoneNumberService;
     private final AuthenticationHelper authenticationHelper;
     private final UserMapper userMapper;
+    private final PhoneNumberMapper phoneNumberMapper;
 
     @Autowired
-    public UserController(UserService userService, AuthenticationHelper authenticationHelper, UserMapper userMapper) {
+    public UserController(UserService userService, PhoneNumberService phoneNumberService,
+                          AuthenticationHelper authenticationHelper, UserMapper userMapper,
+                          PhoneNumberMapper phoneNumberMapper) {
         this.userService = userService;
+        this.phoneNumberService = phoneNumberService;
         this.authenticationHelper = authenticationHelper;
         this.userMapper = userMapper;
+        this.phoneNumberMapper = phoneNumberMapper;
     }
 
     @GetMapping
@@ -97,10 +105,6 @@ public class UserController {
         }
     }
 
-    //TODO: fix logic, when you delete a user, if a user needs to be deleted, sensitive data is deleted
-    // (email, username, password) - add 2nd validation - if a person is deleted re-name him as "DELETED USER"
-    // add validation that user cannot create a "DELETED USER" (optional) with CODE GENERATOR for unique ID of the deleted user
-    // --- @Dora
     @DeleteMapping("/{id}")
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {
@@ -114,7 +118,7 @@ public class UserController {
     }
 
     ///users/admin/{id}?isAdmin=true / false
-    @PatchMapping("admin/{id}")
+    @PatchMapping("/{id}/admin")
     public void modifyPermissions(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isAdmin) {
         try {
             boolean adminFlag = isAdmin;
@@ -129,12 +133,64 @@ public class UserController {
         }
     }
 
-    @PatchMapping("block/{id}")
+    @PatchMapping("/{id}/block/")
     public void modifyBlock(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isBlocked) {
         try {
             boolean blockFlag = isBlocked;
             User user = authenticationHelper.tryGetUser(headers);
             userService.modifyBlock(id, user, blockFlag);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (EntityDuplicateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
+
+    @PostMapping("/phone")
+    public PhoneNumber create(@RequestHeader HttpHeaders headers, @Valid @RequestBody PhoneNumberDto phoneNumberDto) {
+        try {
+            PhoneNumber phoneNumber = phoneNumberMapper.fromDto(phoneNumberDto);
+            User user = authenticationHelper.tryGetUser(headers);
+
+            phoneNumberService.create(phoneNumber, user);
+            return phoneNumber;
+
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (EntityDuplicateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
+
+    @PutMapping("/phone")
+    public PhoneNumber update(@RequestHeader HttpHeaders headers, @Valid @RequestBody PhoneNumberDto phoneNumberDto) {
+        try {
+            User user = authenticationHelper.tryGetUser(headers);
+            PhoneNumber phoneNumber = phoneNumberMapper.fromDto(phoneNumberDto, user);
+
+            phoneNumberService.update(phoneNumber);
+            return phoneNumber;
+
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (EntityDuplicateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (UnauthorizedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/phone")
+    public void delete(@RequestHeader HttpHeaders headers) {
+        try {
+            User user = authenticationHelper.tryGetUser(headers);
+
+            phoneNumberService.delete(user);
+
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (EntityDuplicateException e) {

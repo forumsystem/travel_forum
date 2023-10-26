@@ -24,9 +24,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User createdBy;
-    @Column(name = "time_stamp")
-    @CreationTimestamp
-    private Timestamp timestamp;
+//    @Column(name = "time_stamp")
+//    @CreationTimestamp
+//    private Timestamp timestamp;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "likes",
@@ -83,13 +83,13 @@ public class Post {
         likes.remove(user);
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
+//    public Timestamp getTimestamp() {
+//        return timestamp;
+//    }
+//
+//    public void setTimestamp(Timestamp timestamp) {
+//        this.timestamp = timestamp;
+//    }
 
     @Override
     public boolean equals(Object obj) {

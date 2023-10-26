@@ -1,6 +1,6 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.exceptions.AuthorizationException;
+import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
@@ -24,7 +24,6 @@ public class PostServiceTests {
 
     @Mock
     private PostRepository postRepository;
-
 
     @InjectMocks
     private PostServiceImpl postService;
@@ -83,7 +82,7 @@ public class PostServiceTests {
         Post mockPost = createMockPost();
 
         // Act, Assert
-        Assertions.assertThrows(AuthorizationException.class,
+        Assertions.assertThrows(UnauthorizedOperationException.class,
                 () -> postService.createPost(mockPost, blockUser));
         Assertions.assertDoesNotThrow(
                 () -> postService.createPost(mockPost, user));
@@ -97,7 +96,7 @@ public class PostServiceTests {
         Post mockPost = createMockPost();
 
         // Act, Assert
-        Assertions.assertThrows(AuthorizationException.class,
+        Assertions.assertThrows(UnauthorizedOperationException.class,
                 () -> postService.updatePost(mockPost, blockUser));
         Assertions.assertDoesNotThrow(
                 () -> postService.updatePost(mockPost, user));
@@ -111,7 +110,7 @@ public class PostServiceTests {
         mockUser.setId(2);
 
         // Act, Assert
-        Assertions.assertThrows(AuthorizationException.class,
+        Assertions.assertThrows(UnauthorizedOperationException.class,
                 () -> postService.updatePost(postToUpdate, mockUser));
     }
 

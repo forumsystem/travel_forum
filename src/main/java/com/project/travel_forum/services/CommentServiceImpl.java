@@ -54,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
         checkModifyPermissions(id, user);
         commentRepository.delete(id);
     }
-    private void checkModifyPermissions(int id, User user) { //todo Move to Check Permission
+    private void checkModifyPermissions(int id, User user) { //todo Move to Check Permission  --- @Simona
         Comment comment = commentRepository.getByCommentId(id);
         if (!(user.isAdmin() || comment.getCreatedBy().equals(user))) {
             throw new AuthorizationException("You don't have such permission!");

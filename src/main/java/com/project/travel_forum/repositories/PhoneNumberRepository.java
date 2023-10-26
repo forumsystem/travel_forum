@@ -4,7 +4,7 @@ import com.project.travel_forum.models.PhoneNumber;
 import com.project.travel_forum.models.User;
 
 public interface PhoneNumberRepository {
-    PhoneNumber get(int id);
+    PhoneNumber getByUser(User user);
 
     void create(PhoneNumber phoneNumber);
 
