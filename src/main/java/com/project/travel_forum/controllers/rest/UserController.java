@@ -1,5 +1,6 @@
-package com.project.travel_forum.controllers;
+package com.project.travel_forum.controllers.rest;
 
+import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;

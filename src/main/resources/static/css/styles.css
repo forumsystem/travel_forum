@@ -1,0 +1,57 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.welcome-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #35424a;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #5f6e78;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #35424a;
+}
+
+a {
+    text-decoration: none;
+    color: #4285f4;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2c5f8e;
+}
+
+.separator {
+    margin: 0 10px;
+}
