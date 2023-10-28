@@ -1,7 +1,9 @@
 package com.project.travel_forum.controllers.mvc;
 
+import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.services.PostService;
+import org.hibernate.action.internal.EntityActionVetoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,18 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/posts")
 @Controller
-public class PostController {
+public class PostMvcController {
     private final PostService postService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostMvcController(PostService postService) {
         this.postService = postService;
     }
 
     @GetMapping("/{id}")
-    public String ShowPost(@PathVariable int id, Model model){
-       Post post = postService.getById(id);
-       model.addAttribute("post", post);
-       return "PostView";
+    public String showPost(@PathVariable int id, Model model) {
+        try {
+            Post post = postService.getById(id);
+            model.addAttribute("post", post);
+            return "PostView";
+        } catch (EntityNotFoundException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("statusCode", 404);
+            return "ErrorView";
+        }
     }
+
 }

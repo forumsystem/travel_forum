@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Explore & Share</title>
-  <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
+<!--  <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>-->
 
 </head>
 <body>
@@ -22,7 +22,9 @@ Journey Details:<h2 th:text="${post.content}"/>
 
 
 <div>
-Voyager:<h3 th:text="${post.createdBy}"/>
+Voyager:<h3 th:text="${post.createdBy.getUsername()}"/>
 </div>
 </body>
 </html>
+
+

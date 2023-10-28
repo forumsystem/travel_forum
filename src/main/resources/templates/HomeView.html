@@ -23,7 +23,7 @@
 </header>
 <footer>
     <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
-        <p class="centered-text">© Copyright <span class="date-time" th:text="${today}">TravelForum</span></p>
+        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
     </small>
 </footer>
 </body>
