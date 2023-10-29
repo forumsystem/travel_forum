@@ -5,12 +5,11 @@
     <title>Travel Forum</title>
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
 </head>
-<body>
 
+<body>
 <header>
 <div class="welcome-container">
-    <h1 th:text="#{forum.welcome}">Welcome to the Travel Forum!</h1>
-    <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
+    <div class="nav-link">
     <h3>
         <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
         <span class="separator">|</span>
@@ -18,6 +17,11 @@
         <span class="separator">|</span>
         <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
     </h3>
+        </div>
+    <div class="centered-text">
+    <h1 th:text="#{forum.welcome}">Welcome to the Travel Forum!</h1>
+    <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
+    </div>
     <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
 </div>
 </header>

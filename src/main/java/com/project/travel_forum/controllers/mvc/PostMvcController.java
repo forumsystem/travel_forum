@@ -1,6 +1,7 @@
 package com.project.travel_forum.controllers.mvc;
 
 import com.project.travel_forum.exceptions.EntityNotFoundException;
+import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.services.PostService;
 import org.hibernate.action.internal.EntityActionVetoException;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @RequestMapping("/posts")
 @Controller
 public class PostMvcController {
@@ -19,6 +22,13 @@ public class PostMvcController {
     @Autowired
     public PostMvcController(PostService postService) {
         this.postService = postService;
+    }
+    @GetMapping
+    public String showAllPosts(Model model){
+        FilterOptions filterOptions = new FilterOptions(null, null, null, null, null);
+        List<Post> posts = postService.get(filterOptions);
+        model.addAttribute("posts", posts);
+        return "AllPostsView";
     }
 
     @GetMapping("/{id}")

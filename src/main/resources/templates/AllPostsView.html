@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Forum | All Posts</title>
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<header>
+    <div class="welcome-container">
+        <div class="nav-link">
+            <h3>
+                <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/beers}" th:text="#{navigation.all-posts}">Browse Posts</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
+            </h3>
+        </div>
+        <h1>All Posts</h1>
+<!--        <div th:if="${posts.isEmpty()}">-->
+<!--            <h2 th:text="${posts.title.isEmpty()}"> No Posts</h2>-->
+<!--        </div>-->
+<!--        <div th:unless="${posts.isEmpty()}">-->
+<!--            <h2 th:text="${posts.title}">Posts</h2>-->
+
+<!--        </div>-->
+<!--        //&#45;&#45; TODO &#45;&#45; check if have posts-->
+
+        <div class="table">
+            <div class="row" th:each="post:${posts}">
+                <div class="cell">
+                   <a th:text="${post.title}" th:href="@{/posts/{id}(id=${post.id})}"/>
+                </div>
+                <div class="cell" th:text="${post.content}"/>
+                <div class="cell" th:text="${post.createdBy}"/>
+
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>

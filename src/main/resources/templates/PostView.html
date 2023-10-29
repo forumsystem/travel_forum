@@ -3,27 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Explore & Share</title>
-<!--  <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>-->
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
 
 </head>
 <body>
-<h1>Explore and share</h1>
-<br/>
-<div>
-Journey of Discovery: <h1 th:text="${post.title}"/>
+<header>
+    <div class="welcome-container">
+        <div class="nav-link">
+            <h3>
+                <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/beers}" th:text="#{navigation.all-posts}">Browse Posts</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
+            </h3>
+        </div>
+        <h1>Explore and share</h1>
+        <br/>
+
+
+<div class="body-content">
+    <h2 th:text="${post.title}">Journey of Discovery</h2>
+    <div th:style="text-align">
+        <p class="margin12" th:text="#{post.label.title}  + 'Journey Details:: ' +       ${post.title}">Beautiful
+            Europe</p>
+        <p class="margin12" th:text="#{post.label.content} + 'Voyager: ' +      ${post.content}">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed et urna vel ipsum ullamcorper fermentum. Maecenas varius, libero vel iaculis, libero ipsum elementum
+            quam, et vulputate tortor arcu ut lorem. Vivamus et nisl sit amet tortor semper euismod. Sed nec fringilla
+            quam, vel lacinia tortor. Suspendisse non bibendum ligula. In sagittis lorem a tellus consequat, eget
+            egestas lorem feugiat. Phasellus in mi eget lectus vehicula varius ac non ipsum. Curabitur non justo et
+            libero vehicula laoreet. Integer sagittis ligula ac felis volutpat, a sollicitudin arcu tincidunt. Praesent
+            quis urna eu ipsum pellentesque suscipit. Vestibulum nec metus sed neque convallis sagittis. Duis suscipit,
+            libero a euismod tempor, justo nunc scelerisque leo, id porta lorem nulla nec lacus. Vestibulum sagittis
+            velit vel ligula bibendum, ac aliquet tellus dignissim. Integer eu tellus eu libero interdum venenatis.
+            Vestibulum a mi ut tortor varius viverra at a ipsum. Sed in massa ac leo ullamcorper auctor id ac ipsum.
+            Nullam feugiat bibendum mi, nec venenatis ipsum suscipit eu. Sed sed risus sit amet justo efficitur
+            vulputate. Proin non urna a odio bibendum scelerisque nec in ipsum. Maecenas a bibendum erat, eget rhoncus
+            libero. Vestibulum bibendum orci id odio egestas, vel accumsan lorem tincidunt.
+        </p>
+        <p class="margin12" th:text="#{post.label.createdBy.username}  + ': ' + ${post.createdBy}">
+            user@mail.com</p>
+    </div>
 </div>
-<br/>
-
-
-<div>
-Journey Details:<h2 th:text="${post.content}"/>
 </div>
-<br/>
-
-
-<div>
-Voyager:<h3 th:text="${post.createdBy.getUsername()}"/>
-</div>
+<footer>
+    <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
+        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
+    </small>
+</footer>
+</header>
 </body>
 </html>
 
