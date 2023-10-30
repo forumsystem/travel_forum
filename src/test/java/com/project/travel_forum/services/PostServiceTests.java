@@ -1,6 +1,5 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.Comment;
 import com.project.travel_forum.models.FilterOptions;
@@ -19,13 +18,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.project.travel_forum.Helpers.*;
-import static com.project.travel_forum.UserHelpers.createMockAdmin;
-import static com.project.travel_forum.UserHelpers.createMockUser;
+import static com.project.travel_forum.MockHelpers.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PostServiceTests {
-    //TODO: --- @Dora
 
     @Mock
     private PostRepository postRepository;
@@ -173,7 +169,7 @@ public class PostServiceTests {
         int postId = 1;
         User adminUser = createMockAdmin();
         Post postToDelete = createMockPost();
-        List<Comment> comments = createMockComment(); // Stvaranje liste komentara
+        List<Comment> comments = createListMockComment(); // Stvaranje liste komentara
         Mockito.when(postRepository.getById(postId)).thenReturn(postToDelete);
         Mockito.when(commentRepository.getByPost(postToDelete)).thenReturn(comments);
 

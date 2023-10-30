@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.project.travel_forum.helpers.CheckPermissions.checkIfBlocked;
-import static com.project.travel_forum.helpers.CheckPermissions.checkIfSameUser;
+import static com.project.travel_forum.helpers.CheckPermissions.*;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -32,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> get(Post post) {
         return null;
-    }
+    } //todo
 
     @Override
     public void create(int postId, User user,Comment comment) {
@@ -51,14 +50,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void delete(int id,User user) {
-        checkModifyPermissions(id, user);
+        checkUserAuthorization(id, user);
         commentRepository.delete(id);
     }
-    private void checkModifyPermissions(int id, User user) { //todo Move to Check Permission  --- @Simona
-        Comment comment = commentRepository.getByCommentId(id);
-        if (!(user.isAdmin() || comment.getCreatedBy().equals(user))) {
-            throw new AuthorizationException("You don't have such permission!");
-        }
-    }
+
 
 }

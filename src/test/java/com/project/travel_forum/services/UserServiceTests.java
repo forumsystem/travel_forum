@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.project.travel_forum.UserHelpers.*;
+import static com.project.travel_forum.MockHelpers.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTests {
