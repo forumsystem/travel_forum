@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New Post</title>
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<!--<div th:replace="~{PostForm.html::head('New Post')}"></div>-->
+
+<body>
+<!--<div th:replace="~{PostForm.html::header}"></div>-->
+<!--<div th:replace="~{PostForm.html::post-form}"></div>-->
+<!--<div th:replace="~{PostForm.html::footer}"></div>-->
+
+<div class="body-content">
+    <h3>New Post</h3>
+    <form th:action="/posts/create" th:object="${post}" method="post" action="#">
+
+        <div>
+            <label for="title" th:text="#{post.label.title}">Title</label>
+            <br/>
+            <input id="title" type="text" th:field="*{title}">
+            <!--            // -- TODO -- this is about exceptions-->
+
+                        <label for="title" th:errors="*{title}"></label>
+        </div>
+
+        <div>
+            <label for="content" th:text="#{post.label.content}">Content</label>
+            <br/>
+            <input id="content" type="text" th:field="*{content}">
+            <!--            // -- TODO -- this is about exceptions-->
+                        <label for="content" th:errors="*{content}"></label>
+
+        </div>
+        <br/>
+
+        <button type="button" value="Save">Save new post</button>
+
+    </form>
+</div>
+</body>
+</html>

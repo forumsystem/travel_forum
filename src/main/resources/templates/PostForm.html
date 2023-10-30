@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="'Travel Forum | ' + ${title}">Title</title>
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
+</head>
+
+<header th:fragment="header">
+    <div class="welcome-container">
+        <div class="nav-link">
+            <h3>
+                <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse Posts</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
+                <span class="separator">|</span>
+                <a href="#" th:href="@{/posts/update}" th:text="#{navigation.create-post}">Create new post</a>
+            </h3>
+        </div>
+        <div class="centered-text">
+            <h1 th:text="#{forum.welcome}">Welcome to the Travel Forum!</h1>
+            <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
+        </div>
+        <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
+    </div>
+</header>
+
+<div th:fragment="post-form" class="body-content">
+    <h3>New Post</h3>
+    <form th:action="@{__${requestURI}__}" th:object="${post}" method="post" action="#">
+
+        <div>
+            <label for="title" th:text="#{post.label.title}">Title</label>
+            <br/>
+            <input id="title" type="text" th:field="*{title}">
+            <!--            // &#45;&#45; TODO &#45;&#45; this is about exceptions-->
+
+            <!--            <label for="title" th:errors="*{title}"></label>-->
+        </div>
+
+        <div>
+            <label for="content" th:text="#{post.label.content}">Content</label>
+            <br/>
+            <input id="content" type="text" th:field="*{content}">
+            <!--            // &#45;&#45; TODO &#45;&#45; this is about exceptions-->
+            <!--            <label for="content" th:errors="*{content}"></label>-->
+
+        </div>
+        <br/>
+
+        <button class="btn-primary" type="button" value="Save">Save new post</button>
+
+    </form>
+</div>
+
+<footer th:fragment="footer">
+    <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
+        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
+    </small>
+</footer>

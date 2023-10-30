@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
 </head>
 
+<!--<div th:replace="~{PostForm.html::head('Home')}"></div>-->
+
 <body>
 <header>
 <div class="welcome-container">
@@ -13,7 +15,7 @@
     <h3>
         <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
         <span class="separator">|</span>
-        <a href="#" th:href="@{/beers}" th:text="#{navigation.all-posts}">Browse Posts</a>
+        <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse Posts</a>
         <span class="separator">|</span>
         <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
     </h3>

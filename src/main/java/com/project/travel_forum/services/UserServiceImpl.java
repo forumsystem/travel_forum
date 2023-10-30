@@ -32,6 +32,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User get(int id) {
+        return userRepository.getById(id);
+
+    }
+
+    @Override
     public User getById(int id, User user) {
         checkIfSameUserOrAdmin(id, user);
         return userRepository.getById(id);
