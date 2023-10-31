@@ -1,6 +1,5 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.models.Comment;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
@@ -29,9 +28,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> get(Post post) {
-        return null;
-    } //todo
+    public List<Comment> getByPost(Post post) {
+        return commentRepository.getByPost(post);
+    }
+
+    @Override
+    public List<Comment> getByUser(User user) {
+        return commentRepository.getByUser(user);
+    }
 
     @Override
     public void create(int postId, User user,Comment comment) {
