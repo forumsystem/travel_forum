@@ -5,7 +5,7 @@
     <title>TravelForum | Error Page</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
-<!--<div th:replace="~{PostForm.html::head('Error Page')}"></div>-->
+<!--<form th:replace="~{PostForm.html::head('Error Page')}"></form>-->
 
 <body>
 <header>
@@ -31,5 +31,7 @@
         <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
     </small>
 </footer>
+<!--<form th:replace="~{PostForm.html::footer}"></form>-->
+
 </body>
 </html>

@@ -5,39 +5,40 @@
     <title>Edit Post</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
-<!--<div th:replace="~{PostForm.html::head('Edit Post')}"></div>-->
+<!--<form th:replace="~{PostForm.html::head('Edit Post')}"></form>-->
 
 <body>
-<!--<div th:replace="~{PostForm.html::header}"></div>-->
-<!--<div th:replace="~{PostForm.html::post-form}"></div>-->
-<!--<div th:replace="~{PostForm.html::footer}"></div>-->
 
 <div class="body-content">
-    <h3>Edit Post</h3>
-    <form th:action="@{__${requestURI}__}" th:object="${post}" method="post" action="#">
 
-        <div>
-            <label for="title" th:text="#{post.label.title}">Title</label>
+<!--    <div th:style="text-align">-->
+<!--        <form th:replace="~{PostForm.html::header}"></form>-->
+<!--        <form th:replace="~{PostForm.html::post-form('Edit Post')}"></form>-->
+<!--        <form th:replace="~{PostForm.html::footer}"></form>-->
+<!--    </div>-->
+        <h3>Edit Post</h3>
+        <form th:action="@{__${requestURI}__}" th:object="${post}" method="post" action="#">
+
+            <div>
+                <label for="title" th:text="#{post.label.title}">Title</label>
+                <br/>
+                <input id="title" type="text" th:field="*{title}">
+
+                <label for="title" th:errors="*{title}"></label>
+            </div>
+
+            <div>
+                <label for="content" th:text="#{post.label.content}">Content</label>
+                <br/>
+                <input id="content" type="text" th:field="*{content}">
+                <label for="content" th:errors="*{content}"></label>
+
+            </div>
             <br/>
-            <input id="title" type="text" th:field="*{title}">
-            <!--            // -- TODO -- this is about exceptions-->
 
-                        <label for="title" th:errors="*{title}"></label>
-        </div>
+            <button type="button" value="Save">Save new post</button>
 
-        <div>
-            <label for="content" th:text="#{post.label.content}">Content</label>
-            <br/>
-            <input id="content" type="text" th:field="*{content}">
-            <!--            // -- TODO -- this is about exceptions-->
-                        <label for="content" th:errors="*{content}"></label>
-
-        </div>
-        <br/>
-
-        <button type="button" value="Save">Save new post</button>
-
-    </form>
+        </form>
 </div>
 </body>
 </html>

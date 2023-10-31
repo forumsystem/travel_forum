@@ -42,6 +42,7 @@ public class PostMvcController {
         return request.getRequestURI();
     }
 
+
     @GetMapping
     public String showAllPosts(Model model) {
         FilterOptions filterOptions = new FilterOptions(null, null, null, null, null);
@@ -63,13 +64,13 @@ public class PostMvcController {
         }
     }
 
-    @GetMapping("/create")
+    @GetMapping("/new")
     public String createPostForm(Model model) {
         model.addAttribute("post", new PostDto());
         return "PostCreateView";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/new")
     public String createPost(@Valid @ModelAttribute("post") PostDto postDto,
                              Model model, BindingResult result) {
         if (result.hasErrors()) {
@@ -82,10 +83,10 @@ public class PostMvcController {
             User user = userService.get(1);
             Post post = postMapper.fromDto(postDto);
             postService.createPost(post, user);
-            return "redirect/posts";
+            return "redirect:/posts";
         } catch (EntityNotFoundException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            model.addAttribute("statusCode", 404);
+            model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
+            model.addAttribute("error", e.getMessage());
             return "ErrorView";
         }
         // -- TODO --  1 hours:32 min
@@ -142,7 +143,7 @@ public class PostMvcController {
         }
     }
 
-    @GetMapping("{id}/delete")
+    @GetMapping("/{id}/delete")
     public String deletePost(@PathVariable int id, Model model) {
         try {
             User user = userService.get(1);

@@ -37,7 +37,14 @@ body {
     align-items: center;
 }
 .body-content{
-
+    background-color: #fff;
+    top: 40px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    justify-content: flex-start;
+    align-items: center;
 }
 h3 {
     margin: 0;

@@ -2,14 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Travel Forum</title>
+    <title>About - Travel Forum</title>
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
 </head>
 
-<!--<form th:replace="~{PostForm.html::head('Home')}"></form>-->
-
 <body>
-<!--<form th:replace="~{PostForm.html :: header}"></form>-->
 
 <header>
     <div class="welcome-container">
@@ -23,14 +20,12 @@
             </h3>
         </div>
         <div class="centered-text">
-            <h1 th:text="#{forum.welcome}">Welcome to the Travel Forum!</h1>
-            <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
-            <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
-
+            <h1>About the Travel Forum</h1>
+            <p>Welcome to the Travel Forum! This is a place where travelers share their experiences and stories.
+                Learn from others, get inspired, and plan your next adventure.</p>
         </div>
     </div>
 </header>
-<!--<form th:replace="~{PostForm.html::footer}"></form>-->
 
 <footer>
     <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
