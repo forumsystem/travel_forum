@@ -35,6 +35,16 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getTop10MostCommented() {
+        return postRepository.getTop10MostCommented();
+    }
+
+    @Override
+    public List<Post> getTop10MostLiked() {
+        return postRepository.getTop10MostLiked();
+    }
+
+    @Override
     public void createPost(Post post, User user) {
 
         checkIfBlocked(user);

@@ -61,12 +61,13 @@ public class PostRepositoryImpl implements PostRepository {
         }
 
     }
-    private String generateOrderBy(FilterOptions filterOptions){
-        if (filterOptions.getSortBy().isEmpty()){
+
+    private String generateOrderBy(FilterOptions filterOptions) {
+        if (filterOptions.getSortBy().isEmpty()) {
             return "";
         }
         String orderBy = "";
-        switch (filterOptions.getSortBy().get()){
+        switch (filterOptions.getSortBy().get()) {
             case "title":
                 orderBy = "title";
                 break;
@@ -79,8 +80,8 @@ public class PostRepositoryImpl implements PostRepository {
             default:
                 return "";
         }
-         orderBy = String.format(" order by %s", orderBy);
-        if (filterOptions.getSortOrder().isPresent() && filterOptions.getSortOrder().get().equalsIgnoreCase("desc")){
+        orderBy = String.format(" order by %s", orderBy);
+        if (filterOptions.getSortOrder().isPresent() && filterOptions.getSortOrder().get().equalsIgnoreCase("desc")) {
             orderBy = String.format("%s desc", orderBy);
         }
         return orderBy;
@@ -96,6 +97,51 @@ public class PostRepositoryImpl implements PostRepository {
                 throw new EntityNotFoundException("Post", id);
             }
             return post;
+        }
+    }
+
+    @Override
+    public List<Post> getTop10MostCommented() {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "SELECT posts, COUNT(comments.id) AS comment_count " +
+                    "FROM Post posts " +
+                    "LEFT JOIN Comment comments ON posts.id = comments.post.id " +
+                    "GROUP BY posts " +
+                    "ORDER BY comment_count DESC";
+
+            Query<Object[]> query = session.createQuery(hql, Object[].class);
+            query.setMaxResults(10);
+
+            List<Post> result = new ArrayList<>();
+            List<Object[]> resultList = query.list();
+
+            for (Object[] row : resultList) {
+                Post post = (Post) row[0];
+                result.add(post);
+            }
+            return result;
+        }
+    }
+
+    @Override
+    public List<Post> getTop10MostLiked() {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "SELECT posts, " +
+                    "(SELECT COUNT(*) FROM posts.likes l WHERE l.id = posts.id) AS likes_count " +
+                    "FROM Post posts";
+//                    "ORDER BY likes_count DESC" todo: add the ORDER BY feature
+
+            Query<Object[]> query = session.createQuery(hql, Object[].class);
+            query.setMaxResults(10);
+
+            List<Post> result = new ArrayList<>();
+            List<Object[]> resultList = query.list();
+
+            for (Object[] row : resultList) {
+                Post post = (Post) row[0];
+                result.add(post);
+            }
+            return result;
         }
     }
 
@@ -126,8 +172,9 @@ public class PostRepositoryImpl implements PostRepository {
             session.getTransaction().commit();
         }
     }
+
     @Override
-    public void modifyLike(Post post){
+    public void modifyLike(Post post) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             session.merge(post);
