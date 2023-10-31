@@ -1,6 +1,5 @@
 package com.project.travel_forum.controllers;
 
-import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.User;
@@ -24,7 +23,6 @@ public class AuthenticationHelper {
     public AuthenticationHelper(UserService userService) {
         this.userService = userService;
     }
-
     public User tryGetUser(HttpHeaders headers) {
         if (!headers.containsKey(AUTHORIZATION_HEADER_NAME)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
@@ -36,7 +34,7 @@ public class AuthenticationHelper {
             String username = getUsername(userInfo);
             String password = getPassword(userInfo);
 
-            User user = userService.getByUsername(username);
+         User user = userService.getByUsername(username);
 
             if (!user.getPassword().equals(password)) {
                 throw new UnauthorizedOperationException(INVALID_AUTHENTICATION_ERROR);
@@ -46,22 +44,6 @@ public class AuthenticationHelper {
         } catch (EntityNotFoundException e) {
             throw new UnauthorizedOperationException(AUTHENTICATION_ERROR);
         }
-    }
-
-    public User verifyAuthentication(String username, String password) {
-
-        try {
-            User user = userService.getByUsername(username);
-
-            if (!user.getPassword().equals(password)) {
-                throw new AuthorizationException(INVALID_AUTHENTICATION_ERROR);
-            }
-            return user;
-
-        } catch (EntityNotFoundException e) {
-            throw new AuthorizationException(INVALID_AUTHENTICATION_ERROR);
-        }
-
     }
 
 
