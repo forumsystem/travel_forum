@@ -9,9 +9,11 @@ import java.util.List;
 public interface CommentService {
     Comment getByCommentId(int id);
 
-    List<Comment> get(Post post);
+    List<Comment> getByPost(Post post);
 
-    void create(int postId, User user,Comment comment);
+    List<Comment> getByUser(User user);
+
+    void create(int postId, User user, Comment comment);
 
     void update(Comment comment,User user);
 
