@@ -9,9 +9,11 @@ import java.util.List;
 public interface PostService {
     List<Post> get(FilterOptions filterOptions);
     Post getById(int id);
+    List<Post> getTop10MostCommented();
+    List<Post> getTop10MostLiked();
     void createPost(Post post, User user);
     void updatePost(Post post, User user);
     void deletePost(int id, User user);
-
     void modifyLike(int id,User user, boolean likeFlag);
+
 }

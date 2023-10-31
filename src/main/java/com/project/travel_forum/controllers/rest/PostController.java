@@ -55,6 +55,16 @@ public class PostController {
         }
     }
 
+    @GetMapping("/home/comments")
+    public List<Post> getTop10MostCommented() {
+        return postService.getTop10MostCommented();
+    }
+
+    @GetMapping("/home/likes")
+    public List<Post> getTop10MostLiked() {
+        return postService.getTop10MostLiked();
+    }
+
     @PostMapping
     public Post create(@RequestHeader HttpHeaders headers, @Valid @RequestBody PostDto postDto) {
         try {
