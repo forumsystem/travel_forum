@@ -43,6 +43,10 @@ public class PostServiceImpl implements PostService {
     public List<Post> getTop10MostLiked() {
         return postRepository.getTop10MostLiked();
     }
+    @Override
+    public List<Post> getTop10MostResent(){
+        return postRepository.getTop10MostRecent();
+    }
 
     @Override
     public void createPost(Post post, User user) {

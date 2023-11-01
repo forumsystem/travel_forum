@@ -64,6 +64,10 @@ public class PostController {
     public List<Post> getTop10MostLiked() {
         return postService.getTop10MostLiked();
     }
+    @GetMapping("/home/resent")
+    public List<Post> getTop10MostRecent() {
+        return postService.getTop10MostResent();
+    }
 
     @PostMapping
     public Post create(@RequestHeader HttpHeaders headers, @Valid @RequestBody PostDto postDto) {

@@ -9,6 +9,9 @@ public interface PostRepository {
     List<Post> get(FilterOptions filterOptions);
     Post getById(int id);
     List<Post> getTop10MostCommented();
+
+    List<Post> getTop10MostRecent();
+
     List<Post> getTop10MostLiked();
     void createPost(Post post);
     void updatePost(Post post);

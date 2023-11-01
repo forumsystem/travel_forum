@@ -11,6 +11,9 @@ public interface PostService {
     Post getById(int id);
     List<Post> getTop10MostCommented();
     List<Post> getTop10MostLiked();
+
+    List<Post> getTop10MostResent();
+
     void createPost(Post post, User user);
     void updatePost(Post post, User user);
     void deletePost(int id, User user);

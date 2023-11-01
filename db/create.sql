@@ -1,4 +1,4 @@
-create table users
+create or replace table users
 (
     user_id    int auto_increment
         primary key,
@@ -13,7 +13,7 @@ create table users
         unique (email)
 );
 
-create table phone_numbers
+create or replace table phone_numbers
 (
     phone_number_id int auto_increment
         primary key,
@@ -23,18 +23,19 @@ create table phone_numbers
         foreign key (user_id) references users (user_id)
 );
 
-create table posts
+create or replace table posts
 (
-    post_id int auto_increment
+    post_id    int auto_increment
         primary key,
-    title   varchar(64)   not null,
-    content varchar(8192) not null,
-    user_id int           null,
+    title      varchar(64)   not null,
+    content    varchar(8192) not null,
+    user_id    int           null,
+    time_stamp timestamp     not null,
     constraint posts_users_user_id_fk
         foreign key (user_id) references users (user_id)
 );
 
-create table comments
+create or replace table comments
 (
     comment_id int auto_increment
         primary key,
@@ -47,7 +48,7 @@ create table comments
         foreign key (user_id) references users (user_id)
 );
 
-create table likes
+create or replace table likes
 (
     like_id int auto_increment
         primary key,

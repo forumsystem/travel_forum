@@ -122,6 +122,19 @@ public class PostRepositoryImpl implements PostRepository {
             return result;
         }
     }
+    @Override
+    public List<Post> getTop10MostRecent() {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "SELECT posts " +
+                    "FROM Post posts " +
+                    "ORDER BY posts.timestamp DESC";
+
+            Query<Post> query = session.createQuery(hql, Post.class);
+            query.setMaxResults(10);
+
+            return query.list();
+        }
+    }
 
     @Override
     public List<Post> getTop10MostLiked() {
