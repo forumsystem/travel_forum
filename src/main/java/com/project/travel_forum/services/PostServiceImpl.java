@@ -61,7 +61,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void updatePost(Post post, User user) {
         checkIfBlocked(user);
-        checkIfSameUser(user, post.getCreatedBy());
+        checkIfSameUserOrAdmin(user,post);
         postRepository.updatePost(post);
     }
 

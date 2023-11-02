@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<form th:replace="~{PostForm.html :: head('Admin Portal')}"></form>
+<body>
+<form th:replace="~{PostForm.html :: header}"></form>
+<div class="body-content">
+  <h1 th:text="#{admin.welcome}">Welcome to the Travel Forum!</h1>
+  <h2 th:text="${session.currentUser}" th:if="${isAuthenticated}"></h2>
+  <p>Implement any admin functionality here</p>
+  <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
+  <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
+</div>
+
+<form th:replace="~{PostForm.html :: footer}"></form>
+</body>
+</html>

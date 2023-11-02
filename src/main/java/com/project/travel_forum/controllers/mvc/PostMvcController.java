@@ -6,10 +6,7 @@ import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.helpers.PostMapper;
-import com.project.travel_forum.models.FilterOptions;
-import com.project.travel_forum.models.Post;
-import com.project.travel_forum.models.PostDto;
-import com.project.travel_forum.models.User;
+import com.project.travel_forum.models.*;
 import com.project.travel_forum.services.PostService;
 import com.project.travel_forum.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,17 +50,20 @@ public class PostMvcController {
 
 
     @GetMapping
-    public String showAllPosts(Model model, HttpSession httpSession) {
-
+    public String showAllPosts(@ModelAttribute("filterOptions") FilterDto filterDto, Model model, HttpSession httpSession) {
+        FilterOptions filterOptions = new FilterOptions(
+                filterDto.getTitle(),
+                filterDto.getContent(),
+                filterDto.getCreatedBy(),
+                filterDto.getSortBy(),
+                filterDto.getSortOrder());
         try {
             authenticationHelper.tryGetCurrentUser(httpSession);
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
-
-        FilterOptions filterOptions = new FilterOptions(null, null, null, null, null);
-        List<Post> posts = postService.get(filterOptions);
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postService.get(filterOptions));
+        model.addAttribute("filterOptions", filterDto);
         return "AllPostsView";
     }
 
@@ -196,7 +196,7 @@ public class PostMvcController {
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "redirect:/auth/login";
-        }catch (UnauthorizedOperationException e){
+        } catch (UnauthorizedOperationException e) {
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "ErrorView";

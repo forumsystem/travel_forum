@@ -5,6 +5,29 @@
 <form th:replace="~{PostForm.html :: header}"></form>
 
 <div class="body-content">
+    <form action="#" th:action="@{/posts}" method="get" th:object="${filterOptions}">
+        <label th:text="#{post.filter.label}">Filter Options</label>
+        <br/><br/>
+        <input type="text" placeholder="Post title" th:field="*{title}"/>
+        <input type="text" placeholder="Post content" th:field="*{content}"/>
+        <input type="text" placeholder="Created by" th:field="*{createdBy}"/>
+
+        <select th:field="*{sortBy}">
+            <option value="">Sort By</option>
+            <option value="title">Title</option>
+            <option value="content">Content</option>
+            <option value="createdBy">Created by</option>
+        </select>
+
+        <select th:field="*{sortOrder}">
+            <option value="">Sort Order</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <br/><br/>
+
+        <input type="submit" value="Search"/>
+    </form>
     <div th:if="${posts.isEmpty()}">
         <h2 th:text="#{post.title.empty}">No Post</h2>
     </div>
