@@ -1,7 +1,7 @@
 package com.project.travel_forum.helpers;
 
 import com.project.travel_forum.models.User;
-import com.project.travel_forum.models.UserDto;
+import com.project.travel_forum.models.RegisterDto;
 import com.project.travel_forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class UserMapper {
         this.userService = userService;
     }
 
-    public User fromDto(int id, UserDto dto, User user) {
+    public User fromDto(int id, RegisterDto dto, User user) {
         User existingUser = userService.getById(id, user);
 
         existingUser.setFirstName(dto.getFirstName());
@@ -28,15 +28,16 @@ public class UserMapper {
     }
 
 
-    public User fromDto(UserDto dto) {
+    public User fromDto(RegisterDto registerDto) {
         User user = new User();
 
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setEmail(dto.getEmail());
-        user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword());
+        user.setFirstName(registerDto.getFirstName());
+        user.setLastName(registerDto.getLastName());
+        user.setEmail(registerDto.getEmail());
+        user.setUsername(registerDto.getUsername());
+        user.setPassword(registerDto.getPassword());
 
         return user;
     }
+
 }

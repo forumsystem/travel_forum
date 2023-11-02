@@ -1,5 +1,6 @@
 package com.project.travel_forum.controllers.mvc;
 
+import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
@@ -23,19 +24,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/posts")
 @Controller
+@RequestMapping("/posts")
 public class PostMvcController {
     private final PostService postService;
     private final PostMapper postMapper;
     private final UserService userService;
+    private final AuthenticationHelper authenticationHelper;
 
     @Autowired
-    public PostMvcController(PostService postService, PostMapper postMapper, UserService userService) {
+    public PostMvcController(PostService postService, PostMapper postMapper, UserService userService, AuthenticationHelper authenticationHelper) {
         this.postService = postService;
         this.postMapper = postMapper;
         this.userService = userService;
+        this.authenticationHelper = authenticationHelper;
     }
+
+    @ModelAttribute("isAuthenticated")
+    public boolean populateIsAuthenticated(HttpSession session) {
+        return session.getAttribute("currentUser") != null;
+    }
+
 
     @ModelAttribute("requestURI")
     public String getRequestURI(HttpServletRequest request) {
@@ -44,7 +53,14 @@ public class PostMvcController {
 
 
     @GetMapping
-    public String showAllPosts(Model model) {
+    public String showAllPosts(Model model, HttpSession httpSession) {
+
+        try {
+            authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+
         FilterOptions filterOptions = new FilterOptions(null, null, null, null, null);
         List<Post> posts = postService.get(filterOptions);
         model.addAttribute("posts", posts);
@@ -58,29 +74,39 @@ public class PostMvcController {
             model.addAttribute("post", post);
             return "PostView";
         } catch (EntityNotFoundException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            model.addAttribute("statusCode", 404);
+            model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
+            model.addAttribute("error", e.getMessage());
             return "ErrorView";
         }
     }
 
     @GetMapping("/new")
-    public String createPostForm(Model model) {
+    public String createPostForm(Model model, HttpSession httpSession) {
+        try {
+            authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
         model.addAttribute("post", new PostDto());
         return "PostCreateView";
     }
 
     @PostMapping("/new")
     public String createPost(@Valid @ModelAttribute("post") PostDto postDto,
-                             Model model, BindingResult result) {
+                             BindingResult result,
+                             Model model,
+                             HttpSession httpSession) {
+        User user;
+        try {
+            user = authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
         if (result.hasErrors()) {
             return "PostCreateView";
         }
 
         try {
-            //TODO get authenticated user from the HTTP session next week we finish this
-
-            User user = userService.get(1);
             Post post = postMapper.fromDto(postDto);
             postService.createPost(post, user);
             return "redirect:/posts";
@@ -88,17 +114,20 @@ public class PostMvcController {
             model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "ErrorView";
-        }
-        // -- TODO --  1 hours:32 min
-        catch (UnauthorizedOperationException e) {
-            model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
-            model.addAttribute("error", e.getMessage());
-            return "ErrorView";
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
         }
     }
 
     @GetMapping("/{id}/update")
-    public String showPostEditPage(@PathVariable int id, Model model, HttpSession session) {
+    public String showPostEditPage(@PathVariable int id,
+                                   Model model,
+                                   HttpSession httpSession) {
+        try {
+            authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
         try {
             Post post = postService.getById(id);
             PostDto postDto = postMapper.toDto(post);
@@ -109,25 +138,28 @@ public class PostMvcController {
             model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "ErrorView";
-        } catch (UnauthorizedOperationException e) {
-            model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
-            model.addAttribute("error", e.getMessage());
-            return "ErrorView";
         }
     }
 
     @PostMapping("/{id}/update")
     public String updatePost(@PathVariable int id,
                              @Valid @ModelAttribute("post") PostDto postDto,
-                             Model model, BindingResult result) {
+                             Model model,
+                             BindingResult result,
+                             HttpSession httpSession) {
+        User user;
+        try {
+            user = authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
         if (result.hasErrors()) {
             return "PostUpdateView";
         }
         try {
-            User user = userService.get(1);
-            Post post = postMapper.fromDto(1, postDto);
+            Post post = postMapper.fromDto(id, postDto);
             postService.updatePost(post, user);
-            return "redirect:/posts/{id}/update";
+            return "redirect:/posts/{id}";
         } catch (EntityNotFoundException e) {
             model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
@@ -139,14 +171,21 @@ public class PostMvcController {
         } catch (AuthorizationException e) {
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
-            return "ErrorView";
+            return "redirect:/auth/login";
         }
     }
 
     @GetMapping("/{id}/delete")
-    public String deletePost(@PathVariable int id, Model model) {
+    public String deletePost(@PathVariable int id,
+                             Model model,
+                             HttpSession httpSession) {
+        User user;
         try {
-            User user = userService.get(1);
+            user = authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+        try {
             postService.deletePost(id, user);
             return "redirect:/posts";
         } catch (EntityNotFoundException e) {
@@ -154,6 +193,10 @@ public class PostMvcController {
             model.addAttribute("error", e.getMessage());
             return "ErrorView";
         } catch (AuthorizationException e) {
+            model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/auth/login";
+        }catch (UnauthorizedOperationException e){
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "ErrorView";

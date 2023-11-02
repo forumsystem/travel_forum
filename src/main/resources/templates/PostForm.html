@@ -2,60 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <title th:text="'Travel Forum | ' + ${title}">Title</title>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <title th:text="'TravelForum | '+ ${title}">Title</title>
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
-
 <header th:fragment="header">
-    <div class="welcome-container">
-        <div class="nav-link">
-            <h3>
-                <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse Posts</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/posts/update}" th:text="#{navigation.create-post}">Create new post</a>
-            </h3>
-        </div>
-        <div class="centered-text">
-            <h1 th:text="#{forum.welcome}">Welcome to the Travel Forum!</h1>
-            <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
-        </div>
-        <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
+    <div>
+        <h3>
+            <a href="#" th:href="@{/}" th:text="#{navigation.home} + ' | '">Home</a>
+            <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts} + ' | '">Browse all posts</a>
+            <a href="#" th:if="${isAuthenticated}" th:href="@{/posts/new}"
+               th:text="#{navigation.create-post} + ' | '">Create Post</a>
+            <a href="#" th:href="@{/about}" th:text="#{navigation.about} + ' | '">About</a>
+            <a href="#" th:unless="${isAuthenticated}" th:href="@{/auth/login}">Login | </a>
+            <a href="#" th:unless="${isAuthenticated}" th:href="@{/auth/register}">Register</a>
+            <a href="#" th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a>
+        </h3>
     </div>
 </header>
+<div th:fragment="post-form(title)">
+    <h2 th:text="${title}">Title</h2>
 
-<div th:fragment="post-form(content)">
-    <h3 th:text="${content}">New Post</h3>
-    <form action="#" th:action="@{__${requestURI}__}" th:object="${post}" method="post" >
+    <form action="#" th:action="@{__${requestURI}__}" th:object="${post}" method="post">
+        <label th:text="#{post.label.title}">Post</label>
+        <br/>
+        <input type="text" th:field="*{title}"/>
+        <label class="error" th:errors="*{title}">Title error placeholder</label>
+        <br/><br/>
 
-        <div>
-            <label for="title" th:text="#{post.label.title}">Title</label>
-            <br/>
-            <input id="title" type="text" th:field="*{title}">
+        <label th:text="#{post.label.content}">Content</label>
+        <br/>
+        <input type="text" th:field="*{content}"/>
+        <label class="error" th:errors="*{content}">Content error placeholder</label>
+        <br/><br/>
 
-            <label class="error" th:errors="*{title}">Title error placeholder</label>
-        </div>
-        </br></br>
+<!--        <label th:text="#{post.label.createdBy.username}">CreatedBy</label>-->
+<!--        <br/>-->
+<!--        <input type="text" th:field="*{username}"/>-->
+<!--        <label class="error" th:errors="*{username}">Username error placeholder</label>-->
+<!--        <br/><br/>-->
 
-        <div>
-            <label for="content" th:text="#{post.label.content}">Content</label>
-            <br/>
-            <input id="content" type="text" th:field="*{content}">
-
-            <label class="error" th:errors="*{content}">Content error placeholder</label>
-        </div>
-        </br></br>
-
-        <button class="btn-primary" type="button" value="Save">Save new post</button>
-
+        <input type="submit" value="Save"/>
     </form>
+
 </div>
 
 <footer th:fragment="footer">
-    <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
-        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
-    </small>
+    <small th:text="${'© Copyright ' + #dates.year(#dates.createNow()) + ' TravelForum'}">TravelForum</small>
 </footer>

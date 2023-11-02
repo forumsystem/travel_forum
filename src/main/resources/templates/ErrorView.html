@@ -1,37 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>TravelForum | Error Page</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-</head>
-<!--<form th:replace="~{PostForm.html::head('Error Page')}"></form>-->
-
+<form th:replace="~{PostForm.html :: head('Error Page')}"></form>
 <body>
-<header>
-    <div class="welcome-container">
-        <h3>
-            <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
-            <span class="separator">|</span>
-            <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse Posts</a>
-            <span class="separator">|</span>
-            <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
-        </h3>
-        <div class="body-content">
-            <h2 class="label-error" th:text="${'Status code: ' + statusCode}"/>
-            <h3 class="error" th:text="${'Message: ' + errorMessage}"/>
-            <h1>Oops, something went wrong :(</h1>
-        </div>
-    </div>
+<form th:replace="~{PostForm.html :: header}"></form>
 
-</header>
+<div class="body-content">
+    <h2 class="label-error" th:text="${statusCode}">HTTP Status Code</h2>
+    <h3 class="error" th:text="${error}">Error placeholder</h3>
+</div>
 
-<footer>
-    <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
-        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
-    </small>
-</footer>
-<!--<form th:replace="~{PostForm.html::footer}"></form>-->
-
+<form th:replace="~{PostForm.html :: footer}"></form>
 </body>
 </html>

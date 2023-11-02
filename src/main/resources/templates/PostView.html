@@ -1,56 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:Discovery="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Explore & Share</title>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
-</head>
-<!--<form th:replace="~{PostForm.html::head(${post.title})}"></form>-->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<form th:replace="~{PostForm.html :: head(${post.title})}"></form>
 <body>
-<!--<form th:replace="~{PostForm.html :: header}"></form>-->
+<form th:replace="~{PostForm.html :: header}"></form>
 
-<header>
-    <div class="welcome-container">
-        <div class="nav-link">
-            <h3>
-                <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse Posts</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
-            </h3>
-        </div>
 <div class="body-content">
-    <h1>Explore and share</h1>
-    <br/>
-    <div th:style="text-align-center">
-        <h2 class="margin12">Journey of Discovery: </br><span th:text="${post.title}">dsdds</span></h2>
-        </br>
-        <h3 class="margin12">Journey details: </br><span th:text="${post.content}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-                    Nullam euismod turpis id neque tristique, id tincidunt sapien pellentesque. Vestibulum aliquam elit eu
-                    erat tincidunt, eu ultricies ligula venenatis. Quisque consectetur justo in odio vehicula, nec fringilla
-                    leo laoreet. Fusce euismod tellus sit amet odio fermentum, ut hendrerit sapien sollicitudin. Sed bibendum
-                    odio at nisi scelerisque, ut consectetur odio dignissim. Nulla facilisi. Sed sit amet tortor nec dolor
-                    ullamcorper feugiat. Etiam varius quam in elit volutpat, eget vehicula risus fermentum. Integer in metus
-                    in mauris luctus finibus. Aliquam quis nulla vel mauris pellentesque tincidunt. Proin rhoncus sapien at
-                    metus feugiat, a tristique felis congue.</span></h3>
-        </br>
-        <h5 class="margin12">Voyager: </br><span th:text="${post.createdBy}">user@gmail.com</span></h5>
+    <h2 th:text="${post.title}">Post Name</h2>
+    <div th:style="text-align">
+        <p class="margin12" th:text="#{post.label.content}  + ': ' +       ${post.content}">Beautiful Europe</p>
+        <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' +      ${post.createdBy.username}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nullam euismod turpis id neque tristique, id tincidunt sapien pellentesque. Vestibulum aliquam elit eu
+            erat tincidunt, eu ultricies ligula venenatis. Quisque consectetur justo in odio vehicula, nec fringilla
+            leo laoreet. Fusce euismod tellus sit amet odio fermentum, ut hendrerit sapien sollicitudin. Sed bibendum
+            odio at nisi scelerisque, ut consectetur odio dignissim. Nulla facilisi.</p>
     </div>
-</div>
-</div>
-</div>
+    <h3>
+        <!--    <a href="#" th:href="@{/beers/{id}/update(id=${beer.id})}">Update</a>-->
+        <!--    <a href="#" th:href="@{/beers/{id}/delete(id=${beer.id})}">Delete</a>-->
+        <a href="#" th:href="@{__${requestURI}__/update}">Update</a>
+        <a href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
+    </h3>
 </div>
 
-<footer>
-    <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
-        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
-    </small>
-</footer>
-<!--<form th:replace="~{PostForm.html::footer}"></form>-->
-</header>
-
+<form th:replace="~{PostForm.html :: footer}"></form>
 </body>
 </html>

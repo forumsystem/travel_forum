@@ -1,45 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <meta charset="UTF-8">
-    <title>New Post</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-</head>
-<!--<form th:replace="~{PostForm.html::head('New Post')}"></form>-->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{PostForm.html :: head('New Post')}"></head>
 <body>
-
-
 <div class="body-content">
-<!--    <div th:style="text-align">-->
-<!--        <form th:replace="~{PostForm.html::header}"></form>-->
-<!--        <form th:replace="~{PostForm.html::post-form}"></form>-->
-<!--        <form th:replace="~{PostForm.html::footer}"></form>-->
-<!--    </div>-->
-    <h3>New Post</h3>
-    <form th:action="@{/posts/new}" th:object="${post}" method="post" action="#">
-
-
-        <div>
-            <label for="title" th:text="#{post.label.title}">Title</label>
-            <br/>
-            <input id="title" type="text" th:field="*{title}">
-
-            <label for="title" th:errors="*{title}"></label>
-        </div>
-
-        <div>
-            <label for="content" th:text="#{post.label.content}">Content</label>
-            <br/>
-            <input id="content" type="text" th:field="*{content}">
-            <label for="content" th:errors="*{content}"></label>
-
-        </div>
-        <br/>
-
-        <button type="button" value="Save">Save new post</button>
-
-    </form>
+    <div th:style="text-align">
+        <form th:replace="~{PostForm.html :: header}"></form>
+        <form th:replace="~{PostForm.html :: post-form('New Post')}"></form>
+        <form th:replace="~{PostForm.html :: footer}"></form>
+    </div>
 </div>
 </body>
 </html>

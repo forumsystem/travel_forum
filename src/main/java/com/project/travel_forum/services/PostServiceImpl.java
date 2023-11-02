@@ -43,8 +43,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getTop10MostLiked() {
         return postRepository.getTop10MostLiked();
     }
+
     @Override
-    public List<Post> getTop10MostResent(){
+    public List<Post> getTop10MostResent() {
         return postRepository.getTop10MostRecent();
     }
 
@@ -60,7 +61,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void updatePost(Post post, User user) {
         checkIfBlocked(user);
-        checkIfSameUser(user,post.getCreatedBy());
+        checkIfSameUser(user, post.getCreatedBy());
         postRepository.updatePost(post);
     }
 
@@ -78,12 +79,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public void modifyLike(int id, User user, boolean likeFlag) {
         checkIfBlocked(user);
-        Post postToModify=postRepository.getById(id);
+        Post postToModify = postRepository.getById(id);
 
-        if(likeFlag){
+        if (likeFlag) {
             postToModify.setLikes(user);
         }
-        if(!likeFlag){
+        if (!likeFlag) {
             postToModify.removeLikes(user);
         }
         postRepository.modifyLike(postToModify);

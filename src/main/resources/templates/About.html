@@ -1,37 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>About - Travel Forum</title>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
-</head>
-
+<form th:replace="~{PostForm.html :: head('About')}"></form>
 <body>
+<form th:replace="~{PostForm.html :: header}"></form>
 
-<header>
-    <div class="welcome-container">
-        <div class="nav-link">
-            <h3>
-                <a href="#" th:href="@{/}" th:text="#{navigation.home}">Home</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse Posts</a>
-                <span class="separator">|</span>
-                <a href="#" th:href="@{/about}" th:text="#{navigation.about}">About</a>
-            </h3>
-        </div>
-        <div class="centered-text">
-            <h1>About the Travel Forum</h1>
-            <p>Welcome to the Travel Forum! This is a place where travelers share their experiences and stories.
-                Learn from others, get inspired, and plan your next adventure.</p>
-        </div>
-    </div>
-</header>
+<div class="body-content">
+    <h2>About the project</h2>
+    <p>
+        <b>Travel Forum</b> Welcome to the Travel Forum! This is a place where travelers share their experiences and
+        stories.
+        Learn from others, get inspired, and plan your next adventure.
+    </p>
+</div>
 
-<footer>
-    <small th:with="today=${#temporals.createNowForTimeZone('Africa/Addis_Ababa')}">
-        <small th:text="${'© Copyright ' + #temporals.format(today, 'yyyy') + ' TravelForum | ' + #temporals.format(today, 'dd MMM yyyy HH:mm', 'Africa/Addis_Ababa')}"></small>
-    </small>
-</footer>
-
+<form th:replace="~{PostForm.html :: footer}"></form>
 </body>
 </html>

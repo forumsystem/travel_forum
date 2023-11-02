@@ -5,6 +5,7 @@ import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -67,21 +68,30 @@ public class AuthenticationHelper {
 
     private String getUsername(String userInfo) {
         int firstSpace = userInfo.indexOf(" ");
-        {
-            if (firstSpace == -1) {
-                throw new UnauthorizedOperationException(AUTHENTICATION_ERROR);
-            }
-            return userInfo.substring(0, firstSpace);
+
+        if (firstSpace == -1) {
+            throw new AuthorizationException(AUTHENTICATION_ERROR);
         }
+        return userInfo.substring(0, firstSpace);
+
     }
 
     private String getPassword(String userInfo) {
         int firstSpace = userInfo.indexOf(" ");
-        {
-            if (firstSpace == -1) {
-                throw new UnsupportedOperationException(AUTHENTICATION_ERROR);
-            }
-            return userInfo.substring(firstSpace + 1);
+
+        if (firstSpace == -1) {
+            throw new AuthorizationException(AUTHENTICATION_ERROR);
         }
+        return userInfo.substring(firstSpace + 1);
+
+    }
+
+    public User tryGetCurrentUser(HttpSession session) {
+        String currentUsername = (String) session.getAttribute("currentUser");
+
+        if (currentUsername == null) {
+            throw new AuthorizationException(INVALID_AUTHENTICATION_ERROR);
+        }
+        return userService.getByUsername(currentUsername);
     }
 }

@@ -1,29 +1,35 @@
 package com.project.travel_forum.models;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class UserDto {
-    @NotNull(message = "Name cannot be empty")
+public class RegisterDto extends LoginDto{
+    @NotEmpty(message = "Password confirmation can't be empty")
+    private String passwordConfirm;
+
+    @NotEmpty(message = "Name cannot be empty")
     @Size(min = 4, max = 32, message = "Name should be between 4 and 32 symbols")
     private String firstName;
 
-    @NotNull(message = "Last name cannot be empty")
+    @NotEmpty(message = "Last name cannot be empty")
     @Size(min = 4, max = 32, message = "Name should be between 4 and 32 symbols")
     private String lastName;
 
+    @NotEmpty(message = "Email can't be empty")
     @Email
     private String email;
 
-    @NotNull(message = "Username cannot be empty")
-    private String username;
 
-    @NotNull(message = "Password cannot be empty")
-    private String password;
+    public RegisterDto() {
+    }
 
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
-    public UserDto() {
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public String getFirstName() {
@@ -50,19 +56,4 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

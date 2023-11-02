@@ -91,11 +91,12 @@ public class CommentRepositoryImpl implements CommentRepository {
     public void deleteAllCommentsByPost(Post post) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Query<Comment> deleteQuery = session.createQuery("DELETE FROM Comment WHERE post.id =:id", Comment.class);
+            Query deleteQuery = session.createNativeQuery("DELETE FROM comments WHERE post_id = :id");
             deleteQuery.setParameter("id", post.getId());
             deleteQuery.executeUpdate();
             session.getTransaction().commit();
         }
     }
+
 
 }

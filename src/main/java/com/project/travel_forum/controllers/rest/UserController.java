@@ -1,7 +1,6 @@
 package com.project.travel_forum.controllers.rest;
 
 import com.project.travel_forum.controllers.AuthenticationHelper;
-import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
@@ -16,8 +15,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import static com.project.travel_forum.helpers.CheckPermissions.checkUserAuthorization;
 
 
 import java.util.List;
@@ -76,9 +73,9 @@ public class UserController {
 
 
     @PostMapping
-    public User create(@Valid @RequestBody UserDto userDto) {
+    public User create(@Valid @RequestBody RegisterDto registerDto) {
         try {
-            User user = userMapper.fromDto(userDto);
+            User user = userMapper.fromDto(registerDto);
             userService.createUser(user);
             return user;
         } catch (EntityNotFoundException e) {
@@ -91,10 +88,10 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User update(@RequestHeader HttpHeaders headers, @PathVariable int id, @Valid @RequestBody UserDto userDto) {
+    public User update(@RequestHeader HttpHeaders headers, @PathVariable int id, @Valid @RequestBody RegisterDto registerDto) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
-            User userToUpdate = userMapper.fromDto(id, userDto, user);
+            User userToUpdate = userMapper.fromDto(id, registerDto, user);
             userService.updateUser(user, userToUpdate);
             return userToUpdate;
         } catch (EntityNotFoundException e) {
