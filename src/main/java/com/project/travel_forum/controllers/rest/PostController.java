@@ -42,7 +42,8 @@ public class PostController {
             @RequestParam(required = false) String createdBy,
             @RequestParam(required = false) String sortBy,
             @RequestParam(required = false) String sortOrder) {
-        FilterOptions filterOptions = new FilterOptions(title, content, createdBy, sortBy, sortOrder);
+        FilterOptions filterOptions = new FilterOptions(title, content, createdBy,
+                sortBy, sortOrder);
         return postService.get(filterOptions);
     }
 

@@ -5,11 +5,58 @@
 <form th:replace="~{PostForm.html :: header}"></form>
 
 <div class="body-content">
+
     <h1 th:text="#{forum.welcome}">Welcome to the Travel Forum!</h1>
     <h2 th:text="${session.currentUser}" th:if="${isAuthenticated}"></h2>
     <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
-    <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
+
+<!--    <div th:if="${posts.isEmpty()}">-->
+<!--        <h2 th:text="#{post.title.empty}">No Post</h2>-->
+<!--    </div>-->
+
+<!--    <div th:unless="${posts.isEmpty()}">-->
+<!--        <h2 th:text="#{post.title}">All Posts</h2>-->
+        <div class="table">
+            <div class="header">
+                <div class="header-cell" th:text="#{post.label.title}">Title</div>
+                <div class="header-cell" th:text="#{post.label.content}">Content</div>
+                <div class="header-cell" th:text="#{post.label.createdBy.username}">Created by</div>
+            </div>
+            <div class="row" th:each="post : ${lastPost}">
+                <div class="cell">
+                    <a href="#" th:text="${post.title}">Post</a>
+                </div>
+                <div class="cell" th:text="${post.content}"> Paris - a city of love, art, and timeless elegance.
+                    From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
+                    every corner whispers tales of romance and cultural richness.
+                </div>
+                <div class="cell" th:text="${post.createdBy.username}">user@gmail.com</div>
+            </div>
+        </div>
+
+    <div class="table">
+        <div class="header">
+            <div class="header-cell" th:text="#{post.label.title}">Title</div>
+            <div class="header-cell" th:text="#{post.label.content}">Content</div>
+            <div class="header-cell" th:text="#{post.label.createdBy.username}">Created by</div>
+        </div>
+        <div class="row" th:each="post : ${comments}">
+            <div class="cell">
+                <a href="#" th:text="${post.title}">Post</a>
+            </div>
+            <div class="cell" th:text="${post.content}"> Paris - a city of love, art, and timeless elegance.
+                From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
+                every corner whispers tales of romance and cultural richness.
+            </div>
+            <div class="cell" th:text="${post.createdBy.username}">user@gmail.com</div>
+        </div>
+    </div>
+
+        <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
+
+    </div>
 </div>
+
 
 <form th:replace="~{PostForm.html :: footer}"></form>
 </body>

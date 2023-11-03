@@ -15,16 +15,6 @@ public class PostDto {
     @Size(min = 32, max = 8192, message = "Content should be between 31 and 8192 symbols")
     private String content;
 
-//    private LoginDto username;
-//
-//    public LoginDto getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(LoginDto username) {
-//        this.username = username;
-//    }
-
     public PostDto() {
     }
 

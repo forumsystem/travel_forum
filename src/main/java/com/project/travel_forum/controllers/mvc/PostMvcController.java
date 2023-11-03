@@ -50,7 +50,8 @@ public class PostMvcController {
 
 
     @GetMapping
-    public String showAllPosts(@ModelAttribute("filterOptions") FilterDto filterDto, Model model, HttpSession httpSession) {
+    public String showAllPosts(@ModelAttribute("filterOptions") FilterDto filterDto,
+                               Model model, HttpSession httpSession) {
         FilterOptions filterOptions = new FilterOptions(
                 filterDto.getTitle(),
                 filterDto.getContent(),
@@ -62,7 +63,8 @@ public class PostMvcController {
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
-        model.addAttribute("posts", postService.get(filterOptions));
+        List<Post> posts = postService.get(filterOptions);
+        model.addAttribute("posts", posts);
         model.addAttribute("filterOptions", filterDto);
         return "AllPostsView";
     }
