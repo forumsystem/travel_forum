@@ -38,8 +38,8 @@ public class CommentController {
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
-
     }
+
     @PostMapping("/{id}")
     public Comment create(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto,@PathVariable int id) {
         try {

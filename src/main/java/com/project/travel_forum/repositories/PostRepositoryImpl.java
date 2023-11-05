@@ -122,6 +122,7 @@ public class PostRepositoryImpl implements PostRepository {
             return result;
         }
     }
+
     @Override
     public List<Post> getTop10MostRecent() {
         try (Session session = sessionFactory.openSession()) {

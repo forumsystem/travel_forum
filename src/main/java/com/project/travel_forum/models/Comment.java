@@ -3,12 +3,13 @@ package com.project.travel_forum.models;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+
 @Entity
 @Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="comment_id")
+    @Column(name = "comment_id")
     private int id;
     @Column(name = "comment")
     private String comment;
@@ -53,6 +54,7 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -65,4 +67,5 @@ public class Comment {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

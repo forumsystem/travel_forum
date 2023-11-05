@@ -5,17 +5,17 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="post_id")
+    @Column(name = "post_id")
     private int id;
     @Column(name = "title")
     private String title;
@@ -30,11 +30,12 @@ public class Post {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "likes",
-                joinColumns = @JoinColumn(name = "post_id"),
-                inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> likes=new HashSet<>();
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> likes = new HashSet<>();
 
-
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    private Set<Comment> comments = new HashSet<>();
 
     public Post() {
     }
@@ -79,16 +80,30 @@ public class Post {
     public void setLikes(User user) {
         likes.add(user);
     }
+
     public void removeLikes(User user) {
         likes.remove(user);
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public String getTimestamp() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(new Date(timestamp.getTime()));
     }
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public long getCommentsSize() {
+        return comments.size();
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

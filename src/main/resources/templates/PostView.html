@@ -7,16 +7,27 @@
 <div class="body-content">
     <h2 th:text="${post.title}">Post Name</h2>
     <div th:style="text-align">
-        <p class="margin12" th:text="#{post.label.content}  + ': ' +       ${post.content}">Beautiful Europe</p>
-        <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' +      ${post.createdBy.username}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Nullam euismod turpis id neque tristique, id tincidunt sapien pellentesque. Vestibulum aliquam elit eu
-            erat tincidunt, eu ultricies ligula venenatis. Quisque consectetur justo in odio vehicula, nec fringilla
-            leo laoreet. Fusce euismod tellus sit amet odio fermentum, ut hendrerit sapien sollicitudin. Sed bibendum
-            odio at nisi scelerisque, ut consectetur odio dignissim. Nulla facilisi.</p>
+        <h3>
+            <span th:text="#{post.label.content}"></span>: <br/>
+        </h3>
+            <span th:text="${post.content}"></span>
+        <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">simonanedeva</p>
+
+        <h3>
+            <span th:text="#{post.label.activity}"></span>: <br/>
+        </h3>
+        <p class="margin12" th:text="'Likes: ' + ${post.getLikes()}"></p>
+        <p class="margin12" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
+        <p class="margin12" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
+
+        <h3><span th:text="'Replies:'"></span> </h3>
+        <div th:each="comment : ${post.comments}">
+            <p class="margin12" th:text="${comment.comment}"></p>
+            <p class="margin12" th:text="'Author: ' + ${comment.createdBy.username}"></p>
+            <hr/>
+        </div>
     </div>
     <h3>
-        <!--    <a href="#" th:href="@{/beers/{id}/update(id=${beer.id})}">Update</a>-->
-        <!--    <a href="#" th:href="@{/beers/{id}/delete(id=${beer.id})}">Delete</a>-->
         <a href="#" th:href="@{__${requestURI}__/update}">Update</a>
         <a href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
     </h3>
