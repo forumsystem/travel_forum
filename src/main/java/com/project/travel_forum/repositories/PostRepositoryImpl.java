@@ -25,6 +25,20 @@ public class PostRepositoryImpl implements PostRepository {
 
     //can add how many posts to show (as count) OR offset - from which index on? - good to have to be RESTful
 
+
+    @Override
+    public long getPostCount() {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "SELECT COUNT(*) FROM Post";
+
+            Query<Long> query = session.createQuery(hql, Long.class);
+
+            List<Long> resultList = query.list();
+
+            return resultList.get(0);
+        }
+    }
+
     @Override
     public List<Post> get(FilterOptions filterOptions) {
         try (
@@ -43,8 +57,10 @@ public class PostRepositoryImpl implements PostRepository {
             });
 
             filterOptions.getCreatedBy().ifPresent(value -> {
-                filters.add(" createdBy.username = :createdBy ");
-                params.put("createdBy", value);
+                if (!value.isEmpty()) {
+                    filters.add(" createdBy.username = :createdBy ");
+                    params.put("createdBy", value);
+                }
             });
 
             StringBuilder queryString = new StringBuilder("from Post ");

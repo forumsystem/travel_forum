@@ -49,6 +49,7 @@ public class PostMvcController {
     }
 
 
+
     @GetMapping
     public String showAllPosts(@ModelAttribute("filterOptions") FilterDto filterDto,
                                Model model, HttpSession httpSession) {

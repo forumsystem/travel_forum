@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UserRepository {
 
+    long getUserCount();
 
     List<User> get(FilterUserOptions filterUserOptions);
 

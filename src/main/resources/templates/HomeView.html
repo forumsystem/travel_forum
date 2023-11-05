@@ -10,30 +10,51 @@
     <h2 th:text="${session.currentUser}" th:if="${isAuthenticated}"></h2>
     <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
 
-<!--    <div th:if="${posts.isEmpty()}">-->
-<!--        <h2 th:text="#{post.title.empty}">No Post</h2>-->
-<!--    </div>-->
+    <!--    <div th:if="${posts.isEmpty()}">-->
+    <!--        <h2 th:text="#{post.title.empty}">No Post</h2>-->
+    <!--    </div>-->
 
-<!--    <div th:unless="${posts.isEmpty()}">-->
-<!--        <h2 th:text="#{post.title}">All Posts</h2>-->
-        <div class="table">
-            <div class="header">
-                <div class="header-cell" th:text="#{post.label.title}">Title</div>
-                <div class="header-cell" th:text="#{post.label.content}">Content</div>
-                <div class="header-cell" th:text="#{post.label.createdBy.username}">Created by</div>
+    <!--    <div th:unless="${posts.isEmpty()}">-->
+    <!--        <h2 th:text="#{post.title}">All Posts</h2>-->
+
+    <span th:text="'Total posts: ' + ${postCount}"></span>
+    <br/><br/>
+    <span th:text="'Total users: ' + ${userCount}"></span>
+    <br/><br/>
+
+    <div class="h1">Recent</div>
+    <br/>
+    <div class="table">
+        <div class="header">
+            <div class="header-cell" th:text="#{post.label.title}">Title</div>
+            <div class="header-cell" th:text="#{post.label.content}">Content</div>
+            <div class="header-cell" th:text="#{post.label.createdBy.username}">Created by</div>
+        </div>
+        <div class="row" th:each="post : ${lastPost}">
+            <div class="cell">
+                <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
+                <br/>
+                <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
             </div>
-            <div class="row" th:each="post : ${lastPost}">
-                <div class="cell">
-                    <a href="#" th:text="${post.title}">Post</a>
-                </div>
-                <div class="cell" th:text="${post.content}"> Paris - a city of love, art, and timeless elegance.
-                    From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
-                    every corner whispers tales of romance and cultural richness.
-                </div>
-                <div class="cell" th:text="${post.createdBy.username}">user@gmail.com</div>
+            <div class="cell"
+                 th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
+                Paris - a city of love, art, and timeless elegance.
+                From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
+                every corner whispers tales of romance and cultural richness.
+            </div>
+            <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                <br/>
+                <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                <br/>
+                <br/>
+                <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
             </div>
         </div>
+    </div>
 
+    <br/>
+    <div class="h1">Trending</div>
+    <br/>
     <div class="table">
         <div class="header">
             <div class="header-cell" th:text="#{post.label.title}">Title</div>
@@ -42,19 +63,29 @@
         </div>
         <div class="row" th:each="post : ${comments}">
             <div class="cell">
-                <a href="#" th:text="${post.title}">Post</a>
+                <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
+                <br/>
+                <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
             </div>
-            <div class="cell" th:text="${post.content}"> Paris - a city of love, art, and timeless elegance.
+            <div class="cell"
+                 th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
+                Paris - a city of love, art, and timeless elegance.
                 From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
                 every corner whispers tales of romance and cultural richness.
             </div>
-            <div class="cell" th:text="${post.createdBy.username}">user@gmail.com</div>
+            <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                <br/>
+                <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                <br/>
+                <br/>
+                <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
+            </div>
         </div>
     </div>
 
-        <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
+    <img src="https://www.transportation.gov/sites/dot.gov/files/images/Plan_travel.jpg" alt="Travel Image">
 
-    </div>
+</div>
 </div>
 
 

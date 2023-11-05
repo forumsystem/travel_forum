@@ -7,6 +7,7 @@ import com.project.travel_forum.models.User;
 import java.util.List;
 
 public interface PostService {
+    long getPostCount();
     List<Post> get(FilterOptions filterOptions);
     Post getById(int id);
     List<Post> getTop10MostCommented();

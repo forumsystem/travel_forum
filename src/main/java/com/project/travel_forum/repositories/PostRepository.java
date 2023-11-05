@@ -6,6 +6,7 @@ import com.project.travel_forum.models.Post;
 import java.util.List;
 
 public interface PostRepository {
+    long getPostCount();
     List<Post> get(FilterOptions filterOptions);
 
     Post getById(int id);

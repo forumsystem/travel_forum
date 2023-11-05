@@ -7,6 +7,8 @@ import com.project.travel_forum.models.User;
 import java.util.List;
 
 public interface UserService {
+    long getUserCount();
+
     List<User> get(User user, FilterUserOptions filterUserOptions);
     User get(int id);
 

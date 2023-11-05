@@ -25,6 +25,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public long getPostCount() {
+        return postRepository.getPostCount();
+    }
+
+    @Override
     public List<Post> get(FilterOptions filterOptions) {
         return postRepository.get(filterOptions);
     }
