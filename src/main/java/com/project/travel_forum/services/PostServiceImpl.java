@@ -50,7 +50,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getTop10MostResent() {
+    public List<Post> getTop10MostRecent() {
         return postRepository.getTop10MostRecent();
     }
 

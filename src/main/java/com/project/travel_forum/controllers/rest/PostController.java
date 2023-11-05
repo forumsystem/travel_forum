@@ -65,9 +65,9 @@ public class PostController {
     public List<Post> getTop10MostLiked() {
         return postService.getTop10MostLiked();
     }
-    @GetMapping("/home/resent")
+    @GetMapping("/home/recent")
     public List<Post> getTop10MostRecent() {
-        return postService.getTop10MostResent();
+        return postService.getTop10MostRecent();
     }
 
     @PostMapping

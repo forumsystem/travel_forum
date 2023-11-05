@@ -1,18 +1,189 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<form th:replace="~{PostForm.html :: head('About')}"></form>-->
+<!--<body>-->
+<!--<form th:replace="~{PostForm.html :: header}"></form>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<form th:replace="~{PostForm.html :: head('About')}"></form>
-<body>
-<form th:replace="~{PostForm.html :: header}"></form>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Travel Forum</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../static/assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top">TravelForum</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:href="@{/}" th:text="#{navigation.home}">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse all posts</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated}" th:href="@{/posts/new}"
+                                        th:text="#{navigation.create-post}">Create Post</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:href="@{/about}" th:text="#{navigation.about}">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:unless="${isAuthenticated}" th:href="@{/auth/login}">Login </a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:unless="${isAuthenticated}" th:href="@{/auth/register}">Register</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
+                                        th:text="#{navigation.admin}">Admin Portal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a></li>
 
-<div class="body-content">
-    <h2>About the project</h2>
-    <p>
-        <b>Travel Forum</b> Welcome to the Travel Forum! This is a place where travelers share their experiences and
-        stories.
-        Learn from others, get inspired, and plan your next adventure.
-    </p>
-</div>
-
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container">
+        <!--        <div class="masthead-subheading">About</div>-->
+<!--        <div class="masthead-heading text-uppercase">ABOUT OUR TRAVEL FORUM</div>-->
+        <div class="masthead-subheading">ABOUT OUR TRAVEL FORUM</div>
+        <!--        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Explore</a>-->
+    </div>
+</header>
+<!-- About-->
+<section class="page-section bg-light" id="about">
+    <div class="container">
+        <div class="text-center">
+<!--            <h2 class="section-heading text-uppercase">About Our Travel Forum</h2>-->
+            <h3 class="section-subheading text-muted">Welcome to our vibrant travel community! We're thrilled to have
+                you here as a part of our global network of adventurers and explorers. Whether you're a seasoned
+                globetrotter or just planning your first big trip, you've found a place where your passion for travel
+                can thrive.</h3>
+        </div>
+        <ul class="timeline">
+            <li>
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/1.jpg"
+                                                 alt="..."/></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <!--                        <h4>2009-2011</h4>-->
+                        <h4 class="subheading">Our Mission</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">At our travel forum, our mission is to connect
+                        like-minded individuals who share a deep love for exploring the world. We're here to inspire,
+                        inform, and support one another in our journeys, all while fostering a sense of unity and
+                        cultural appreciation. We believe that travel enriches our lives and broadens our perspectives,
+                        and we're dedicated to making this experience accessible to everyone.</p></div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/2.jpg"
+                                                 alt="..."/></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <!--                        <h4>March 2011</h4>-->
+                        <h4 class="subheading">Stay Engaged</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">To make the most of your experience here, we
+                        encourage you to actively participate in discussions, offer your expertise, and learn from
+                        others. By doing so, you'll not only enrich your own travel experiences but also contribute to
+                        the collective knowledge of our community.</p></div>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/3.jpg"
+                                                 alt="..."/></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <!--                        <h4>December 2015</h4>-->
+                        <h4 class="subheading">What You'll Find Here</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">Share and savor captivating Travel Stories as
+                        members from around the globe recount their adventures, offering you inspiration and insight for
+                        your own journeys.
+                        Navigate the world of travel with confidence using a wealth of Travel Tips, from trip planning
+                        to packing secrets, and smart budgeting tips that make your travel dreams a reality.
+                    </p></div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/4.jpg"
+                                                 alt="..."/></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <!--                        <h4>July 2020</h4>-->
+                        <h4 class="subheading">Join Our Community</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">Becoming a member of our travel forum means
+                        becoming a part of a supportive, passionate, and diverse community. Share your experiences, ask
+                        questions, and connect with fellow travelers who understand the thrill of exploring the
+                        unknown.</p></div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-image">
+                    <h4>
+                        Safe Travels
+                        <br/>
+                        And
+                        <br/>
+                        Exploring!
+                    </h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<!--<div class="body-content">-->
+<!--    <h2>About the project</h2>-->
+<!--    <p>-->
+<!--        <b>Travel Forum</b> Welcome to the Travel Forum! This is a place where travelers share their experiences and-->
+<!--        stories.-->
+<!--        Learn from others, get inspired, and plan your next adventure.-->
+<!--    </p>-->
+<!--</div>-->
+<!-- Footer-->
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../static/js/scripts.js" th:src="@{/js/scripts.js}"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <form th:replace="~{PostForm.html :: footer}"></form>
 </body>
 </html>

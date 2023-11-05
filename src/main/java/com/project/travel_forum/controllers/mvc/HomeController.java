@@ -51,7 +51,7 @@ public class HomeController {
         List<Post> mostCommented = postService.getTop10MostCommented();
         model.addAttribute("lastPost", mostCommented);
 
-        List<Post> mostRecent = postService.getTop10MostResent();
+        List<Post> mostRecent = postService.getTop10MostRecent();
         model.addAttribute("comments", mostRecent);
 
         return "HomeView";
