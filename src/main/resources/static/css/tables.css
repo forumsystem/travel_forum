@@ -29,9 +29,8 @@ header {
     overflow-scrolling: auto;
 }
 
-
 .table-recent, .table-trending {
-    width: 50%;
+    width: 100%;
     margin: 0;
     border: 1px solid lightgrey;
     height: 90vh;
@@ -42,6 +41,7 @@ header {
     flex: 1;
     overflow-x: auto;
     overflow-scrolling: auto;
+
 }
 
 
@@ -57,7 +57,7 @@ footer {
 }
 
 a {
-    color: #007bff;
+    color: #ffc800;
 }
 
 .body-content {
