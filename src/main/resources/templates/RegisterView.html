@@ -1,51 +1,141 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<form th:replace="~{PostForm.html :: head('Register')}"></form>
-<body>
-<div class="body-content">
-    <h2>Register</h2>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <title>Travel Forum</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../static/assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../static/css/styles.css" th:href="@{/css/tables.css}" rel="stylesheet"/>
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top">TravelForum</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:href="@{/}" th:text="#{navigation.home}">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:href="@{/posts}" th:text="#{navigation.all-posts}">Browse all posts</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated}" th:href="@{/posts/new}"
+                                        th:text="#{navigation.create-post}">Create Post</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:href="@{/about}" th:text="#{navigation.about}">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:unless="${isAuthenticated}" th:href="@{/auth/login}">Login </a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:unless="${isAuthenticated}" th:href="@{/auth/register}">Register</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
+                                        th:text="#{navigation.admin}">Admin Portal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a></li>
 
-    <form action="#" th:action="@{/auth/register}" th:object="${register}" method="post">
-        <label th:text="#{user.label.username}">Username</label>
-        <br/>
-        <input type="text" th:field="*{username}"/>
-        <label class="error" th:errors="*{username}">Username error placeholder</label>
-        <br/><br/>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-        <label th:text="#{user.label.password}">Password</label>
-        <br/>
-        <input type="password" th:field="*{password}"/>
-        <label class="error" th:errors="*{password}">Password error placeholder</label>
-        <br/><br/>
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading ">Register</h2>
+            <h3 class="section-subheading text-muted">Sign up to explore new travel destinations.</h3>
+        </div>
+        <div class="body-content">
 
-        <label th:text="#{user.label.password-confirm}">Confirm Password</label>
-        <br/>
-        <input type="password" th:field="*{passwordConfirm}"/>
-        <label class="error" th:errors="*{passwordConfirm}">Password confirm error placeholder</label>
-        <br/><br/>
+            <form action="#" th:action="@{/auth/register}" th:object="${register}" method="post">
+                <label style="color: white;" th:text="#{user.label.username}">Username</label>
+                <br/>
+                <input type="text" th:field="*{username}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{username}">Username error placeholder</label>
+                <br/><br/>
 
-        <label th:text="#{user.label.first-name}">First Name</label>
-        <br/>
-        <input type="text" th:field="*{firstName}"/>
-        <label class="error" th:errors="*{firstName}">First name error placeholder</label>
-        <br/><br/>
+                <label style="color: white;" th:text="#{user.label.password}">Password</label>
+                <br/>
+                <input type="password" th:field="*{password}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{password}">Password error placeholder</label>
+                <br/><br/>
 
-        <label th:text="#{user.label.last-name}">Last Name</label>
-        <br/>
-        <input type="text" th:field="*{lastName}"/>
-        <label class="error" th:errors="*{lastName}">Last name error placeholder</label>
-        <br/><br/>
+                <label style="color: white;" th:text="#{user.label.password-confirm}">Confirm Password</label>
+                <br/>
+                <input type="password" th:field="*{passwordConfirm}" style="border-radius: 10px;" />
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{passwordConfirm}">Password confirm error placeholder</label>
+                <br/><br/>
 
-        <label th:text="#{user.label.email}">Email</label>
-        <br/>
-        <input type="text" th:field="*{email}"/>
-        <label class="error" th:errors="*{email}">Email error placeholder</label>
-        <br/><br/>
+                <label style="color: white;" th:text="#{user.label.first-name}">First Name</label>
+                <br/>
+                <input type="text" th:field="*{firstName}" style="border-radius: 10px;" />
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{firstName}">First name error placeholder</label>
+                <br/><br/>
 
-        <input type="submit" value="Register"/>
-    </form>
-</div>
+                <label style="color: white;" th:text="#{user.label.last-name}">Last Name</label>
+                <br/>
+                <input type="text" th:field="*{lastName}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{lastName}">Last name error placeholder</label>
+                <br/><br/>
 
-<form th:replace="~{PostForm.html :: footer}"></form>
+                <label style="color: white;" th:text="#{user.label.email}">Email</label>
+                <br/>
+                <input type="text" th:field="*{email}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{email}">Email error placeholder</label>
+                <br/><br/>
+
+                <div class="text-center"><input type="submit" value="Register"  class="btn btn-primary btn-xl text-uppercase" href="#services"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+
+<script src="../static/js/scripts.js" th:src="@{/js/scripts.js}"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>

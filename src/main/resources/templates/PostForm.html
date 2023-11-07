@@ -17,7 +17,8 @@
             <a href="#" th:href="@{/about}" th:text="#{navigation.about} + ' | '">About</a>
             <a href="#" th:unless="${isAuthenticated}" th:href="@{/auth/login}">Login | </a>
             <a href="#" th:unless="${isAuthenticated}" th:href="@{/auth/register}">Register</a>
-            <a href="#" th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}" th:text="#{navigation.admin} + ' | ' ">Admin Portal</a>
+            <a href="#" th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
+               th:text="#{navigation.admin} + ' | ' ">Admin Portal</a>
             <a href="#" th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a>
         </h3>
     </div>
@@ -28,13 +29,24 @@
     <form action="#" th:action="@{__${requestURI}__}" th:object="${post}" method="post">
         <label th:text="#{post.label.title}">Post</label>
         <br/>
-        <input type="text" th:field="*{title}"/>
+        <input type="text" th:field="*{title}" style="width: 300px; border-radius: 10px;"/>
         <label class="error" th:errors="*{title}">Title error placeholder</label>
         <br/><br/>
 
-        <label th:text="#{post.label.content}">Content</label>
-        <br/>
-        <input type="text" th:field="*{content}"/>
+        <div class="form-group form-group-textarea mb-md-0">
+            <label th:text="#{post.label.content}">Content</label>
+            <br/>
+            <textarea th:field="*{content}" style="width: 300px; height: 300px; border-radius: 10px;"></textarea>
+
+        </div>
+
+        <!--            <div class="col-md-6">-->
+        <!--                &lt;!&ndash; Message input&ndash;&gt;-->
+        <!--                    <textarea th:field="*{content}" class="form-control" id="message" placeholder="Your Message *"-->
+        <!--                              data-sb-validations="required"></textarea>-->
+        <!--                    <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>-->
+        <!--                </div>-->
+        <!--            </div>-->
         <label class="error" th:errors="*{content}">Content error placeholder</label>
         <br/><br/>
 
@@ -44,7 +56,9 @@
         <!--        <label class="error" th:errors="*{username}">Username error placeholder</label>-->
         <!--        <br/><br/>-->
 
-        <input type="submit" value="Save"/>
+        <!--        <input type="submit" value="Save"/>-->
+        <div class="text-center"><input type="submit" value="Share" class="btn btn-primary btn-xl text-uppercase"
+                                        href="#services"></div>
     </form>
 
 </div>
