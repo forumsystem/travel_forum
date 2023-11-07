@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml"
+      xmlns:font-style="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8"/>
@@ -60,40 +61,84 @@
         <!--        <div class="masthead-subheading">About</div>-->
         <!--        <div class="masthead-heading text-uppercase">ABOUT OUR TRAVEL FORUM</div>-->
         <div class="masthead-subheading" th:text="${post.title}"></div>
+        <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
+            simonanedeva</p>
+
+        <p class="margin12" th:text="'Likes: ' + ${post.getLikes()}"></p>
+        <p class="margin12" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
+        <p class="margin12" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
+        <!--        <div class="body-content">-->
+        <!--            <div class="table-all">-->
+        <!--                <h3>-->
+        <!--                    <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>-->
+        <!--                    <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>-->
+        <!--                </h3>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
     </div>
 </header>
-
-<div class="body-content">
-    <div class="table-all">
-        <div th:style="text-align">
-            <h3>
-                <span th:text="#{post.label.content}"></span>: <br/>
-            </h3>
+<!-- About-->
+<section class="page-section bg-light" id="about">
+    <div class="container">
+        <div class="text-center">
             <span th:text="${post.content}"></span>
-            <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
-                simonanedeva</p>
-
-            <h3>
-                <span th:text="#{post.label.activity}"></span>: <br/>
-            </h3>
-            <p class="margin12" th:text="'Likes: ' + ${post.getLikes()}"></p>
-            <p class="margin12" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
-            <p class="margin12" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
-
-            <h3><span th:text="'Replies:'"></span></h3>
-            <div class="row-tables" th:each="comment : ${post.comments}">
-                <p class="margin12" th:text="${comment.comment}"></p>
-
-                <p class="margin12" th:text="'Author: ' + ${comment.createdBy.username}"></p>
-                <hr/>
+            <br/>
+            <br/>
+            <br/>
+            <div class="body-content">
+                <div class="table-all">
+                    <h3>
+                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>
+                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
+                    </h3>
+                </div>
             </div>
+<!--            <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">-->
+<!--                <button type="submit">Like</button>-->
+<!--            </form>-->
+<!--            <form th:action="@{/posts/{id}/like}" method="POST">-->
+                <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/like}">LIKE</a>
+<!--                <button type="submit">Like Post</button>-->
+<!--            </form>-->
+
+
+            <h2 class="Replies">Replies</h2>
         </div>
-        <h3>
-            <a href="#" th:href="@{__${requestURI}__/update}">Update</a>
-            <a href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
-        </h3>
+        <br/>
+        <br/>
+        <div class="row-tables" th:each="comment : ${post.comments}">
+            <ul class="timeline">
+                <li class="timeline-inverted">
+                    <!--                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/2.jpg"-->
+                    <!--                                                 alt="..."/></div>-->
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!--                        <h4>March 2011</h4>-->
+                            <h4 class="subheading"
+                                th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
+                        </div>
+                        <div class="timeline-body"><p class="text-muted">
+                            <p class="margin12" th:text="${comment.comment}"></p></div>
+                    </div>
+                </li>
+
+                <!--            <li class="timeline-inverted">-->
+                <!--                <div class="timeline-image">-->
+                <!--                    <h4>-->
+                <!--                        Safe Travels-->
+                <!--                        <br/>-->
+                <!--                        And-->
+                <!--                        <br/>-->
+                <!--                        Exploring!-->
+                <!--                    </h4>-->
+                <!--                </div>-->
+                <!--            </li>-->
+            </ul>
+        </div>
     </div>
-</div>
+</section>
+
 
 <footer class="footer py-4">
     <div class="container">

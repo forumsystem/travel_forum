@@ -205,5 +205,26 @@ public class PostMvcController {
             return "ErrorView";
         }
     }
+    @PostMapping("/{id}/like")
+    public String modifyLike(@PathVariable int id, HttpSession httpSession){
+        User user;
+        Post post;
+        try {
+            user = authenticationHelper.tryGetCurrentUser(httpSession);
+            post= postService.getById(id);
+        }
+        catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+        catch (EntityNotFoundException e) {
+            return "redirect:/posts";
+        }
+        if(post.getUserLikes().contains(user)) {
+            postService.modifyLike(id, user, false);
+        } else {
+            postService.modifyLike(id,user,true);
+        }
+        return "redirect:/posts/id";
+    }
 
 }

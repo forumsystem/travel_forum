@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<form th:replace="~{PostForm.html :: head('All Posts')}"></form>
 
 <head>
     <meta charset="utf-8"/>
@@ -15,10 +14,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../static/css/styles.css" th:href="@{/css/tables.css}" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body id="page-top">
+<body>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -53,75 +53,47 @@
         </div>
     </div>
 </nav>
+
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
         <!--        <div class="masthead-subheading">About</div>-->
         <!--        <div class="masthead-heading text-uppercase">ABOUT OUR TRAVEL FORUM</div>-->
-        <div class="masthead-subheading">BROWSE POSTS</div>
-        <!--        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Explore</a>-->
-        <form action="#" th:action="@{/posts}" method="get" th:object="${filterOptions}">
-            <br/><br/>
-            <input type="text" placeholder="Post title" th:field="*{title}"/>
-            <input type="text" placeholder="Post content" th:field="*{content}"/>
-            <input type="text" placeholder="Created by" th:field="*{createdBy}"/>
-
-            <select th:field="*{sortBy}">
-                <option value="">Sort By</option>
-                <option value="title">Title</option>
-                <option value="content">Content</option>
-                <option value="createdBy">Created by</option>
-            </select>
-
-            <select th:field="*{sortOrder}">
-                <option value="">Sort Order</option>
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
-            </select>
-            <br/><br/>
-
-            <!--        <input type="submit" value="Search"/>-->
-            <input type="submit" class="btn btn-primary btn-xl text-uppercase" href="#services" value="Search"/>
-        </form>
+        <div class="masthead-subheading" th:text="${post.title}"></div>
     </div>
 </header>
 
 <div class="body-content">
-    <div th:if="${posts.isEmpty()}">
-        <h2 th:text="#{post.title.empty}">No Post</h2>
-    </div>
-    <div th:unless="${posts.isEmpty()}">
+    <div class="table-all">
+        <div th:style="text-align">
+            <h3>
+                <span th:text="#{post.label.content}"></span>: <br/>
+            </h3>
+            <span th:text="${post.content}"></span>
+            <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
+                simonanedeva</p>
 
-        <div class="table-all">
-            <!--            <div class="header">-->
-            <div class="tbl-content">
-                <div class="header-cell" th:text="#{post.label.title}">Title</div>
-                <div class="header-cell" th:text="#{post.label.content}">Content</div>
-                <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
-                <!--            </div>-->
-                <div class="row-tables" th:each="post : ${posts}">
-                    <div class="cell">
-                        <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
-                        <br/>
-                        <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
-                    </div>
-                    <div class="cell"
-                         th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}"></div>
-                    <div class="cell">
-                        <span th:text="'Likes: ' + ${post.getLikes()}"></span>
-                        <br/>
-                        <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
-                        <br/>
-                        <br/>
-                        <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
-                    </div>
-                </div>
+            <h3>
+                <span th:text="#{post.label.activity}"></span>: <br/>
+            </h3>
+            <p class="margin12" th:text="'Likes: ' + ${post.getLikes()}"></p>
+            <p class="margin12" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
+            <p class="margin12" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
+
+            <h3><span th:text="'Replies:'"></span></h3>
+            <div class="row-tables" th:each="comment : ${post.comments}">
+                <p class="margin12" th:text="${comment.comment}"></p>
+
+                <p class="margin12" th:text="'Author: ' + ${comment.createdBy.username}"></p>
+                <hr/>
             </div>
         </div>
+        <h3>
+            <a href="#" th:href="@{__${requestURI}__/update}">Update</a>
+            <a href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
+        </h3>
     </div>
 </div>
-
-
 
 <footer class="footer py-4">
     <div class="container">

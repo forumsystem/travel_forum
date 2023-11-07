@@ -85,6 +85,10 @@ public class Post {
         likes.remove(user);
     }
 
+    public Set<User> getUserLikes(){
+        return likes;
+    }
+
     public String getTimestamp() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(new Date(timestamp.getTime()));
