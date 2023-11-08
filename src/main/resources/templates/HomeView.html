@@ -60,97 +60,115 @@
 </header>
 
 <section class="page-section" id="services">
-<div class="container-box">
-    <div class="count-box">
-        <span class="count-label">Total posts:</span>
-        <span class="count-number" th:text="${postCount}">23</span>
-    </div>
-    <br /><br />
-    <div class="count-box">
-        <span class="count-label">Total users:</span>
-        <span class="count-number" th:text="${userCount}">20</span>
-    </div>
-</div>
-
-<header class="table-container">
-<div class="table-container">
-    <div class="table-recent">
-        <div class="tbl-content">
-
-            <section class="header">
-                <h1>Recent</h1>
-            </section>
-            <div class="divider"></div>
-
-            <div class="header-cell" th:text="#{post.label.title}">Topic</div>
-            <div class="header-cell" th:text="#{post.label.content}">Content</div>
-            <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
-
-            <div class="row-tables" th:each="post : ${lastPost}">
-                <div class="cell">
-                    <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
-                    <br/>
-                    <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
-                </div>
-
-                <div class="cell"
-                     th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
-                    Paris - a city of love, art, and timeless elegance.
-                    From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
-                    every corner whispers tales of romance and cultural richness.
-                </div>
-
-                <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
-                    <br/>
-                    <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
-                    <br/>
-                    <br/>
-                    <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
-                </div>
-            </div>
+    <div class="table-container">
+        <div class="count-box">
+            <span class="count-label">Total posts:</span>
+            <span class="count-number" th:text="${postCount}">23</span>
+        </div>
+        <br/><br/>
+        <div class="count-box">
+            <span class="count-label">Total users:</span>
+            <span class="count-number" th:text="${userCount}">20</span>
         </div>
     </div>
 
+    <header class="table-container">
+        <div class="table-container">
+            <div class="table-recent">
+                <div class="tbl-content">
 
-    <div class="table-trending">
+                    <section class="header">
+                        <h1>Recent</h1>
+                    </section>
+                    <div class="divider"></div>
 
-        <div class="tbl-content">
-            <section class="header">
-                <h1>Trending</h1>
-            </section>
-            <div class="divider"></div>
+                    <div class="header-cell" th:text="#{post.label.title}">Topic</div>
+                    <div class="header-cell" th:text="#{post.label.content}">Content</div>
+                    <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
 
-            <div class="header-cell" th:text="#{post.label.title}">Topic</div>
-            <div class="header-cell" th:text="#{post.label.content}">Content</div>
-            <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
+                    <div class="row-tables" th:each="post : ${lastPost}">
+                        <div class="cell">
+                            <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
+                            <br/>
+                            <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
+                        </div>
 
-            <div class="row-tables" th:each="post : ${comments}">
-                <div class="cell">
-                    <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
-                    <br/>
-                    <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
-                </div>
+                        <div class="cell"
+                             th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
+                            Paris - a city of love, art, and timeless elegance.
+                            From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
+                            every corner whispers tales of romance and cultural richness.
+                        </div>
 
-                <div class="cell"
-                     th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
-                    Paris - a city of love, art, and timeless elegance.
-                    From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
-                    every corner whispers tales of romance and cultural richness.
-                </div>
+<!--                        <div class="cell">-->
+<!--                            <img src="../static/assets/img/icons/like.png" alt="Likes">-->
+<!--                            <span th:text="${post.getLikes()}"></span>-->
+<!--                            <br/>-->
+<!--                            <img src="../static/assets/img/icons/comment.png" alt="Replies">-->
+<!--                            <span th:text="${post.getCommentsSize()}"></span>-->
+<!--                            <br/>-->
+<!--                            <br/>-->
+<!--                            <img src="../static/assets/img/icons/date.png" alt="Published on">-->
+<!--                            <span th:text="${post.getTimestamp()}"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-                <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
-                    <br/>
-                    <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
-                    <br/>
-                    <br/>
-                    <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
-                </div>
 
+            <div class="cell">
+                <span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                <br/>
+                <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                <br/>
+                <br/>
+                <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
             </div>
         </div>
-    </div>
-</div>
-</header>
+        </div>
+        </div>
+
+
+        <div class="table-trending">
+
+            <div class="tbl-content">
+                <section class="header">
+                    <h1>Trending</h1>
+                </section>
+                <div class="divider"></div>
+
+                <div class="header-cell" th:text="#{post.label.title}">Topic</div>
+                <div class="header-cell" th:text="#{post.label.content}">Content</div>
+                <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
+
+                <div class="row-tables" th:each="post : ${comments}">
+                    <div class="cell">
+                        <a href="#" th:href="@{/posts/{id}(id=${post.id})}"
+                           th:text="${post.title}">Post</a>
+                        <br/>
+                        <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
+                    </div>
+
+                    <div class="cell"
+                         th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
+                        Paris - a city of love, art, and timeless elegance.
+                        From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
+                        every corner whispers tales of romance and cultural richness.
+                    </div>
+
+                    <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                        <br/>
+                        <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                        <br/>
+                        <br/>
+                        <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
 </section>
 <!--<div>-->
 <!--    <h2>Top 10 Most Recently Created Posts</h2>-->
@@ -215,41 +233,41 @@
 <!--</form>-->
 <!-- Service-->
 <!--<section class="page-section" id="services">-->
-    <!--    <div class="container">-->
-    <!--        <div class="text-center">-->
-    <!--            <h2 class="section-heading text-uppercase">Services</h2>-->
-    <!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
-    <!--        </div>-->
-    <!--        <div class="row text-center">-->
-    <!--            <div class="col-md-4">-->
-    <!--                        <span class="fa-stack fa-4x">-->
-    <!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
-    <!--                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>-->
-    <!--                        </span>-->
-    <!--                <h4 class="my-3">E-Commerce</h4>-->
-    <!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
-    <!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-4">-->
-    <!--                        <span class="fa-stack fa-4x">-->
-    <!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
-    <!--                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>-->
-    <!--                        </span>-->
-    <!--                <h4 class="my-3">Responsive Design</h4>-->
-    <!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
-    <!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-4">-->
-    <!--                        <span class="fa-stack fa-4x">-->
-    <!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
-    <!--                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>-->
-    <!--                        </span>-->
-    <!--                <h4 class="my-3">Web Security</h4>-->
-    <!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
-    <!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+<!--    <div class="container">-->
+<!--        <div class="text-center">-->
+<!--            <h2 class="section-heading text-uppercase">Services</h2>-->
+<!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
+<!--        </div>-->
+<!--        <div class="row text-center">-->
+<!--            <div class="col-md-4">-->
+<!--                        <span class="fa-stack fa-4x">-->
+<!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
+<!--                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>-->
+<!--                        </span>-->
+<!--                <h4 class="my-3">E-Commerce</h4>-->
+<!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
+<!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                        <span class="fa-stack fa-4x">-->
+<!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
+<!--                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>-->
+<!--                        </span>-->
+<!--                <h4 class="my-3">Responsive Design</h4>-->
+<!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
+<!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                        <span class="fa-stack fa-4x">-->
+<!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
+<!--                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>-->
+<!--                        </span>-->
+<!--                <h4 class="my-3">Web Security</h4>-->
+<!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
+<!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--</section>-->
 <!--&lt;!&ndash; Portfolio Grid&ndash;&gt;-->
 <!--<section class="page-section bg-light" id="portfolio">-->

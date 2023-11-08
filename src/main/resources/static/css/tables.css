@@ -22,18 +22,19 @@ header {
 }
 .table-container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
     padding: 10px;
     overflow-x: auto;
-    overflow-scrolling: auto;
 }
 
 .table-recent, .table-trending {
     width: 100%;
     margin: 0;
     border: 1px solid lightgrey;
-    height: 90vh;
+    height: 100vh;
     background-color: #ffffff;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
@@ -41,9 +42,7 @@ header {
     flex: 1;
     overflow-x: auto;
     overflow-scrolling: auto;
-
 }
-
 
 .divider {
     width: 100%;
