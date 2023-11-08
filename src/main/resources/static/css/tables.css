@@ -42,6 +42,7 @@ header {
     flex: 1;
     overflow-x: auto;
     overflow-scrolling: auto;
+    text-align: center;
 }
 
 .divider {
@@ -71,7 +72,6 @@ a {
     display: table-cell;
     width: 20%;
     padding: 12px;
-    border-right: 1px solid #dee2e6;
     border-bottom: 1px solid #dee2e6;
 }
 
@@ -79,8 +79,9 @@ a {
     display: table-cell;
     width: 20%;
     padding: 12px;
-    border-right: 1px solid #dee2e6;
     border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    text-align: center;
 }
 
 .rowGroup {
@@ -111,6 +112,7 @@ a {
     display: table-cell;
     width: 20%;
     padding: 12px;
+    border-left: 1px solid #dee2e6;
     border-right: 1px solid #dee2e6;
     border-bottom: 1px solid #dee2e6;
 }

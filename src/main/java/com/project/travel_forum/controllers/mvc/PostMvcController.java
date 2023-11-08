@@ -49,7 +49,6 @@ public class PostMvcController {
     }
 
 
-
     @GetMapping
     public String showAllPosts(@ModelAttribute("filterOptions") FilterDto filterDto,
                                Model model, HttpSession httpSession) {
@@ -163,18 +162,14 @@ public class PostMvcController {
             Post post = postMapper.fromDto(id, postDto);
             postService.updatePost(post, user);
             return "redirect:/posts/{id}";
-        } catch (EntityNotFoundException e) {
-            model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
-            model.addAttribute("error", e.getMessage());
-            return "ErrorView";
-        } catch (EntityDuplicateException e) {
-            model.addAttribute("statusCode", HttpStatus.CONFLICT.getReasonPhrase());
-            model.addAttribute("error", e.getMessage());
-            return "ErrorView";
         } catch (AuthorizationException e) {
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "redirect:/auth/login";
+        } catch (UnauthorizedOperationException e) {
+            model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
+            model.addAttribute("error", e.getMessage());
+            return "ErrorView";
         }
     }
 
@@ -205,26 +200,25 @@ public class PostMvcController {
             return "ErrorView";
         }
     }
+
     @PostMapping("/{id}/like")
-    public String modifyLike(@PathVariable int id, HttpSession httpSession){
+    public String modifyLike(@PathVariable int id, HttpSession httpSession) {
         User user;
         Post post;
         try {
             user = authenticationHelper.tryGetCurrentUser(httpSession);
-            post= postService.getById(id);
-        }
-        catch (AuthorizationException e) {
+            post = postService.getById(id);
+        } catch (AuthorizationException e) {
             return "redirect:/auth/login";
-        }
-        catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return "redirect:/posts";
         }
-        if(post.getUserLikes().contains(user)) {
+        if (post.getUserLikes().contains(user)) {
             postService.modifyLike(id, user, false);
         } else {
-            postService.modifyLike(id,user,true);
+            postService.modifyLike(id, user, true);
         }
-        return "redirect:/posts/id";
+        return "redirect:/posts/{id}";
     }
 
 }

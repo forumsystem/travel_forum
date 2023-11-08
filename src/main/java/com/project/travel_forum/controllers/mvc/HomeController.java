@@ -64,7 +64,7 @@ public class HomeController {
             if (user.isAdmin()) {
                 return "AdminPortalView";
             }
-            return "AccessDeniedView";
+            return "ErrorView";
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }

@@ -94,13 +94,10 @@
                     </h3>
                 </div>
             </div>
-<!--            <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">-->
-<!--                <button type="submit">Like</button>-->
-<!--            </form>-->
-<!--            <form th:action="@{/posts/{id}/like}" method="POST">-->
-                <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/like}">LIKE</a>
-<!--                <button type="submit">Like Post</button>-->
-<!--            </form>-->
+
+            <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
+                <button class="btn btn-primary btn-xl text-uppercase" type="submit">LIKE</button>
+            </form>
 
 
             <h2 class="Replies">Replies</h2>
