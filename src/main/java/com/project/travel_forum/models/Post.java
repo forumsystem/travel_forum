@@ -40,7 +40,6 @@ public class Post {
     public Post() {
     }
 
-
     public int getId() {
         return id;
     }
