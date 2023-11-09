@@ -1,0 +1,25 @@
+
+.lsb-top{
+    display: flex;
+    flex-direction: column;
+}
+.iconBx_m{
+    font-size: 1rem;
+    color: #747474;
+    width: 50px;
+    height: 50px;
+    background-color: #4f94e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border-radius: 50%;
+    transition: .3s;
+}
+.iconBx_m:hover{
+    color: #fff;
+    background-color: #4f94e4;
+}
+.a{
+    text-decoration: none;
+}
