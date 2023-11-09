@@ -27,88 +27,113 @@ VALUES
     ('0889199955', 2),
     ('0889199954', 3);
 
-INSERT INTO posts (title, content, user_id)
+INSERT INTO posts (title, content, user_id, time_stamp)
 VALUES
     ('Vienna waits for you!',
      'Vienna - a city that embraced me with its history and contemporary allure. From imperial grandeur to the melodies in the air, each moment felt like a chapter in a captivating novel.',
-     1),
+     1, '2023-10-15 12:34:56'),
+
     ('Belgrade Chronicles!',
      'Belgrade - a city pulsating with energy and history. From its resilient spirit to the eclectic blend of ancient fortresses and vibrant nightlife, every corner tells a story of resilience and cultural richness.',
-     2),
+     2, '2023-10-16 08:45:23'),
+
     ('Plovdiv Charms!',
      'Plovdiv - a city where ancient history meets modern charm. From the cobbled streets of the Old Town to the artistic vibe of Kapana, every step unfolds a captivating blend of culture and timeless beauty.',
-     3),
+     3, '2023-10-17 15:20:10'),
+
     ('Tokyo Dreams',
      'Tokyo - a city where ancient traditions harmonize with futuristic innovation. From the serene temples to the bustling streets of Shibuya, each moment is a glimpse into a captivating juxtaposition.',
-     4),
+     4, '2023-10-18 21:45:32'),
+
     ('Parisian Rhapsody',
      'Paris - a city of love, art, and timeless elegance. From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre, every corner whispers tales of romance and cultural richness.',
-     5),
+     5, '2023-10-19 14:12:09'),
+
     ('Concrete Jungle Chronicles',
      'New York City - a metropolis that never sleeps, where towering skyscrapers and diverse neighborhoods create a vibrant mosaic of culture. From Central Park to the neon lights of Times Square, every heartbeat is a pulse of energy.',
-     1),
+     1, '2023-10-20 10:56:47'),
+
     ('Cape Town Tales',
      'Cape Town - where the azure oceans meet the majestic Table Mountain. From the historic Robben Island to the colorful Bo-Kaap district, every vista is a testament to nature beauty and a rich cultural tapestry.',
-     6),
+     6, '2023-10-21 18:30:15'),
+
     ('Sydney Serenade',
      'Sydney - a city of sun, surf, and iconic landmarks. From the Sydney Opera House to the golden beaches of Bondi, each sunrise paints a new chapter in this harbor city’s story.',
-     2),
+     2, '2023-10-22 07:23:54'),
+
     ('Eternal City Impressions',
      'Rome - where ancient history lives in harmony with modern life. From the Colosseum grandeur to the quaint streets of Trastevere, each moment is a step through centuries of art culture and architecture.',
-     1),
+     1, '2023-10-23 16:40:28'),
+
     ('Istanbul Odyssey',
      'Istanbul - a city straddling two continents, where East meets West. From the domes of Hagia Sophia to the bustling Grand Bazaar, each sight is a journey through the rich tapestry of Turkish history and culture.',
-     3),
+     3, '2023-10-24 12:15:37'),
+
     ('Rio Rhythms',
      'Rio de Janeiro - where the rhythm of samba meets the beauty of golden beaches. From the iconic Christ the Redeemer to the lively streets of Copacabana, every day is a celebration of life and vibrant colors.',
-     7),
+     7, '2023-10-25 09:08:42'),
+
     ('Bangkok Reverie',
      'Bangkok - a city of contrasts, where ancient temples stand beside modern skyscrapers. From the bustling street markets to the serene Wat Arun, each moment is a blend of tradition and the contemporary.',
-     5),
+     5, '2023-10-26 14:55:19'),
+
     ('Barcelona Journeys',
      'Barcelona - where Gaudí masterpieces dance with the Mediterranean breeze. From the vibrant La Rambla to the architectural marvel of Sagrada Familia, each step is a journey through Catalan culture and artistic brilliance.',
-     4),
+     4, '2023-10-27 19:27:50'),
+
     ('Berlin Impressions',
      'Berlin - a city where history meets innovation. From the remnants of the Berlin Wall to the modern architecture of Potsdamer Platz, each corner is a testament to the city’s resilience and creative spirit.',
-     8),
+     8, '2023-10-28 08:10:04'),
+
     ('Amsterdam Adventures',
      'Amsterdam - a city of canals and culture. From the historic Anne Frank House to the lively streets of Jordaan, each canal ride unveils a story of art, history, and the Dutch way of life.',
-     9),
+     9, '2023-10-29 17:45:32'),
+
     ('Prague Symphony',
      'Prague - where medieval charm and Bohemian allure converge. From the majestic Prague Castle to the quaint streets of Mala Strana, each note of history resonates through the city’s cobblestone pathways.',
-     10),
+     10, '2023-10-30 13:20:17'),
+
     ('Singapore Sojourn',
      'Singapore - a city-state where tradition meets modernity. From the futuristic skyline of Marina Bay Sands to the cultural richness of Chinatown, each moment is a harmonious blend of diverse influences.',
-     11),
+     11, '2023-10-31 11:05:56'),
+
     ('Dubai Dreams',
      'Dubai - a city of opulence and architectural marvels. From the iconic Burj Khalifa to the luxury shopping in Dubai Mall, each skyline view is a testament to the city’s ambition and prosperity.',
-     12),
+     12, '2023-11-01 09:42:23'),
+
     ('Budapest Bliss',
      'Budapest - where the Danube River flows through history and thermal baths. From Buda Castle’s panoramic views to the vibrant ruin bars of Pest, each side of the river unveils a different facet of Hungarian charm.',
-     13),
+     13, '2023-11-02 15:18:57'),
+
     ('Seoul Serenity',
      'Seoul - a city that seamlessly blends ancient traditions with modern technology. From the historic Gyeongbokgung Palace to the bustling streets of Gangnam, each moment is a dynamic harmony of past and present.',
-     14),
+     14, '2023-11-03 12:55:32'),
+
     ('Madrid Mosaic',
      'Madrid - the heart of Spain, where art, history, and gastronomy converge. From the iconic Prado Museum to the lively Puerta del Sol, each tapas bite is a flavor of Spanish culture.',
-     15),
+     15, '2023-11-04 21:30:09'),
+
     ('Osaka Odyssey',
      'Osaka - a city known for its culinary delights and historic landmarks. From the vibrant street food scene in Dotonbori to the serene Osaka Castle, each bite and step is a journey through Japanese culture.',
-     16),
+     16, '2023-11-05 18:12:47'),
+
     ('Moscow Marvels',
      'Moscow - where the Red Square stands as a symbol of Russian history and grandeur. From the iconic St. Basil’s Cathedral to the modern skyscrapers of Moscow City, each sight is a chapter in the city’s narrative.',
-     17),
+     17, '2023-11-06 14:55:21'),
+
     ('Hanoi Harmony',
      'Hanoi - the capital of Vietnam, where ancient temples and French colonial architecture coexist. From the serene Hoan Kiem Lake to the bustling streets of the Old Quarter, each moment is a blend of tradition and dynamism.',
-     18),
+     18, '2023-11-07 09:40:37'),
+
     ('Zurich Zen',
      'Zurich - a city where pristine lakes meet financial prowess. From the scenic shores of Lake Zurich to the contemporary art scene in Kunsthaus Zurich, each view is a moment of tranquility in the heart of Switzerland.',
-     19),
+     19, '2023-11-08 16:25:14'),
+
     ('Athens Adventures',
      'Athens - the cradle of Western civilization, where ancient ruins stand amidst modern life. From the Acropolis majesty to the vibrant Plaka district, each step is a journey through the birthplace of democracy.',
-     2);
+     2, '2023-11-09 12:08:49');
 
--- Insert data into the comments table
+
 INSERT INTO comments (comment, post_id, user_id)
 VALUES
     ('Great post!', 1, 2),
@@ -162,4 +187,3 @@ VALUES
     (10, 12),
     (10, 13),
     (10, 14);
-

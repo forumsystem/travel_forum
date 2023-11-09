@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml"
-      xmlns:font-style="http://www.w3.org/1999/xhtml">
+      xmlns:font-style="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8"/>
@@ -64,24 +64,17 @@
         <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
             simonanedeva</p>
 
-        <p class="margin12" th:text="'Likes: ' + ${post.getLikes()}"></p>
-        <p class="margin12" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
-        <p class="margin12" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
-        <!--        <div class="body-content">-->
-        <!--            <div class="table-all">-->
-        <!--                <h3>-->
-        <!--                    <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>-->
-        <!--                    <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>-->
-        <!--                </h3>-->
-        <!--            </div>-->
-        <!--        </div>-->
-
     </div>
 </header>
+</br>
+</br>
+</br>
+</br>
+</br>
 <!-- About-->
 <section class="page-section bg-light" id="about">
     <div class="container">
-        <div class="text-center">
+        <div class="text-center-content">
             <span th:text="${post.content}"></span>
             <br/>
             <br/>
@@ -92,48 +85,60 @@
                         <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>
                         <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
                     </h3>
+
+                    <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
+                        <button onclick="Toggle()" id="btnh" class="btn-like" type="submit">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                        <p class="like"
+                           th:text="'Likes: ' + ${post.getLikes()}">
+                        </p>
+                    </form>
+                    <script>
+                        var btnvar = document.getElementById('btnh');
+
+                        function Toggle() {
+                            if (btnvar.style.color === "red") {
+                                btnvar.style.color = "grey"
+                            } else {
+                                btnvar.style.color = "red"
+                            }
+                        }
+                    </script>
+                </div>
+                <p class="replies" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
+                <p class="data-published" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
+            </div>
+        </div>
+
+        <div th:if="${post.comments.isEmpty()}">
+            <h2 th:text="#{post.comment.empty}">No Comment</h2>
+        </div>
+        <div th:unless="${post.comments.isEmpty()}">
+            <h2 class="replies">Replies</h2>
+        </div>
+
+            <div class="row-tables" th:each="comment : ${post.comments}">
+                <div class="text-center-comment">
+                    <div class="comment-createdBy">
+                        <h4 class="subheading"
+                            th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
+                    </div>
+                    <p class="margin12" th:text="${comment.comment}"></p>
                 </div>
             </div>
+            <div class="comment-box" >
+                <h3>Leave a comment</h3>
+                <form action="#" th:action="@{posts/{id}}"  class="comment-form">
+                    <label>
+                        <textarea rows="10" type="text" placeholder="What's on your mind?"></textarea>
+                    </label>
+                    </br>
+                    <button type="submit" class="btn btn-primary btn-xl text-uppercase">POST COMMENT</button>
+                </form>
+            </div>
 
-            <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
-                <button class="btn btn-primary btn-xl text-uppercase" type="submit">LIKE</button>
-            </form>
-
-
-            <h2 class="Replies">Replies</h2>
         </div>
-        <br/>
-        <br/>
-        <div class="row-tables" th:each="comment : ${post.comments}">
-            <ul class="timeline">
-                <li class="timeline-inverted">
-                    <!--                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/2.jpg"-->
-                    <!--                                                 alt="..."/></div>-->
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <!--                        <h4>March 2011</h4>-->
-                            <h4 class="subheading"
-                                th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
-                        </div>
-                        <div class="timeline-body"><p class="text-muted">
-                            <p class="margin12" th:text="${comment.comment}"></p></div>
-                    </div>
-                </li>
-
-                <!--            <li class="timeline-inverted">-->
-                <!--                <div class="timeline-image">-->
-                <!--                    <h4>-->
-                <!--                        Safe Travels-->
-                <!--                        <br/>-->
-                <!--                        And-->
-                <!--                        <br/>-->
-                <!--                        Exploring!-->
-                <!--                    </h4>-->
-                <!--                </div>-->
-                <!--            </li>-->
-            </ul>
-        </div>
-    </div>
 </section>
 
 
@@ -160,6 +165,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../static/js/scripts.js" th:src="@{/js/scripts.js}"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-<form th:replace="~{PostForm.html :: footer}"></form>
 </body>
 </html>
