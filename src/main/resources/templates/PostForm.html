@@ -57,10 +57,16 @@
         <!--        <br/><br/>-->
 
         <!--        <input type="submit" value="Save"/>-->
-        <div class="text-center"><input type="submit" value="Share" class="btn btn-primary btn-xl text-uppercase"
-                                        href="#services"></div>
-    </form>
+<!--        <form th:action="@{/posts/{id}/update(id=${post.id})}" method="post">-->
+<!--            <button onclick="Toggle()" id="btnh" class="btn-like" type="submit">-->
+<!--                <i class="fa-solid fa-heart"></i>-->
+<!--            </button>-->
 
+            <div class="text-center"><input type="submit" value="Share" class="btn btn-primary btn-xl text-uppercase"
+                                        href="#services">
+            </div>
+<!--        </form>-->
+    </form>
 </div>
 
 <footer th:fragment="footer">
