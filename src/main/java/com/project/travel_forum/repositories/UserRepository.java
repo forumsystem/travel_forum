@@ -11,7 +11,8 @@ public interface UserRepository {
     long getUserCount();
 
     List<User> get(FilterUserOptions filterUserOptions);
-
+    List<User> getAllBlockUser();
+    List<User> getAllAdmins();
     User getById(int id);
 
     User getByEmail(String email);
@@ -27,5 +28,6 @@ public interface UserRepository {
     void modifyPermissions(User user);
 
     void modifyBlock(User user);
+
 
 }

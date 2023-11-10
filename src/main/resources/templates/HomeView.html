@@ -44,6 +44,9 @@
                                         th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
                                         th:text="#{navigation.admin}">Admin Portal</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated && !session.isAdmin}" th:href="@{/settings}"
+                                        th:text="#{navigation.settings}">Settings</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
                                         th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a></li>
 
             </ul>
@@ -72,11 +75,10 @@
         </div>
     </div>
 
-    <header class="table-container">
-        <div class="table-container">
+    <div class="table-container">
             <div class="table-recent">
-                <div class="tbl-content">
 
+                <div class="tbl-content">
                     <section class="header">
                         <h1>Recent</h1>
                     </section>
@@ -100,59 +102,58 @@
                             every corner whispers tales of romance and cultural richness.
                         </div>
 
-            <div class="cell">
-                <span th:text="'Likes: ' + ${post.getLikes()}"></span>
-                <br/>
-                <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
-                <br/>
-                <br/>
-                <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
-            </div>
-        </div>
-        </div>
-        </div>
-
-
-        <div class="table-trending">
-
-            <div class="tbl-content">
-                <section class="header">
-                    <h1>Trending</h1>
-                </section>
-                <div class="divider"></div>
-
-                <div class="header-cell" th:text="#{post.label.title}">Topic</div>
-                <div class="header-cell" th:text="#{post.label.content}">Content</div>
-                <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
-
-                <div class="row-tables" th:each="post : ${comments}">
-                    <div class="cell">
-                        <a href="#" th:href="@{/posts/{id}(id=${post.id})}"
-                           th:text="${post.title}">Post</a>
-                        <br/>
-                        <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
+                        <div class="cell">
+                            <span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                            <br/>
+                            <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                            <br/>
+                            <br/>
+                            <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
+                        </div>
                     </div>
-
-                    <div class="cell"
-                         th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
-                        Paris - a city of love, art, and timeless elegance.
-                        From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
-                        every corner whispers tales of romance and cultural richness.
-                    </div>
-
-                    <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
-                        <br/>
-                        <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
-                        <br/>
-                        <br/>
-                        <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
-                    </div>
-
                 </div>
             </div>
-        </div>
-        </div>
-    </header>
+
+
+            <div class="table-trending">
+
+                <div class="tbl-content">
+                    <section class="header">
+                        <h1>Trending</h1>
+                    </section>
+                    <div class="divider"></div>
+
+                    <div class="header-cell" th:text="#{post.label.title}">Topic</div>
+                    <div class="header-cell" th:text="#{post.label.content}">Content</div>
+                    <div class="header-cell" th:text="#{post.label.activity}">Activity</div>
+
+                    <div class="row-tables" th:each="post : ${comments}">
+                        <div class="cell">
+                            <a href="#" th:href="@{/posts/{id}(id=${post.id})}"
+                               th:text="${post.title}">Post</a>
+                            <br/>
+                            <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
+                        </div>
+
+                        <div class="cell"
+                             th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}">
+                            Paris - a city of love, art, and timeless elegance.
+                            From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre,
+                            every corner whispers tales of romance and cultural richness.
+                        </div>
+
+                        <div class="cell"><span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                            <br/>
+                            <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                            <br/>
+                            <br/>
+                            <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
 </section>
 <!--<div>-->
 <!--    <h2>Top 10 Most Recently Created Posts</h2>-->

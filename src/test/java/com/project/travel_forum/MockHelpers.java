@@ -84,9 +84,7 @@ public class MockHelpers {
         return new FilterUserOptions(
                 "User",
                 "user@test.com",
-                "username",
-                "username",
-                "asc");
+                "username");
     }
 
 

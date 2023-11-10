@@ -36,6 +36,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllBlockUser() {
+        return userRepository.getAllBlockUser();
+    }
+
+    @Override
+    public List<User> getAllAdmins() {
+        return userRepository.getAllAdmins();
+    }
+
+    @Override
     public User get(int id) {
         return userRepository.getById(id);
 

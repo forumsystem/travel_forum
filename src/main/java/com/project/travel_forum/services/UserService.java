@@ -10,6 +10,9 @@ public interface UserService {
     long getUserCount();
 
     List<User> get(User user, FilterUserOptions filterUserOptions);
+
+    List<User> getAllBlockUser();
+    List<User> getAllAdmins();
     User get(int id);
 
     User getById(int id, User headersUser);

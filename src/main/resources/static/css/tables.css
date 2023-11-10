@@ -15,6 +15,7 @@ header {
     align-items: center;
 }
 
+
 .h1-container {
     display: flex;
     justify-content: space-between;
@@ -26,7 +27,20 @@ header {
     margin: 10px 0;
     text-transform: capitalize;
 }
-
+.tbl-content{
+    width: 100%;
+    margin: 0;
+    border: 1px solid lightgrey;
+    height: 100vh;
+    background-color: #ffffff;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .6rem;
+    flex: 1;
+    overflow-x: auto;
+    overflow-scrolling: auto;
+    text-align: center;
+}
 .table-container {
     display: flex;
     flex-direction: row;
@@ -79,9 +93,19 @@ a {
     display: table-cell;
     width: 20%;
     padding: 12px;
-    border-bottom: 1px solid #dee2e6;
-}
+    /*border-radius: .6rem;*/
+    /*border: 1px solid lightgrey;*/
 
+}
+.divider{
+    width: 100%;
+    margin: 0;
+    border: 1px solid lightgrey;
+    background-color: #ffffff;
+    backdrop-filter: blur(7px);
+    border-radius: .6rem;
+    flex: 1;
+}
 .header-cell {
     display: table-cell;
     width: 20%;
@@ -217,7 +241,8 @@ a.nav {
     display: inline-block;
     text-decoration: none;
     padding: 0;
-    font-size: 15px;
+    font-size: large;
+
     border-radius: 10px;
     border: 1px solid #bebebf;
     background: transparent;
@@ -234,6 +259,7 @@ a.nav {
     border: 1px solid #fffae6;
     background: #fffae6;
     transition: 0.5s;
+    font-size: large;
 }
 
 .like {
@@ -247,7 +273,8 @@ a.nav {
     display: flex;
     position: relative;
 }
-.data-published{
+
+.data-published {
     font-size: 15px;
     border-radius: 10px;
     border: 1px solid #bebebf;
@@ -258,24 +285,14 @@ a.nav {
     margin: auto;
     padding-top: 100px;
     text-align: center;
-}
-
-.row-tables .replies {
-    font-size: x-large;
-    text-align: center;
-    display: flex;
     position: relative;
-    top: 20%;
 }
-
 
 .row-tables .text-center-comment {
-    width: 80%;
     margin: auto;
     padding: 12px 34px;
     font-size: 15px;
     border-radius: 10px;
-    border: 1px solid #bebebf;
     background: transparent;
     color: #000000;
     position: relative;
@@ -283,16 +300,54 @@ a.nav {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: left;
-    display: flex;
+    border: 1px solid #bebebf;
+    display: block; /* Promenjeno sa display: flex; na display: block; */
+    width: 100%; /* Ako želite da ograničite širinu komentara, možete dodati širinu ovde */
+    margin-bottom: 20px; /* Dodato kako bi se odvojili komentari */
+
+}
+
+.comment-box-replies-box {
+
+}
+
+.comment-replies {
+
+    top: 52%;
+    left: 10%;
+    transform: translate(0, 0);
+    text-align: left;
 }
 
 .comment-createdBy .subheading {
+    width: auto;
     text-align: left;
     margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+}
+
+.text-center-comment:hover {
+    background: #babbbc;
+
+}
+
+.comment-leave {
+    color: #333;
+    border-radius: 10px;
+    border: 1px solid;
+}
+
+.comment-leave:hover {
+    border-radius: 10px;
+    border: 1px solid #fffae6;
+    background: #bcbebf;
+    transition: 0.5s;
 }
 
 .comment-box {
-    border: 1px solid #ccc;
+    border: 1px solid #f5c2c7;
     margin: 50px 0;
     padding: 10px 20px;
     border-radius: 10px;
@@ -326,7 +381,8 @@ a.nav {
     }
 
 }
-.btn-submit{
+
+.btn-submit {
     display: none;
 
 }

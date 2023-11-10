@@ -50,6 +50,9 @@
                                         th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
                                         th:text="#{navigation.admin}">Admin Portal</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated && !session.isAdmin}" th:href="@{/settings}"
+                                        th:text="#{navigation.settings}">Settings</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
                                         th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a></li>
 
             </ul>
@@ -86,9 +89,11 @@
                      alt="..."/>
                 <h4>Dora Dimitrov</h4>
                 <p class="text-muted">Full Stack Developer</p>
-                <a class="btn btn-dark btn-social mx-2" href="https://github.com/doraad" target="_blank" aria-label="Parveen Anand GitHub Profile"><i
+                <a class="btn btn-dark btn-social mx-2" href="https://github.com/doraad" target="_blank"
+                   aria-label="Parveen Anand GitHub Profile"><i
                         class="fab fa-github"></i></a>
-                <a class ="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/doraa98/" aria-label="Parveen Anand LinkedIn Profile"><i
+                <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/doraa98/"
+                   aria-label="Parveen Anand LinkedIn Profile"><i
                         class="fab fa-linkedin-in"></i></a>
             </div>
 
@@ -97,9 +102,11 @@
                 <img class="mx-auto rounded-circle" src="https://shorturl.at/huDQ8" alt="..."/>
                 <h4>Simona Nadeva</h4>
                 <p class="text-muted">Full Stack Developer</p>
-                <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/simonanedeva1/" target="_blank" aria-label="Parveen Anand GitHub Profile"><i
+                <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/simonanedeva1/"
+                   target="_blank" aria-label="Parveen Anand GitHub Profile"><i
                         class="fab fa-github"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="https://github.com/simonanedeva" target="_blank" aria-label="Parveen Anand GitHub Profile"><i
+                <a class="btn btn-dark btn-social mx-2" href="https://github.com/simonanedeva" target="_blank"
+                   aria-label="Parveen Anand GitHub Profile"><i
                         class="fab fa-linkedin-in"></i></a>
             </div>
 
@@ -108,7 +115,8 @@
                 <h4>Marian Maximov</h4>
                 <p class="text-muted">Full Stack Developer</p>
 
-                <a class="btn btn-dark btn-social mx-2" href="https://github.com/marianmgm" target="_blank" aria-label="Parveen Anand GitHub Profile"><i
+                <a class="btn btn-dark btn-social mx-2" href="https://github.com/marianmgm" target="_blank"
+                   aria-label="Parveen Anand GitHub Profile"><i
                         class="fab fa-github"></i></a>
                 <a class="btn btn-dark btn-social mx-2" href="" aria-label="Parveen Anand LinkedIn Profile"><i
                         class="fab fa-linkedin-in"></i></a>
@@ -122,17 +130,15 @@
 <section class="page-section bg-light" id="about">
     <div class="container">
         <div class="text-center">
-            <!--            <h2 class="section-heading text-uppercase">About Our Travel Forum</h2>-->
             <h3 class="section-subheading text-muted">Welcome to our vibrant travel community! We're thrilled to have
                 you here as a part of our global network of adventurers and explorers. Whether you're a seasoned
                 globetrotter or just planning your first big trip, you've found a place where your passion for travel
                 can thrive.</h3>
         </div>
-        <ul class="timeline">
+        <ul class="timeline" >
             <li>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <!--                        <h4>2009-2011</h4>-->
                         <h4 class="subheading">Our Mission</h4>
                     </div>
                     <div class="timeline-body"><p class="text-muted">At our travel forum, our mission is to connect

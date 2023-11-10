@@ -44,10 +44,8 @@ public class UserController {
             @RequestHeader HttpHeaders headers,
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String username,
-            @RequestParam(required = false) String sortBy,
-            @RequestParam(required = false) String sortOrder) {
-        FilterUserOptions filterUserOptions = new FilterUserOptions(firstName, email, username, sortBy, sortOrder);
+            @RequestParam(required = false) String username) {
+        FilterUserOptions filterUserOptions = new FilterUserOptions(firstName, email, username);
         try {
             User headersUser = authenticationHelper.tryGetUser(headers);
             return userService.get(headersUser, filterUserOptions);
@@ -115,7 +113,6 @@ public class UserController {
         }
     }
 
-    ///users/admin/{id}?isAdmin=true / false
     @PatchMapping("/{id}/admin")
     public void modifyPermissions(@RequestHeader HttpHeaders headers, @PathVariable int id, @RequestParam boolean isAdmin) {
         try {

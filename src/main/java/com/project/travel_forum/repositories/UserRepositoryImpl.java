@@ -38,7 +38,8 @@ public class UserRepositoryImpl implements UserRepository {
             List<Long> resultList = query.list();
 
             return resultList.get(0);
-        }    }
+        }
+    }
 
     @Override
     public List<User> get(FilterUserOptions filterUserOptions) {
@@ -56,8 +57,8 @@ public class UserRepositoryImpl implements UserRepository {
                 params.put("email", value);
             });
             filterUserOptions.getUsername().ifPresent(value -> {
-                filters.add(" username = :username ");
-                params.put("username", value);
+                filters.add(" username like :username ");
+                params.put("username", String.format("%%%s%%", value));
             });
             StringBuilder queryString = new StringBuilder("from User ");
             if (!filters.isEmpty()) {
@@ -65,37 +66,36 @@ public class UserRepositoryImpl implements UserRepository {
                         .append(String.join(" and ", filters));
             }
 
-
-            queryString.append(generateOrderBy(filterUserOptions));
             Query<User> query = session.createQuery(queryString.toString(), User.class);
             query.setProperties(params);
             return query.list();
         }
     }
 
-    private String generateOrderBy(FilterUserOptions filterUserOptions) {
-        if (filterUserOptions.getSortBy().isEmpty()) {
-            return "";
+    @Override
+    public List<User> getAllBlockUser() {
+        try (Session session = sessionFactory.openSession()) {
+            Query<User> query = session.createQuery("from User where isBlocked = :isBlocked", User.class);
+            query.setParameter("isBlocked", true);
+            List<User> result = query.list();
+            if (result.isEmpty()) {
+                throw new EntityNotFoundException("User", "status", "block");
+            }
+            return result;
         }
-        String orderBy = "";
-        switch (filterUserOptions.getSortBy().get()) {
-            case "firstName":
-                orderBy = "firstName";
-                break;
-            case "email":
-                orderBy = "email";
-                break;
-            case "username":
-                orderBy = "username";
-                break;
-            default:
-                return "";
+    }
+
+    @Override
+    public List<User> getAllAdmins() {
+        try (Session session = sessionFactory.openSession()) {
+            Query<User> query = session.createQuery("from User where isAdmin = :isAdmin", User.class);
+            query.setParameter("isAdmin", true);
+            List<User> result = query.list();
+            if (result.isEmpty()) {
+                throw new EntityNotFoundException("User", "status", "admin");
+            }
+            return result;
         }
-        orderBy = String.format(" order by %s", orderBy);
-        if (filterUserOptions.getSortOrder().isPresent() && filterUserOptions.getSortOrder().get().equalsIgnoreCase("desc")) {
-            orderBy = String.format("%s desc", orderBy);
-        }
-        return orderBy;
     }
 
     @Override
@@ -190,6 +190,7 @@ public class UserRepositoryImpl implements UserRepository {
             session.getTransaction().commit();
         }
     }
+
 
     private static void deleteLikes(int id, Session session) {
         Query<User> deleteLikesQuery = session.createNativeQuery("DELETE FROM likes WHERE user_id = :userId",

@@ -48,6 +48,9 @@
                                         th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
                                         th:text="#{navigation.admin}">Admin Portal</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"
+                                        th:if="${isAuthenticated && !session.isAdmin}" th:href="@{/settings}"
+                                        th:text="#{navigation.settings}">Settings</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"
                                         th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a></li>
 
             </ul>
@@ -58,30 +61,15 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <!--        <div class="masthead-subheading">About</div>-->
-        <!--        <div class="masthead-heading text-uppercase">ABOUT OUR TRAVEL FORUM</div>-->
         <div class="masthead-subheading" th:text="${post.title}"></div>
         <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
             simonanedeva</p>
-
-<!--        <p class="margin12" th:text="'Likes: ' + ${post.getLikes()}"></p>-->
-<!--        <p class="margin12" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>-->
-<!--        <p class="margin12" th:text="'Published on: ' + ${post.getTimestamp()}"></p>-->
-        <!--        <div class="body-content">-->
-        <!--            <div class="table-all">-->
-        <!--                <h3>-->
-        <!--                    <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>-->
-        <!--                    <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>-->
-        <!--                </h3>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!-- Portfolio item 1-->
         <div class="portfolio-item">
             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                 <div class="portfolio-hover">
                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                 </div>
-<!--                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />-->
+                <!--                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />-->
             </a>
             <div class="portfolio-caption">
                 <div class="portfolio-caption-heading">Threads</div>
@@ -96,11 +84,15 @@
 </br>
 </br>
 </br>
+</br>
+<br/>
+<br/>
 <!-- About-->
 <section class="page-section bg-light" id="about">
     <div class="container">
         <div class="text-center-content">
             <span th:text="${post.content}"></span>
+            <br/>
             <br/>
             <br/>
             <br/>
@@ -131,30 +123,31 @@
                         }
                     </script>
                 </div>
-                <p class="replies" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
+                <p class="like" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
                 <p class="data-published" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
+            </div>
+<!--             TODO this replies and no comment    -->
+            <div th:if="${post.comments.isEmpty()}">
+                <h2 th:text="#{post.comment.empty}">No Comment</h2>
+            </div>
+            <div th:unless="${post.comments.isEmpty()}">
+                <h2>Replies:</h2>
             </div>
         </div>
 
-        <div th:if="${post.comments.isEmpty()}">
-            <h2 th:text="#{post.comment.empty}">No Comment</h2>
-        </div>
-        <div th:unless="${post.comments.isEmpty()}">
-            <h2 class="replies">Replies</h2>
-        </div>
-
             <div class="row-tables" th:each="comment : ${post.comments}">
+
                 <div class="text-center-comment">
                     <div class="comment-createdBy">
                         <h4 class="subheading"
                             th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
                     </div>
-                    <p class="margin12" th:text="${comment.comment}"></p>
+                    <p class="comment-leave" th:text="${comment.comment}"></p>
                 </div>
             </div>
-            <div class="comment-box" >
+            <div class="comment-box">
                 <h3>Leave a comment</h3>
-                <form action="#" th:action="@{posts/{id}}"  class="comment-form">
+                <form action="#" th:action="@{posts/{id}}" class="comment-form">
                     <label>
                         <textarea rows="10" type="text" placeholder="What's on your mind?"></textarea>
                     </label>
@@ -162,7 +155,6 @@
                     <button type="submit" class="btn btn-primary btn-xl text-uppercase">POST COMMENT</button>
                 </form>
             </div>
-
         </div>
 </section>
 
@@ -170,7 +162,9 @@
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                                                                  alt="Close modal"/>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">

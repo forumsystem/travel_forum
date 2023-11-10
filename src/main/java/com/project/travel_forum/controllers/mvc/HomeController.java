@@ -2,6 +2,7 @@ package com.project.travel_forum.controllers.mvc;
 
 import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
+import com.project.travel_forum.models.FilterUserDto;
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.PostService;
@@ -40,6 +41,7 @@ public class HomeController {
         return session.getAttribute("currentUser") != null;
     }
 
+
     @GetMapping
     public String showHomePage(Model model) {
         long postCount = postService.getPostCount();
@@ -58,13 +60,24 @@ public class HomeController {
     }
 
     @GetMapping("/admin")
-    public String showAdminPortal(HttpSession session, Model model) {
+    public String showAdminPortal(@ModelAttribute("filterUserOptions") FilterUserDto filterUserDto,
+                                  HttpSession session, Model model) {
         try {
             User user = authenticationHelper.tryGetCurrentUser(session);
             if (user.isAdmin()) {
-                return "AdminPortalView";
+                return "AdminPortalVieww";
             }
             return "ErrorView";
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+    }
+
+    @GetMapping("/settings")
+    public String showSettings(HttpSession session, Model model) {
+        try {
+            authenticationHelper.tryGetCurrentUser(session);
+            return "Settings";
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
