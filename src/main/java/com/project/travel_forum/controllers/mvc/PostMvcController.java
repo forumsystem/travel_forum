@@ -70,7 +70,14 @@ public class PostMvcController {
     }
 
     @GetMapping("/{id}")
-    public String showPost(@PathVariable int id, Model model) {
+    public String showPost(@PathVariable int id, Model model, HttpSession httpSession) {
+        User user;
+        try {
+            user = authenticationHelper.tryGetCurrentUser(httpSession);
+        }
+        catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
         try {
             Post post = postService.getById(id);
             model.addAttribute("post", post);
@@ -78,8 +85,7 @@ public class PostMvcController {
         } catch (EntityNotFoundException e) {
             model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
-            return "ErrorView";
-        }
+            return "ErrorView";}
     }
 
     @GetMapping("/new")
