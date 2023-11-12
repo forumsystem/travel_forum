@@ -64,18 +64,18 @@
         <div class="masthead-subheading" th:text="${post.title}"></div>
         <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
             simonanedeva</p>
-        <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <!--                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />-->
-            </a>
-            <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">Threads</div>
-                <div class="portfolio-caption-subheading text-muted">Illustration</div>
-            </div>
-        </div>
+<!--        <div class="portfolio-item">-->
+<!--            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">-->
+<!--                <div class="portfolio-hover">-->
+<!--                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />&ndash;&gt;-->
+<!--            </a>-->
+<!--            <div class="portfolio-caption">-->
+<!--                <div class="portfolio-caption-heading">Threads</div>-->
+<!--                <div class="portfolio-caption-subheading text-muted">Illustration</div>-->
+<!--            </div>-->
+<!--        </div>-->
 
     </div>
 </header>
@@ -137,12 +137,12 @@
 
             <div class="row-tables" th:each="comment : ${post.comments}">
 
-                <div class="text-center-comment">
+                <div class="text-center-comment bg-dark">
                     <div class="comment-createdBy">
-                        <h4 class="subheading"
+                        <h4 class="subheading text-primary"
                             th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
                     </div>
-                    <p class="comment-leave" th:text="${comment.comment}"></p>
+                    <p class="comment-leave text-light" th:text="${comment.comment}"></p>
                 </div>
             </div>
             <div class="comment-box">

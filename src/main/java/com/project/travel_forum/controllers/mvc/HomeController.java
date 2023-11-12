@@ -2,18 +2,25 @@ package com.project.travel_forum.controllers.mvc;
 
 import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
+import com.project.travel_forum.exceptions.EntityDuplicateException;
+import com.project.travel_forum.exceptions.EntityNotFoundException;
+import com.project.travel_forum.exceptions.UnauthorizedOperationException;
+import com.project.travel_forum.helpers.UserMapper;
 import com.project.travel_forum.models.FilterUserDto;
 import com.project.travel_forum.models.Post;
+import com.project.travel_forum.models.RegisterDto;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.PostService;
 import com.project.travel_forum.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,12 +30,14 @@ public class HomeController {
     private final AuthenticationHelper authenticationHelper;
     private final PostService postService;
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @Autowired
-    public HomeController(AuthenticationHelper authenticationHelper, PostService postService, UserService userService) {
+    public HomeController(AuthenticationHelper authenticationHelper, PostService postService, UserService userService, UserMapper userMapper) {
         this.authenticationHelper = authenticationHelper;
         this.postService = postService;
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping("/about")
@@ -75,8 +84,57 @@ public class HomeController {
 
     @GetMapping("/settings")
     public String showSettings(HttpSession session, Model model) {
+        User user;
         try {
-            authenticationHelper.tryGetCurrentUser(session);
+           user=authenticationHelper.tryGetCurrentUser(session);
+//            model.addAttribute("updateUser", new RegisterDto());
+            model.addAttribute("currentUser", user);
+            model.addAttribute("userDto",  new RegisterDto());
+            return "Settings";
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+    }
+//    @PostMapping("/settings/update")
+//    public String updateUser(
+////            @PathVariable int id,
+//            @Valid @ModelAttribute("updateUser") RegisterDto registerDto,
+//            BindingResult result,
+//            Model model,
+//            HttpSession httpSession) {
+//        User user;
+//        try {
+//            if (result.hasErrors()) {
+//                return "Settings";
+//            }
+//
+//            user = authenticationHelper.tryGetCurrentUser(httpSession);
+//            User userToUpdate = userMapper.fromDto(user.getId(), registerDto, user);
+//            userService.updateUser(user, userToUpdate);
+//            model.addAttribute("updateUser", userToUpdate);
+//            return "redirect:/settings";
+//        } catch (EntityNotFoundException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+//        } catch (EntityDuplicateException e) {
+//            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+//        } catch (UnauthorizedOperationException e) {
+//            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+//        }
+//    }
+    @PostMapping("/settings/update")
+    public String showUserUpdatePage(HttpSession session, Model model) {
+        try {
+            User currentUser = authenticationHelper.tryGetCurrentUser(session);
+            model.addAttribute("currentUser", currentUser);
+            RegisterDto registerDto = new RegisterDto();
+            registerDto.setUsername(currentUser.getUsername());
+            registerDto.setFirstName(currentUser.getFirstName());
+            registerDto.setLastName(currentUser.getLastName());
+            registerDto.setEmail(currentUser.getEmail());
+            registerDto.setPassword(currentUser.getPassword());
+            registerDto.setPasswordConfirm(currentUser.getPassword());
+
+            model.addAttribute("userDto", registerDto);
             return "Settings";
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
