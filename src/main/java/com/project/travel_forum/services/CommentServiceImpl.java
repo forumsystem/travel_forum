@@ -53,9 +53,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void delete(int id,User user) {
-        checkUserAuthorization(id, user);
-        commentRepository.delete(id);
+    public void delete(int commentId,User user) {
+        Comment comment = getByCommentId(commentId);
+        User creator = comment.getCreatedBy();
+        checkUserAuthorization(creator.getId(), user);
+        commentRepository.delete(commentId);
     }
 
 

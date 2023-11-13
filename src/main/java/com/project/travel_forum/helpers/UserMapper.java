@@ -1,5 +1,6 @@
 package com.project.travel_forum.helpers;
 
+import com.project.travel_forum.models.UpdateUserDto;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.models.RegisterDto;
 import com.project.travel_forum.services.UserService;
@@ -23,6 +24,18 @@ public class UserMapper {
         existingUser.setEmail(dto.getEmail());
         existingUser.setUsername(dto.getUsername());
         existingUser.setPassword(dto.getPassword());
+
+        return existingUser;
+    }
+
+    public User fromDto(int id, UpdateUserDto dto, User user) {
+        User existingUser = userService.getById(id, user);
+
+        existingUser.setFirstName(dto.getFirstName());
+        existingUser.setLastName(dto.getLastName());
+        existingUser.setEmail(dto.getEmail());
+        existingUser.setPassword(dto.getPassword());
+        //possibly phone number
 
         return existingUser;
     }

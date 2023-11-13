@@ -2,6 +2,7 @@ package com.project.travel_forum.services;
 
 import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.FilterUserOptions;
+import com.project.travel_forum.models.UpdateUserDto;
 import com.project.travel_forum.models.User;
 
 import java.util.List;
@@ -12,17 +13,20 @@ public interface UserService {
     List<User> get(User user, FilterUserOptions filterUserOptions);
 
     List<User> getAllBlockUser();
+
     List<User> getAllAdmins();
+
     User get(int id);
 
     User getById(int id, User headersUser);
-
 
     User getByUsername(String username);
 
     void createUser(User user);
 
     void updateUser(User user, User userToUpdate);
+
+    User updateUserV2(User user, User updatedUser, UpdateUserDto updateUserDto);
 
     void deleteUser(int id, User user);
 
