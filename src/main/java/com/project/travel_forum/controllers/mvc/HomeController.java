@@ -3,7 +3,10 @@ package com.project.travel_forum.controllers.mvc;
 import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.helpers.UserMapper;
-import com.project.travel_forum.models.*;
+import com.project.travel_forum.models.FilterUserDto;
+import com.project.travel_forum.models.Post;
+import com.project.travel_forum.models.RegisterDto;
+import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.PostService;
 import com.project.travel_forum.services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -80,68 +83,60 @@ public class HomeController {
         User user;
         try {
             user = authenticationHelper.tryGetCurrentUser(session);
-
-            UpdateUserDto updateUserDto = new UpdateUserDto();
-            updateUserDto.setFirstName(user.getFirstName());
-            updateUserDto.setLastName(user.getLastName());
-            updateUserDto.setEmail(user.getEmail());
-            updateUserDto.setPassword(user.getPassword());
-            updateUserDto.setPasswordConfirm(user.getPassword());
-
-            model.addAttribute("updateUser", updateUserDto);
+//            model.addAttribute("updateUser", new RegisterDto());
             model.addAttribute("currentUser", user);
-//            model.addAttribute("userDto", new UpdateUserDto());
+            model.addAttribute("userDto", new RegisterDto());
             return "Settings";
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
     }
 
-        @PostMapping("/settings/update")
-    public String updateUser(
-//            @PathVariable int id,
-            @ModelAttribute("updateUser") UpdateUserDto updateUserDto,
-            BindingResult result,
-            Model model,
-            HttpSession httpSession) {
-        User user;
-        try {
-            if (result.hasErrors()) {
-                return "Settings";
-            }
-            user = authenticationHelper.tryGetCurrentUser(httpSession);
-            User userToUpdate = userMapper.fromDto(user.getId(), updateUserDto, user);
-            userService.updateUserV2(user, userToUpdate, updateUserDto);
-//            model.addAttribute("updateUser", userToUpdate);
-            return "redirect:/settings";
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (EntityDuplicateException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
-        } catch (UnauthorizedOperationException e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-        }
-    }
-
-//    @PostMapping("/settings/update")
-//    public String showUserUpdatePage(HttpSession session, Model model) {
+    //    @PostMapping("/settings/update")
+//    public String updateUser(
+////            @PathVariable int id,
+//            @Valid @ModelAttribute("updateUser") RegisterDto registerDto,
+//            BindingResult result,
+//            Model model,
+//            HttpSession httpSession) {
+//        User user;
 //        try {
-//            User currentUser = authenticationHelper.tryGetCurrentUser(session);
-//            model.addAttribute("currentUser", currentUser);
-//            RegisterDto registerDto = new RegisterDto();
-//            registerDto.setUsername(currentUser.getUsername());
-//            registerDto.setFirstName(currentUser.getFirstName());
-//            registerDto.setLastName(currentUser.getLastName());
-//            registerDto.setEmail(currentUser.getEmail());
-//            registerDto.setPassword(currentUser.getPassword());
-//            registerDto.setPasswordConfirm(currentUser.getPassword());
+//            if (result.hasErrors()) {
+//                return "Settings";
+//            }
 //
-//            model.addAttribute("userDto", registerDto);
-//            return "Settings";
-//        } catch (AuthorizationException e) {
-//            return "redirect:/auth/login";
+//            user = authenticationHelper.tryGetCurrentUser(httpSession);
+//            User userToUpdate = userMapper.fromDto(user.getId(), registerDto, user);
+//            userService.updateUser(user, userToUpdate);
+//            model.addAttribute("updateUser", userToUpdate);
+//            return "redirect:/settings";
+//        } catch (EntityNotFoundException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+//        } catch (EntityDuplicateException e) {
+//            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+//        } catch (UnauthorizedOperationException e) {
+//            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 //        }
 //    }
+    @PostMapping("/settings/update")
+    public String showUserUpdatePage(HttpSession session, Model model) {
+        try {
+            User currentUser = authenticationHelper.tryGetCurrentUser(session);
+            model.addAttribute("currentUser", currentUser);
+            RegisterDto registerDto = new RegisterDto();
+            registerDto.setUsername(currentUser.getUsername());
+            registerDto.setFirstName(currentUser.getFirstName());
+            registerDto.setLastName(currentUser.getLastName());
+            registerDto.setEmail(currentUser.getEmail());
+            registerDto.setPassword(currentUser.getPassword());
+            registerDto.setPasswordConfirm(currentUser.getPassword());
+
+            model.addAttribute("userDto", registerDto);
+            return "Settings";
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+    }
 
 
 }

@@ -94,6 +94,4 @@ public class AuthenticationHelper {
         }
         return userService.getByUsername(currentUsername);
     }
-
-
 }

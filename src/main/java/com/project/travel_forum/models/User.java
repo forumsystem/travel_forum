@@ -13,6 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
+
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -24,8 +25,10 @@ public class User {
     @JsonIgnore
     @Column(name = "password")
     private String password;
+
     @Column(name = "is_admin")
     private boolean isAdmin;
+
     @Column(name = "is_blocked")
     private boolean isBlocked;
 

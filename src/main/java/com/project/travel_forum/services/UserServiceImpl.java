@@ -3,7 +3,9 @@ package com.project.travel_forum.services;
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
-import com.project.travel_forum.models.*;
+import com.project.travel_forum.models.FilterOptions;
+import com.project.travel_forum.models.FilterUserOptions;
+import com.project.travel_forum.models.User;
 import com.project.travel_forum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,30 +91,6 @@ public class UserServiceImpl implements UserService {
             throw new EntityDuplicateException("User", "email", user.getEmail());
         }
         userRepository.updateUser(userToUpdate);
-    }
-
-    @Override
-    public User updateUserV2(User user, User updatedUser, UpdateUserDto updateUserDto) {
-
-        checkIfSameUser(user, updatedUser);
-
-        if (updateUserDto.getFirstName() != null) {
-            updatedUser.setFirstName(updateUserDto.getFirstName());
-        }
-        if (updateUserDto.getLastName() != null) {
-            updatedUser.setLastName(updateUserDto.getLastName());
-        }
-        if (updateUserDto.getEmail() != null) {
-            updatedUser.setEmail(updateUserDto.getEmail());
-        }
-        if (updateUserDto.getPassword() != null) {
-            updatedUser.setPassword(updateUserDto.getPassword());
-        }
-//        if ((updateUserDto.getPhoneNumber() != null && user.getId() == updatedUser.getId())) {
-//            addPhoneNumberToAdmin(updatedUser, updateUserDto.getPhoneNumber());
-//        }
-        userRepository.updateUser(updatedUser);
-        return updatedUser;
     }
 
     @Override
