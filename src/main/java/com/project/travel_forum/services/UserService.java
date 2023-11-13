@@ -1,6 +1,5 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.User;
 
@@ -12,7 +11,9 @@ public interface UserService {
     List<User> get(User user, FilterUserOptions filterUserOptions);
 
     List<User> getAllBlockUser();
+
     List<User> getAllAdmins();
+
     User get(int id);
 
     User getById(int id, User headersUser);

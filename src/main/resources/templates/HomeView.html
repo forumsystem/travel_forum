@@ -56,10 +56,10 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-            <div class="masthead-subheading">
-                Welcome to the Travel Forum
-                <span th:if="${isAuthenticated}" th:text="' ' + ${session.currentUser} + '!'"></span>
-            </div>
+        <div class="masthead-subheading">
+            Welcome to the Travel Forum
+            <span th:if="${isAuthenticated}" th:text="' ' + ${session.currentUser} + '!'"></span>
+        </div>
         <div class="masthead-heading text-uppercase">Explore, share, and discover amazing travel experiences</div>
         <a class="btn btn-primary btn-xl text-uppercase" href="#services">Explore</a>
     </div>
@@ -95,7 +95,8 @@
                     <div class="cell">
                         <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
                         <br/>
-                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'" alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'"
+                             alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
                     </div>
 
                     <div class="cell"
@@ -105,12 +106,17 @@
                         every corner whispers tales of romance and cultural richness.
                     </div>
 
-                    <div class="cell"> <img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'" alt="Likes Icon" width="20" height="20"/> <span th:text="${post.getLikes()}"></span>
+                    <div class="cell"><img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'"
+                                           alt="Likes Icon" width="20" height="20"/> <span
+                            th:text="${post.getLikes()}"></span>
                         <br/>
-                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'" alt="Comments Icon" width="20" height="20"/> <span th:text="${post.getCommentsSize()}"></span>
+                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'"
+                             alt="Comments Icon" width="20" height="20"/> <span
+                                th:text="${post.getCommentsSize()}"></span>
                         <br/>
                         <br/>
-                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'" alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'"
+                             alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
                     </div>
 
                 </div>
@@ -135,7 +141,8 @@
                         <a href="#" th:href="@{/posts/{id}(id=${post.id})}"
                            th:text="${post.title}">Post</a>
                         <br/>
-                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'" alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'"
+                             alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
                     </div>
 
                     <div class="cell"
@@ -153,12 +160,17 @@
                     <!--                            <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>-->
                     <!--                        </div>-->
 
-                    <div class="cell"> <img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'" alt="Likes Icon" width="20" height="20"/> <span th:text="${post.getLikes()}"></span>
+                    <div class="cell"><img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'"
+                                           alt="Likes Icon" width="20" height="20"/> <span
+                            th:text="${post.getLikes()}"></span>
                         <br/>
-                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'" alt="Comments Icon" width="20" height="20"/> <span th:text="${post.getCommentsSize()}"></span>
+                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'"
+                             alt="Comments Icon" width="20" height="20"/> <span
+                                th:text="${post.getCommentsSize()}"></span>
                         <br/>
                         <br/>
-                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'" alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'"
+                             alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
                     </div>
 
 
@@ -167,434 +179,7 @@
         </div>
     </div>
 </section>
-<!--<div>-->
-<!--    <h2>Top 10 Most Recently Created Posts</h2>-->
-<!--    <table>-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Rank</th>-->
-<!--            <th>Title</th>-->
-<!--            <th>Created Date</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <th:block th:each="post, iterStat : ${top10recentlyCreatedPosts}">-->
-<!--            <tr>-->
-<!--                <td th:text="${iterStat.index + 1}"></td>-->
-<!--                <td th:text="${post.title}"></td>-->
-<!--&lt;!&ndash;                <td th:text="${#dates.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>&ndash;&gt;-->
-<!--            </tr>-->
-<!--        </th:block>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</div>-->
 
-<!--&lt;!&ndash; Add this code inside the body of your HTML file where you want to display the top 10 most commented posts &ndash;&gt;-->
-<!--<div>-->
-<!--    <h2>Top 10 Most Commented Posts</h2>-->
-<!--    <table>-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Rank</th>-->
-<!--            <th>Title</th>-->
-<!--            <th>Comment Count</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <th:block th:each="post, iterStat : ${top10mostCommentedPosts}">-->
-<!--            <tr>-->
-<!--                <td th:text="${iterStat.index + 1}"></td>-->
-<!--                <td th:text="${post.title}"></td>-->
-<!--                <td th:text="${post.commentCount}"></td>-->
-<!--            </tr>-->
-<!--        </th:block>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</div>-->
-<!--<form action="#" th:action="@{/home}" method="get" th:object="${model}">-->
-<!--    <label th:text="#{navigation.home.model}">Top 10 most recently post</label>-->
-<!--    <table>-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Post title</th>-->
-<!--            <th>Post content</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="post, iterStat : ${model.posts}" th:if="${iterStat.index < 10}">-->
-<!--            <td th:text="${iterStat.index + 1}"></td>-->
-<!--            <td th:text="${post.title}"></td>-->
-<!--            <td th:text="${post.publishDate}"></td>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</form>-->
-<!-- Service-->
-<!--<section class="page-section" id="services">-->
-<!--    <div class="container">-->
-<!--        <div class="text-center">-->
-<!--            <h2 class="section-heading text-uppercase">Services</h2>-->
-<!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
-<!--        </div>-->
-<!--        <div class="row text-center">-->
-<!--            <div class="col-md-4">-->
-<!--                        <span class="fa-stack fa-4x">-->
-<!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
-<!--                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>-->
-<!--                        </span>-->
-<!--                <h4 class="my-3">E-Commerce</h4>-->
-<!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
-<!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
-<!--            </div>-->
-<!--            <div class="col-md-4">-->
-<!--                        <span class="fa-stack fa-4x">-->
-<!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
-<!--                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>-->
-<!--                        </span>-->
-<!--                <h4 class="my-3">Responsive Design</h4>-->
-<!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
-<!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
-<!--            </div>-->
-<!--            <div class="col-md-4">-->
-<!--                        <span class="fa-stack fa-4x">-->
-<!--                            <i class="fas fa-circle fa-stack-2x text-primary"></i>-->
-<!--                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>-->
-<!--                        </span>-->
-<!--                <h4 class="my-3">Web Security</h4>-->
-<!--                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam-->
-<!--                    architecto quo inventore harum ex magni, dicta impedit.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<!--&lt;!&ndash; Portfolio Grid&ndash;&gt;-->
-<!--<section class="page-section bg-light" id="portfolio">-->
-<!--    <div class="container">-->
-<!--        <div class="text-center">-->
-<!--            <h2 class="section-heading text-uppercase">Portfolio</h2>-->
-<!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-4 col-sm-6 mb-4">-->
-<!--                &lt;!&ndash; Portfolio item 1&ndash;&gt;-->
-<!--                <div class="portfolio-item">-->
-<!--                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">-->
-<!--                        <div class="portfolio-hover">-->
-<!--                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="../static/assets/img/portfolio/1.jpg" alt="..."/>-->
-<!--                    </a>-->
-<!--                    <div class="portfolio-caption">-->
-<!--                        <div class="portfolio-caption-heading">Threads</div>-->
-<!--                        <div class="portfolio-caption-subheading text-muted">Illustration</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4 col-sm-6 mb-4">-->
-<!--                &lt;!&ndash; Portfolio item 2&ndash;&gt;-->
-<!--                <div class="portfolio-item">-->
-<!--                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">-->
-<!--                        <div class="portfolio-hover">-->
-<!--                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="../static/assets/img/portfolio/2.jpg" alt="..."/>-->
-<!--                    </a>-->
-<!--                    <div class="portfolio-caption">-->
-<!--                        <div class="portfolio-caption-heading">Explore</div>-->
-<!--                        <div class="portfolio-caption-subheading text-muted">Graphic Design</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4 col-sm-6 mb-4">-->
-<!--                &lt;!&ndash; Portfolio item 3&ndash;&gt;-->
-<!--                <div class="portfolio-item">-->
-<!--                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">-->
-<!--                        <div class="portfolio-hover">-->
-<!--                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="../static/assets/img/portfolio/3.jpg" alt="..."/>-->
-<!--                    </a>-->
-<!--                    <div class="portfolio-caption">-->
-<!--                        <div class="portfolio-caption-heading">Finish</div>-->
-<!--                        <div class="portfolio-caption-subheading text-muted">Identity</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">-->
-<!--                &lt;!&ndash; Portfolio item 4&ndash;&gt;-->
-<!--                <div class="portfolio-item">-->
-<!--                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">-->
-<!--                        <div class="portfolio-hover">-->
-<!--                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="../static/assets/img/portfolio/4.jpg" alt="..."/>-->
-<!--                    </a>-->
-<!--                    <div class="portfolio-caption">-->
-<!--                        <div class="portfolio-caption-heading">Lines</div>-->
-<!--                        <div class="portfolio-caption-subheading text-muted">Branding</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">-->
-<!--                &lt;!&ndash; Portfolio item 5&ndash;&gt;-->
-<!--                <div class="portfolio-item">-->
-<!--                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">-->
-<!--                        <div class="portfolio-hover">-->
-<!--                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="../static/assets/img/portfolio/5.jpg" alt="..."/>-->
-<!--                    </a>-->
-<!--                    <div class="portfolio-caption">-->
-<!--                        <div class="portfolio-caption-heading">Southwest</div>-->
-<!--                        <div class="portfolio-caption-subheading text-muted">Website Design</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4 col-sm-6">-->
-<!--                &lt;!&ndash; Portfolio item 6&ndash;&gt;-->
-<!--                <div class="portfolio-item">-->
-<!--                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">-->
-<!--                        <div class="portfolio-hover">-->
-<!--                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                        </div>-->
-<!--                        <img class="img-fluid" src="../static/assets/img/portfolio/6.jpg" alt="..."/>-->
-<!--                    </a>-->
-<!--                    <div class="portfolio-caption">-->
-<!--                        <div class="portfolio-caption-heading">Window</div>-->
-<!--                        <div class="portfolio-caption-subheading text-muted">Photography</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<!--&lt;!&ndash; About&ndash;&gt;-->
-<!--<section class="page-section" id="about">-->
-<!--&lt;!&ndash;    <div class="container">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;            <h2 class="section-heading text-uppercase">About</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <ul class="timeline">&ndash;&gt;-->
-<!--&lt;!&ndash;            <li>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/1.jpg"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                 alt="..."/></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-panel">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4>2009-2011</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4 class="subheading">Our Humble Beginnings</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing&ndash;&gt;-->
-<!--&lt;!&ndash;                        elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae&ndash;&gt;-->
-<!--&lt;!&ndash;                        sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </li>&ndash;&gt;-->
-<!--&lt;!&ndash;            <li class="timeline-inverted">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/2.jpg"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                 alt="..."/></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-panel">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4>March 2011</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4 class="subheading">An Agency is Born</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing&ndash;&gt;-->
-<!--&lt;!&ndash;                        elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae&ndash;&gt;-->
-<!--&lt;!&ndash;                        sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </li>&ndash;&gt;-->
-<!--&lt;!&ndash;            <li>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/3.jpg"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                 alt="..."/></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-panel">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4>December 2015</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4 class="subheading">Transition to Full Service</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing&ndash;&gt;-->
-<!--&lt;!&ndash;                        elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae&ndash;&gt;-->
-<!--&lt;!&ndash;                        sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </li>&ndash;&gt;-->
-<!--&lt;!&ndash;            <li class="timeline-inverted">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-image"><img class="rounded-circle img-fluid" src="../static/assets/img/about/4.jpg"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                 alt="..."/></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-panel">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4>July 2020</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h4 class="subheading">Phase Two Expansion</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing&ndash;&gt;-->
-<!--&lt;!&ndash;                        elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae&ndash;&gt;-->
-<!--&lt;!&ndash;                        sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </li>&ndash;&gt;-->
-<!--&lt;!&ndash;            <li class="timeline-inverted">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="timeline-image">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                        Be Part&ndash;&gt;-->
-<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
-<!--&lt;!&ndash;                        Of Our&ndash;&gt;-->
-<!--&lt;!&ndash;                        <br/>&ndash;&gt;-->
-<!--&lt;!&ndash;                        Story!&ndash;&gt;-->
-<!--&lt;!&ndash;                    </h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </li>&ndash;&gt;-->
-<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--</section>-->
-<!--&lt;!&ndash; Team&ndash;&gt;-->
-<!--<section class="page-section bg-light" id="team">-->
-<!--    <div class="container">-->
-<!--        <div class="text-center">-->
-<!--            <h2 class="section-heading text-uppercase">Our Amazing Team</h2>-->
-<!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-4">-->
-<!--                <div class="team-member">-->
-<!--                    <img class="mx-auto rounded-circle" src="../static/assets/img/team/1.jpg" alt="..."/>-->
-<!--                    <h4>Parveen Anand</h4>-->
-<!--                    <p class="text-muted">Lead Designer</p>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i-->
-<!--                            class="fab fa-twitter"></i></a>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i-->
-<!--                            class="fab fa-facebook-f"></i></a>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i-->
-<!--                            class="fab fa-linkedin-in"></i></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4">-->
-<!--                <div class="team-member">-->
-<!--                    <img class="mx-auto rounded-circle" src="../static/assets/img/team/2.jpg" alt="..."/>-->
-<!--                    <h4>Diana Petersen</h4>-->
-<!--                    <p class="text-muted">Lead Marketer</p>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i-->
-<!--                            class="fab fa-twitter"></i></a>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i-->
-<!--                            class="fab fa-facebook-f"></i></a>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i-->
-<!--                            class="fab fa-linkedin-in"></i></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-4">-->
-<!--                <div class="team-member">-->
-<!--                    <img class="mx-auto rounded-circle" src="../static/assets/img/team/3.jpg" alt="..."/>-->
-<!--                    <h4>Larry Parker</h4>-->
-<!--                    <p class="text-muted">Lead Developer</p>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i-->
-<!--                            class="fab fa-twitter"></i></a>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i-->
-<!--                            class="fab fa-facebook-f"></i></a>-->
-<!--                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i-->
-<!--                            class="fab fa-linkedin-in"></i></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet,-->
-<!--                consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam-->
-<!--                corporis ea, alias ut unde.</p></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<!--&lt;!&ndash; Clients&ndash;&gt;-->
-<!--<div class="py-5">-->
-<!--    <div class="container">-->
-<!--        <div class="row align-items-center">-->
-<!--            <div class="col-md-3 col-sm-6 my-3">-->
-<!--                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"-->
-<!--                                  src="../static/assets/img/logos/microsoft.svg" alt="..." aria-label="Microsoft Logo"/></a>-->
-<!--            </div>-->
-<!--            <div class="col-md-3 col-sm-6 my-3">-->
-<!--                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"-->
-<!--                                  src="../static/assets/img/logos/google.svg" alt="..." aria-label="Google Logo"/></a>-->
-<!--            </div>-->
-<!--            <div class="col-md-3 col-sm-6 my-3">-->
-<!--                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"-->
-<!--                                  src="../static/assets/img/logos/facebook.png" alt="..."-->
-<!--                                  aria-label="Facebook Logo"/></a>-->
-<!--            </div>-->
-<!--            <div class="col-md-3 col-sm-6 my-3">-->
-<!--                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="../static/assets/img/logos/ibm.svg"-->
-<!--                                  alt="..." aria-label="IBM Logo"/></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; Contact&ndash;&gt;-->
-<!--<section class="page-section" id="contact">-->
-<!--    <div class="container">-->
-<!--        <div class="text-center">-->
-<!--            <h2 class="section-heading text-uppercase">Contact Us</h2>-->
-<!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; * * * * * * * * * * * * * * *&ndash;&gt;-->
-<!--        &lt;!&ndash; * * SB Forms Contact Form * *&ndash;&gt;-->
-<!--        &lt;!&ndash; * * * * * * * * * * * * * * *&ndash;&gt;-->
-<!--        &lt;!&ndash; This form is pre-integrated with SB Forms.&ndash;&gt;-->
-<!--        &lt;!&ndash; To make this form functional, sign up at&ndash;&gt;-->
-<!--        &lt;!&ndash; https://startbootstrap.com/solution/contact-forms&ndash;&gt;-->
-<!--        &lt;!&ndash; to get an API token!&ndash;&gt;-->
-<!--        <form id="contactForm" data-sb-form-api-token="API_TOKEN">-->
-<!--            <div class="row align-items-stretch mb-5">-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="form-group">-->
-<!--                        &lt;!&ndash; Name input&ndash;&gt;-->
-<!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *"-->
-<!--                               data-sb-validations="required"/>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        &lt;!&ndash; Email address input&ndash;&gt;-->
-<!--                        <input class="form-control" id="email" type="email" placeholder="Your Email *"-->
-<!--                               data-sb-validations="required,email"/>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group mb-md-0">-->
-<!--                        &lt;!&ndash; Phone number input&ndash;&gt;-->
-<!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"-->
-<!--                               data-sb-validations="required"/>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="form-group form-group-textarea mb-md-0">-->
-<!--                        &lt;!&ndash; Message input&ndash;&gt;-->
-<!--                        <textarea class="form-control" id="message" placeholder="Your Message *"-->
-<!--                                  data-sb-validations="required"></textarea>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Submit success message&ndash;&gt;-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--            &lt;!&ndash; This is what your users will see when the form&ndash;&gt;-->
-<!--            &lt;!&ndash; has successfully submitted&ndash;&gt;-->
-<!--            <div class="d-none" id="submitSuccessMessage">-->
-<!--                <div class="text-center text-white mb-3">-->
-<!--                    <div class="fw-bolder">Form submission successful!</div>-->
-<!--                    To activate this form, sign up at-->
-<!--                    <br/>-->
-<!--                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Submit error message&ndash;&gt;-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--            &lt;!&ndash; This is what your users will see when there is&ndash;&gt;-->
-<!--            &lt;!&ndash; an error submitting the form&ndash;&gt;-->
-<!--            <div class="d-none" id="submitErrorMessage">-->
-<!--                <div class="text-center text-danger mb-3">Error sending message!</div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Submit Button&ndash;&gt;-->
-<!--            <div class="text-center">-->
-<!--                <button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send-->
-<!--                    Message-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</section>-->
 <!-- Footer-->
 <footer class="footer py-4 bg-dark">
     <div class="container">

@@ -2,9 +2,6 @@ package com.project.travel_forum.controllers.mvc;
 
 import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
-import com.project.travel_forum.exceptions.EntityDuplicateException;
-import com.project.travel_forum.exceptions.EntityNotFoundException;
-import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.helpers.UserMapper;
 import com.project.travel_forum.models.FilterUserDto;
 import com.project.travel_forum.models.Post;
@@ -13,14 +10,13 @@ import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.PostService;
 import com.project.travel_forum.services.UserService;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -70,7 +66,7 @@ public class HomeController {
 
     @GetMapping("/admin")
     public String showAdminPortal(@ModelAttribute("filterUserOptions") FilterUserDto filterUserDto,
-                                  HttpSession session, Model model) {
+                                  HttpSession session) {
         try {
             User user = authenticationHelper.tryGetCurrentUser(session);
             if (user.isAdmin()) {

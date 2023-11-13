@@ -51,14 +51,14 @@ public class PhoneNumberServiceImpl implements PhoneNumberService {
         }
     }
 
-        @Override
-        public void update (PhoneNumber phoneNumber){
-            phoneNumberRepository.update(phoneNumber);
-        }
-
-        @Override
-        public void delete(User user){
-            phoneNumberRepository.delete(user);
-        }
-
+    @Override
+    public void update(PhoneNumber phoneNumber) {
+        phoneNumberRepository.update(phoneNumber);
     }
+
+    @Override
+    public void delete(User user) {
+        phoneNumberRepository.delete(user);
+    }
+
+}

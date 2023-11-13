@@ -43,7 +43,7 @@ public class PhoneNumber {
     }
 
     public void setUser(User user) {
-        this.user= user;
+        this.user = user;
     }
 
     @Override

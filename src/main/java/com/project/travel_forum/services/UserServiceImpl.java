@@ -2,8 +2,6 @@ package com.project.travel_forum.services;
 
 import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
-import com.project.travel_forum.exceptions.UnauthorizedOperationException;
-import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.User;
 import com.project.travel_forum.repositories.UserRepository;
@@ -107,10 +105,6 @@ public class UserServiceImpl implements UserService {
         if (userExists) {
             userRepository.deleteUser(id);
         }
-
-//        if (user.getUsername().equals("DELETED USER")){
-//            throw new EntityNotFoundException("Can't delete DELETED USER with ", id);
-//        }
     }
 
 

@@ -295,8 +295,8 @@ public class PostMvcController {
     @GetMapping("/{id}/comment/{commentId}/update")
     public String showCommentEditPage(@PathVariable int id,
                                       @PathVariable int commentId,
-                                   Model model,
-                                   HttpSession httpSession) {
+                                      Model model,
+                                      HttpSession httpSession) {
         try {
             authenticationHelper.tryGetCurrentUser(httpSession);
         } catch (AuthorizationException e) {

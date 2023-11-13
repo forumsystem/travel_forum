@@ -64,18 +64,7 @@
         <div class="masthead-subheading" th:text="${post.title}"></div>
         <p class="margin12" th:text="#{post.label.createdBy.username} + ': ' + ${post.createdBy.username}">
             simonanedeva</p>
-<!--        <div class="portfolio-item">-->
-<!--            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">-->
-<!--                <div class="portfolio-hover">-->
-<!--                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />&ndash;&gt;-->
-<!--            </a>-->
-<!--            <div class="portfolio-caption">-->
-<!--                <div class="portfolio-caption-heading">Threads</div>-->
-<!--                <div class="portfolio-caption-subheading text-muted">Illustration</div>-->
-<!--            </div>-->
-<!--        </div>-->
+
 
     </div>
 </header>
@@ -102,15 +91,14 @@
                         <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>
                         <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
                     </h3>
-
-                    <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
-                        <button onclick="Toggle()" id="btnh" class="btn-like" type="submit">
-                            <i class="fa-solid fa-heart"></i>
-                        </button>
-                        <p class="like"
-                           th:text="'Likes: ' + ${post.getLikes()}">
-                        </p>
-                    </form>
+                        <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
+                            <button onclick="Toggle()" id="btnh" class="btn-like" type="submit">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                            <p class="like"
+                               th:text="'Likes: ' + ${post.getLikes()}">
+                            </p>
+                        </form>
                     <script>
                         var btnvar = document.getElementById('btnh');
 
@@ -135,27 +123,31 @@
             <h2 class="replies">Replies</h2>
         </div>
 
-            <div class="row-tables" th:each="comment : ${post.comments}">
+        <div class="row-tables" th:each="comment : ${post.comments}">
 
-                <div class="text-center-comment bg-dark">
-                    <div class="comment-createdBy">
-                        <h4 class="subheading text-primary"
-                            th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
-                    </div>
-                    <p class="comment-leave text-light" th:text="${comment.comment}"></p>
-                    <h3>
-                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{{id}/comment/{commentId}/update(id=${post.id}, commentId=${comment.id})}">Update</a>
-                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{{id}/comment/{commentId}/delete(id=${post.id}, commentId=${comment.id})}">Delete</a>
-                    </h3>
+            <div class="text-center-comment bg-dark">
+                <div class="comment-createdBy">
+                    <h4 class="subheading text-primary"
+                        th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
                 </div>
+                <p class="comment-leave text-light" th:text="${comment.comment}"></p>
+                <h3>
+                    <a class="btn btn-primary btn-xl text-uppercase" href="#"
+                       th:href="@{{id}/comment/{commentId}/update(id=${post.id}, commentId=${comment.id})}">Update</a>
+                    <a class="btn btn-primary btn-xl text-uppercase" href="#"
+                       th:href="@{{id}/comment/{commentId}/delete(id=${post.id}, commentId=${comment.id})}">Delete</a>
+                </h3>
             </div>
+        </div>
 
         <div class="comment-box">
             <h3>Leave a comment</h3>
-            <form th:action="@{/posts/{id}/comment(id=${post.id})}" method="post" th:object="${comment}" class="comment-form">
+            <form th:action="@{/posts/{id}/comment(id=${post.id})}" method="post" th:object="${comment}"
+                  class="comment-form">
                 <div style="display: flex; flex-direction: column;">
                     <label>
-                        <textarea rows="10" type="text" th:field="*{comment}" placeholder="What's on your mind?" style="width: 100%;"></textarea>
+                        <textarea rows="10" type="text" th:field="*{comment}" placeholder="What's on your mind?"
+                                  style="width: 100%;"></textarea>
                     </label>
                     <button type="submit" class="btn btn-primary btn-xl text-uppercase">POST COMMENT</button>
                 </div>
@@ -170,7 +162,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"<img/> </div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                                                                  alt="Close modal"<img/></div>
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>

@@ -1,6 +1,5 @@
 package com.project.travel_forum.repositories;
 
-import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.User;
 
@@ -11,8 +10,11 @@ public interface UserRepository {
     long getUserCount();
 
     List<User> get(FilterUserOptions filterUserOptions);
+
     List<User> getAllBlockUser();
+
     List<User> getAllAdmins();
+
     User getById(int id);
 
     User getByEmail(String email);

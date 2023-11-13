@@ -1,14 +1,14 @@
 package com.project.travel_forum.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -84,7 +84,7 @@ public class Post {
         likes.remove(user);
     }
 
-    public Set<User> getUserLikes(){
+    public Set<User> getUserLikes() {
         return likes;
     }
 

@@ -56,10 +56,7 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <!--        <div class="masthead-subheading">About</div>-->
-        <!--        <div class="masthead-heading text-uppercase">ABOUT OUR TRAVEL FORUM</div>-->
         <div class="masthead-subheading">BROWSE POSTS</div>
-        <!--        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Explore</a>-->
         <form action="#" th:action="@{/posts}" method="get" th:object="${filterOptions}">
             <br/><br/>
             <input type="text" placeholder="Post title" th:field="*{title}"/>
@@ -120,7 +117,6 @@
         </div>
     </div>
 </div>
-
 
 
 <footer class="footer py-4">

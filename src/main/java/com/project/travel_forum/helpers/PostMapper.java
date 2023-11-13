@@ -2,9 +2,7 @@ package com.project.travel_forum.helpers;
 
 import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.PostDto;
-import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.PostService;
-import com.project.travel_forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

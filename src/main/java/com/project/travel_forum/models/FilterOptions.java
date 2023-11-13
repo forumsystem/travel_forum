@@ -1,7 +1,5 @@
 package com.project.travel_forum.models;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-
 import java.util.Optional;
 
 public class FilterOptions {

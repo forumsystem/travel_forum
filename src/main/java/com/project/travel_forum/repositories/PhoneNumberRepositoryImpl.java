@@ -40,32 +40,32 @@ public class PhoneNumberRepositoryImpl implements PhoneNumberRepository {
         }
     }
 
-        @Override
-        public void create (PhoneNumber phoneNumber){
-            try (Session session = sessionFactory.openSession()) {
-                session.beginTransaction();
-                session.persist(phoneNumber);
-                session.getTransaction().commit();
-            }
+    @Override
+    public void create(PhoneNumber phoneNumber) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.persist(phoneNumber);
+            session.getTransaction().commit();
         }
+    }
 
-        @Override
-        public void update (PhoneNumber phoneNumber){
-            try (Session session = sessionFactory.openSession()) {
-                session.beginTransaction();
-                session.merge(phoneNumber);
-                session.getTransaction().commit();
-            }
+    @Override
+    public void update(PhoneNumber phoneNumber) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(phoneNumber);
+            session.getTransaction().commit();
         }
+    }
 
-        @Override
-        public void delete (User user){
-            PhoneNumber phoneNumberToDelete = getByUser(user);
-            try (Session session = sessionFactory.openSession()) {
-                session.beginTransaction();
-                session.remove(phoneNumberToDelete);
-                session.getTransaction().commit();
-            }
+    @Override
+    public void delete(User user) {
+        PhoneNumber phoneNumberToDelete = getByUser(user);
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.remove(phoneNumberToDelete);
+            session.getTransaction().commit();
         }
+    }
 
 }

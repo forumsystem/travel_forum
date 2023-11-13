@@ -10,12 +10,6 @@
     <h2 th:text="${session.currentUser}" th:if="${isAuthenticated}"></h2>
     <p th:text="#{forum.description}">Explore, share, and discover amazing travel experiences.</p>
 
-    <!--    <div th:if="${posts.isEmpty()}">-->
-    <!--        <h2 th:text="#{post.title.empty}">No Post</h2>-->
-    <!--    </div>-->
-
-    <!--    <div th:unless="${posts.isEmpty()}">-->
-    <!--        <h2 th:text="#{post.title}">All Posts</h2>-->
 
     <span th:text="'Total posts: ' + ${postCount}"></span>
     <br/><br/>

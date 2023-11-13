@@ -76,7 +76,7 @@
             <form action="#" th:action="@{/auth/login}" th:object="${login}" method="post">
                 <label style="color: white;" th:text="#{user.label.username}">Username</label>
                 <br/>
-                <input  type="text" th:field="*{username}" style="border-radius: 10px;"/>
+                <input type="text" th:field="*{username}" style="border-radius: 10px;"/>
                 <br/>
                 <label style="color: red;" class="error" th:errors="*{username}">Username error placeholder</label>
                 <br/><br/>
@@ -88,65 +88,17 @@
                 <label style="color: red;" class="error" th:errors="*{password}">Password error placeholder</label>
                 <br/><br/>
 
-                <div class="text-center"><input type="submit" value="Login"  class="btn btn-primary btn-xl text-uppercase" href="#services"></div>
+                <div class="text-center"><input type="submit" value="Login"
+                                                class="btn btn-primary btn-xl text-uppercase" href="#services"></div>
                 <br/>
                 <p style="color: white;">Don't have an account? <a th:href="@{/auth/register}">Register</a></p>
             </form>
         </div>
-<!--            </div>-->
-<!--            <div class="row align-items-stretch mb-5">-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="form-group">-->
-<!--                        &lt;!&ndash; Name input&ndash;&gt;-->
-<!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        &lt;!&ndash; Email address input&ndash;&gt;-->
-<!--                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>-->
-<!--                    </div>-->
-<!--                    <div class="form-group mb-md-0">-->
-<!--                        &lt;!&ndash; Phone number input&ndash;&gt;-->
-<!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="form-group form-group-textarea mb-md-0">-->
-<!--                        &lt;!&ndash; Message input&ndash;&gt;-->
-<!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
-<!--                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Submit success message&ndash;&gt;-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--            &lt;!&ndash; This is what your users will see when the form&ndash;&gt;-->
-<!--            &lt;!&ndash; has successfully submitted&ndash;&gt;-->
-<!--            <div class="d-none" id="submitSuccessMessage">-->
-<!--                <div class="text-center text-white mb-3">-->
-<!--                    <div class="fw-bolder">Form submission successful!</div>-->
-<!--                    To activate this form, sign up at-->
-<!--                    <br />-->
-<!--                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Submit error message&ndash;&gt;-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--            &lt;!&ndash; This is what your users will see when there is&ndash;&gt;-->
-<!--            &lt;!&ndash; an error submitting the form&ndash;&gt;-->
-<!--            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>-->
-<!--            &lt;!&ndash; Submit Button&ndash;&gt;-->
-<!--            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>-->
-<!--        </form>-->
         <br/>
         <br/>
         <br/>
     </div>
 </section>
-
 
 
 <!-- Bootstrap core JS-->
