@@ -59,13 +59,10 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <!--        <div class="masthead-subheading">About</div>-->
-        <!--        <div class="masthead-heading text-uppercase">ABOUT OUR TRAVEL FORUM</div>-->
         <div class="masthead-subheading">BROWSE POSTS</div>
-        <!--        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Explore</a>-->
         <form action="#" th:action="@{/posts}" method="get" th:object="${filterOptions}">
             <br/><br/>
-            <input type="text" placeholder="Post title"  th:field="*{title}" style="border-radius: 10px;"/>
+            <input type="text" placeholder="Post title" th:field="*{title}" style="border-radius: 10px;"/>
             <input type="text" placeholder="Post content" th:field="*{content}" style="border-radius: 10px;"/>
             <input type="text" placeholder="Created by" th:field="*{createdBy}" style="border-radius: 10px;"/>
 
@@ -83,8 +80,6 @@
             </select>
             <br/><br/>
 
-
-            <!--        <input type="submit" value="Search"/>-->
             <div class="text-center">
                 <input type="submit" class="btn btn-submit btn-primary btn-xl text-uppercase" value="Search"/>
             </div>
@@ -111,16 +106,22 @@
                     <div class="cell">
                         <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
                         <br/>
-                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'" alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'"
+                             alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
                     </div>
                     <div class="cell"
                          th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}"></div>
-                    <div class="cell"> <img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'" alt="Likes Icon" width="20" height="20"/> <span th:text="${post.getLikes()}"></span>
+                    <div class="cell"><img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'"
+                                           alt="Likes Icon" width="20" height="20"/> <span
+                            th:text="${post.getLikes()}"></span>
                         <br/>
-                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'" alt="Comments Icon" width="20" height="20"/> <span th:text="${post.getCommentsSize()}"></span>
+                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'"
+                             alt="Comments Icon" width="20" height="20"/> <span
+                                th:text="${post.getCommentsSize()}"></span>
                         <br/>
                         <br/>
-                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'" alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'"
+                             alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
                     </div>
                 </div>
             </div>

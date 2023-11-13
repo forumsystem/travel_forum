@@ -129,10 +129,6 @@ public class UserServiceImpl implements UserService {
         if (userExists) {
             userRepository.deleteUser(id);
         }
-
-//        if (user.getUsername().equals("DELETED USER")){
-//            throw new EntityNotFoundException("Can't delete DELETED USER with ", id);
-//        }
     }
 
 

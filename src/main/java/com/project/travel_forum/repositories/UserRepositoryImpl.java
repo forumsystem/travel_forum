@@ -1,17 +1,13 @@
 package com.project.travel_forum.repositories;
 
-import com.project.travel_forum.exceptions.EntityDuplicateException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
-import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.FilterUserOptions;
-import com.project.travel_forum.models.Post;
 import com.project.travel_forum.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;

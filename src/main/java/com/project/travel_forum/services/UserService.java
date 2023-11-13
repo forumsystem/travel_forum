@@ -1,6 +1,5 @@
 package com.project.travel_forum.services;
 
-import com.project.travel_forum.models.FilterOptions;
 import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.UpdateUserDto;
 import com.project.travel_forum.models.User;

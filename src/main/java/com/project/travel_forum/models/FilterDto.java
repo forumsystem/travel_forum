@@ -30,7 +30,9 @@ public class FilterDto {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {this.createdBy = createdBy;}
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public String getSortBy() {
         return sortBy;

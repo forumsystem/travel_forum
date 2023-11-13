@@ -4,16 +4,19 @@ import com.project.travel_forum.controllers.AuthenticationHelper;
 import com.project.travel_forum.exceptions.AuthorizationException;
 import com.project.travel_forum.exceptions.EntityNotFoundException;
 import com.project.travel_forum.exceptions.UnauthorizedOperationException;
-import com.project.travel_forum.helpers.PostMapper;
-import com.project.travel_forum.models.*;
-import com.project.travel_forum.services.PostService;
+import com.project.travel_forum.models.FilterUserDto;
+import com.project.travel_forum.models.FilterUserOptions;
+import com.project.travel_forum.models.User;
 import com.project.travel_forum.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 

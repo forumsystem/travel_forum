@@ -41,8 +41,6 @@ public class CommentRepositoryImpl implements CommentRepository {
             query.setParameter("user", user);
             return query.list();
         }
-//        return null;
-        //-- TODO --
     }
 
     @Override
@@ -91,8 +89,8 @@ public class CommentRepositoryImpl implements CommentRepository {
     public void deleteAllCommentsByPost(Post post) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Query deleteQuery = session.createQuery("DELETE FROM Comment WHERE post = :id");
-            deleteQuery.setParameter("id", post.getId());
+            Query deleteQuery = session.createQuery("DELETE FROM Comment WHERE post.id = :postId");
+            deleteQuery.setParameter("postId", post.getId());
             deleteQuery.executeUpdate();
             session.getTransaction().commit();
         }

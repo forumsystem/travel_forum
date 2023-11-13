@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class RegisterDto extends LoginDto{
+public class RegisterDto extends LoginDto {
     @NotEmpty(message = "Password confirmation can't be empty")
     private String passwordConfirm;
 

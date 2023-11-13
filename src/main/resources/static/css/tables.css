@@ -27,11 +27,12 @@ header {
     margin: 10px 0;
     text-transform: capitalize;
 }
-.tbl-content{
+
+.tbl-content {
     width: 100%;
     margin: 0;
     border: 1px solid lightgrey;
-    max-height: 800px;  /* Set a maximum height */
+    max-height: 800px; /* Set a maximum height */
     background-color: #ffffff;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
@@ -41,6 +42,7 @@ header {
     overflow-scrolling: auto;
     text-align: center;
 }
+
 .table-container {
     display: flex;
     flex-direction: row;
@@ -97,7 +99,8 @@ a {
     /*border: 1px solid lightgrey;*/
 
 }
-.divider{
+
+.divider {
     width: 100%;
     margin: 0;
     border: 1px solid lightgrey;
@@ -106,6 +109,7 @@ a {
     border-radius: .6rem;
     flex: 1;
 }
+
 .header-cell {
     display: table-cell;
     width: 20%;
@@ -235,6 +239,10 @@ a.nav {
 
 .btn-like i:hover {
     cursor: pointer;
+}
+
+.btn-like.active {
+    background-color: red;
 }
 
 .text-center-content {

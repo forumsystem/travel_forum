@@ -23,8 +23,6 @@ public class PostRepositoryImpl implements PostRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    //can add how many posts to show (as count) OR offset - from which index on? - good to have to be RESTful
-
 
     @Override
     public long getPostCount() {
@@ -161,7 +159,6 @@ public class PostRepositoryImpl implements PostRepository {
             String hql = "SELECT posts, " +
                     "(SELECT COUNT(*) FROM posts.likes l WHERE l.id = posts.id) AS likes_count " +
                     "FROM Post posts";
-//                    "ORDER BY likes_count DESC" todo: add the ORDER BY feature
 
             Query<Object[]> query = session.createQuery(hql, Object[].class);
             query.setMaxResults(10);

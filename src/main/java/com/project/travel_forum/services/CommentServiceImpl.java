@@ -14,14 +14,15 @@ import static com.project.travel_forum.helpers.CheckPermissions.*;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-    private  final CommentRepository commentRepository;
-    private  final PostRepository postRepository;
+    private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
 
     @Autowired
     public CommentServiceImpl(CommentRepository commentRepository, PostRepository postRepository) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
     }
+
     @Override
     public Comment getByCommentId(int id) {
         return commentRepository.getByCommentId(id);
@@ -38,17 +39,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void create(int postId, User user,Comment comment) {
+    public void create(int postId, User user, Comment comment) {
         checkIfBlocked(user);
-        Post post=postRepository.getById(postId);
+        Post post = postRepository.getById(postId);
         comment.setCreatedBy(user);
         comment.setPost(post);
         commentRepository.create(comment);
     }
 
     @Override
-    public void update(Comment comment,User user) {
-        checkIfSameUser(comment.getCreatedBy(),user);
+    public void update(Comment comment, User user) {
+        checkIfSameUser(comment.getCreatedBy(), user);
         commentRepository.update(comment);
     }
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface PostRepository {
     long getPostCount();
+
     List<Post> get(FilterOptions filterOptions);
 
     Post getById(int id);

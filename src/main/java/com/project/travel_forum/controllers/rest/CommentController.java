@@ -24,6 +24,7 @@ public class CommentController {
     private final CommentService commentService;
     private final AuthenticationHelper authenticationHelper;
     private final CommentMapper commentMapper;
+
     @Autowired
     public CommentController(CommentService commentService, AuthenticationHelper authenticationHelper, CommentMapper commentMapper) {
         this.commentService = commentService;
@@ -41,7 +42,7 @@ public class CommentController {
     }
 
     @PostMapping("/{id}")
-    public Comment create(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto,@PathVariable int id) {
+    public Comment create(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto, @PathVariable int id) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
             Comment comment = commentMapper.fromDto(commentDto);
@@ -53,14 +54,15 @@ public class CommentController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
     }
+
     @PutMapping("/{id}")
-    public Comment update(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto,@PathVariable int id){
-        try{
+    public Comment update(@RequestHeader HttpHeaders headers, @Valid @RequestBody CommentDto commentDto, @PathVariable int id) {
+        try {
             User user = authenticationHelper.tryGetUser(headers);
-            Comment comment = commentMapper.fromDto(id,commentDto);
-            commentService.update(comment,user);
+            Comment comment = commentMapper.fromDto(id, commentDto);
+            commentService.update(comment, user);
             return comment;
-        }catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (EntityDuplicateException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
@@ -68,12 +70,13 @@ public class CommentController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
     }
+
     @DeleteMapping("/{id}")
-    public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id){
-        try{
+    public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
+        try {
             User user = authenticationHelper.tryGetUser(headers);
-            commentService.delete(id,user);
-        }catch (EntityNotFoundException e) {
+            commentService.delete(id, user);
+        } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (AuthorizationException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
