@@ -123,16 +123,16 @@
                         }
                     </script>
                 </div>
-                <p class="like" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
+                <p class="replies" th:text="'Replies: ' + ${post.getCommentsSize()}"></p>
                 <p class="data-published" th:text="'Published on: ' + ${post.getTimestamp()}"></p>
             </div>
-<!--             TODO this replies and no comment    -->
-            <div th:if="${post.comments.isEmpty()}">
-                <h2 th:text="#{post.comment.empty}">No Comment</h2>
-            </div>
-            <div th:unless="${post.comments.isEmpty()}">
-                <h2>Replies:</h2>
-            </div>
+        </div>
+
+        <div th:if="${post.comments.isEmpty()}">
+            <h2 th:text="#{post.comment.empty}">No Comments</h2>
+        </div>
+        <div th:unless="${post.comments.isEmpty()}">
+            <h2 class="replies">Replies</h2>
         </div>
 
             <div class="row-tables" th:each="comment : ${post.comments}">
@@ -143,25 +143,34 @@
                             th:text="${comment.createdBy.firstName} +' '+ ${ comment.createdBy.lastName}"></h4>
                     </div>
                     <p class="comment-leave text-light" th:text="${comment.comment}"></p>
+                    <h3>
+                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{{id}/comment/{commentId}/update(id=${post.id}, commentId=${comment.id})}">Update</a>
+                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{{id}/comment/{commentId}/delete(id=${post.id}, commentId=${comment.id})}">Delete</a>
+                    </h3>
                 </div>
             </div>
-            <div class="comment-box">
-                <h3>Leave a comment</h3>
-                <form action="#" th:action="@{posts/{id}}" class="comment-form">
+
+        <div class="comment-box">
+            <h3>Leave a comment</h3>
+            <form th:action="@{/posts/{id}/comment(id=${post.id})}" method="post" th:object="${comment}" class="comment-form">
+                <div style="display: flex; flex-direction: column;">
                     <label>
-                        <textarea rows="10" type="text" placeholder="What's on your mind?"></textarea>
+                        <textarea rows="10" type="text" th:field="*{comment}" placeholder="What's on your mind?" style="width: 100%;"></textarea>
                     </label>
-                    </br>
                     <button type="submit" class="btn btn-primary btn-xl text-uppercase">POST COMMENT</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+
+
+    </div>
 </section>
 
 <!-- Portfolio item 1 modal popup-->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"<img/> </div>
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>

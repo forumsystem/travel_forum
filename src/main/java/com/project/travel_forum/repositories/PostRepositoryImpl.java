@@ -58,8 +58,8 @@ public class PostRepositoryImpl implements PostRepository {
 
             filterOptions.getCreatedBy().ifPresent(value -> {
                 if (!value.isEmpty()) {
-                    filters.add(" createdBy.username = :createdBy ");
-                    params.put("createdBy", value);
+                    filters.add(" createdBy.username like :createdBy ");
+                    params.put("createdBy", String.format("%%%s%%", value));
                 }
             });
 

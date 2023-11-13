@@ -31,7 +31,7 @@ header {
     width: 100%;
     margin: 0;
     border: 1px solid lightgrey;
-    height: 100vh;
+    max-height: 800px;  /* Set a maximum height */
     background-color: #ffffff;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
@@ -46,7 +46,7 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     padding: 10px;
     overflow-x: auto;
 }
@@ -61,8 +61,8 @@ header {
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .6rem;
     flex: 1;
-    overflow-x: auto;
-    overflow-scrolling: auto;
+    /*overflow-x: auto;*/
+    /*overflow-scrolling: auto;*/
     text-align: center;
 }
 
@@ -352,6 +352,10 @@ a.nav {
     padding: 10px 20px;
     border-radius: 10px;
     width: 100%;
+}
+
+.comment-box button {
+    align-self: center;
 }
 
 .comment-box h3 {

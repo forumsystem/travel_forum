@@ -84,45 +84,6 @@
 
                         </nav>
                     </div>
-<!--                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"-->
-<!--                       aria-expanded="false" aria-controls="collapsePages">-->
-<!--                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>-->
-<!--                        Pages-->
-<!--                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
-<!--                    </a>-->
-<!--                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"-->
-<!--                         data-bs-parent="#sidenavAccordion">-->
-<!--                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">-->
-<!--                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"-->
-<!--                               data-bs-target="#pagesCollapseAuth" aria-expanded="false"-->
-<!--                               aria-controls="pagesCollapseAuth">-->
-<!--                                Authentication-->
-<!--                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
-<!--                            </a>-->
-<!--                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"-->
-<!--                                 data-bs-parent="#sidenavAccordionPages">-->
-<!--                                <nav class="sb-sidenav-menu-nested nav">-->
-<!--                                    <a class="nav-link" href="login.html">Login</a>-->
-<!--                                    <a class="nav-link" href="register.html">Register</a>-->
-<!--                                    <a class="nav-link" href="password.html">Forgot Password</a>-->
-<!--                                </nav>-->
-<!--                            </div>-->
-<!--                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"-->
-<!--                               data-bs-target="#pagesCollapseError" aria-expanded="false"-->
-<!--                               aria-controls="pagesCollapseError">-->
-<!--                                Error-->
-<!--                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
-<!--                            </a>-->
-<!--                            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"-->
-<!--                                 data-bs-parent="#sidenavAccordionPages">-->
-<!--                                <nav class="sb-sidenav-menu-nested nav">-->
-<!--                                    <a class="nav-link" href="401.html">401 Page</a>-->
-<!--                                    <a class="nav-link" href="404.html">404 Page</a>-->
-<!--                                    <a class="nav-link" href="500.html">500 Page</a>-->
-<!--                                </nav>-->
-<!--                            </div>-->
-<!--                        </nav>-->
-<!--                    </div>-->
                     <div class="sb-sidenav-menu-heading">Addons</div>
                     <a class="nav-link" href="charts.html">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -149,7 +110,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        All users
+                        All Users
                     </div>
 
                     <div class="card-body">
@@ -160,6 +121,8 @@
                                 <th>Surname</th>
                                 <th>Email</th>
                                 <th>Username</th>
+                                <th>Block</th>
+                                <th>Admin</th>
                             </tr>
                             </thead>
 
@@ -169,6 +132,22 @@
                                 <td th:text="${user.lastName}">Dimitrov</td>
                                 <td th:text="${user.email}">user@gmail.com</td>
                                 <td th:text="${user.username}">dorica998</td>
+                                <td>
+                                    <a th:href="'/users/' + ${user.id} + '/block'">
+                                        <button style="border-radius: 5px;">
+                                            <span th:if="${user.blocked}">Unblock</span>
+                                            <span th:unless="${user.blocked}">Block</span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="'/users/' + ${user.id} + '/admin'">
+                                        <button style="border-radius: 5px;">
+                                            <span th:if="${user.admin}">Make User</span>
+                                            <span th:unless="${user.admin}">Make Admin</span>
+                                        </button>
+                                    </a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

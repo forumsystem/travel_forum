@@ -1,5 +1,6 @@
 INSERT INTO users (first_name, last_name, email, username, password, is_blocked, is_admin)
 VALUES
+    ('Deleted', 'User', 'deletedUser@example.com', 'deletedUser', 'deletedUser', 0, 0),
     ('Simona', 'Nedeva', 'simona@example.com', 'simona_nedeva', 'password123', 0, 1),
     ('Dora', 'Dimitrov', 'dora@example.com', 'dora_dimitrov', 'securepass', 0, 1),
     ('Marian', 'Maximov', 'marian@example.com', 'marian_maximov', 'pass123', 0, 1),
@@ -19,7 +20,9 @@ VALUES
     ('Stoyan', 'Stoyanov', 'stoyan@example.com', 'stoyan_s', 'stoyan12Pass', 0, 0),
     ('Iveta', 'Ivanova', 'iveta@example.com', 'iveta_i', 'ivetaPass12345', 0, 0),
     ('Georgi', 'Georgiev', 'georgi@example.com', 'georgi_g', 'georgiPassSecure@', 0, 0),
-    ('Deleted', 'User', 'deletedUser@example.com', 'deletedUser', 'deletedUser', 0, 0);
+    ('Marina', 'Shostakovic', 'marinash@example.com', 'marina_bab', 'marinaIs@', 1, 0),
+    ('Miroslav', 'Spasov', 'miro23@example.com', 'miro_23', 'miroooO@', 1, 0),
+    ('Dimitar', 'Ivanov', 'dimcho_ivanov@example.com', 'dimooo', 'd2insl@', 1, 0);
 
 INSERT INTO phone_numbers (phone_number, user_id)
 VALUES
@@ -37,43 +40,43 @@ VALUES
      'Belgrade - a city pulsating with energy and history. From its resilient spirit to the eclectic blend of ancient fortresses and vibrant nightlife, every corner tells a story of resilience and cultural richness.',
      2, '2023-10-16 08:45:23'),
 
-    ('Plovdiv Charms!',
+    ('Plovdiv old town Charms!',
      'Plovdiv - a city where ancient history meets modern charm. From the cobbled streets of the Old Town to the artistic vibe of Kapana, every step unfolds a captivating blend of culture and timeless beauty.',
      3, '2023-10-17 15:20:10'),
 
-    ('Tokyo Dreams',
+    ('Tokyo Dreams - the city from the future!',
      'Tokyo - a city where ancient traditions harmonize with futuristic innovation. From the serene temples to the bustling streets of Shibuya, each moment is a glimpse into a captivating juxtaposition.',
      4, '2023-10-18 21:45:32'),
 
-    ('Parisian Rhapsody',
+    ('Parisian Rhapsody - the spirit of fashion and wine!',
      'Paris - a city of love, art, and timeless elegance. From the iconic Eiffel Tower to the charming cobblestone streets of Montmartre, every corner whispers tales of romance and cultural richness.',
      5, '2023-10-19 14:12:09'),
 
-    ('Concrete Jungle Chronicles',
+    ('Concrete Jungle Chronicles - NYC',
      'New York City - a metropolis that never sleeps, where towering skyscrapers and diverse neighborhoods create a vibrant mosaic of culture. From Central Park to the neon lights of Times Square, every heartbeat is a pulse of energy.',
      1, '2023-10-20 10:56:47'),
 
-    ('Cape Town Tales',
+    ('Cape Town Tales - Wild, Fun!',
      'Cape Town - where the azure oceans meet the majestic Table Mountain. From the historic Robben Island to the colorful Bo-Kaap district, every vista is a testament to nature beauty and a rich cultural tapestry.',
      6, '2023-10-21 18:30:15'),
 
-    ('Sydney Serenade',
+    ('Sydney Serenade - like a dream!',
      'Sydney - a city of sun, surf, and iconic landmarks. From the Sydney Opera House to the golden beaches of Bondi, each sunrise paints a new chapter in this harbor city’s story.',
      2, '2023-10-22 07:23:54'),
 
-    ('Eternal City Impressions',
+    ('Eternal City Impressions - history comes to life!',
      'Rome - where ancient history lives in harmony with modern life. From the Colosseum grandeur to the quaint streets of Trastevere, each moment is a step through centuries of art culture and architecture.',
      1, '2023-10-23 16:40:28'),
 
-    ('Istanbul Odyssey',
+    ('Istanbul Odyssey - where west and east meet!',
      'Istanbul - a city straddling two continents, where East meets West. From the domes of Hagia Sophia to the bustling Grand Bazaar, each sight is a journey through the rich tapestry of Turkish history and culture.',
      3, '2023-10-24 12:15:37'),
 
-    ('Rio Rhythms',
+    ('Rio Rhythms - wild and beautiful!',
      'Rio de Janeiro - where the rhythm of samba meets the beauty of golden beaches. From the iconic Christ the Redeemer to the lively streets of Copacabana, every day is a celebration of life and vibrant colors.',
      7, '2023-10-25 09:08:42'),
 
-    ('Bangkok Reverie',
+    ('Bangkok Reverie - crazy, fun, spectacular!',
      'Bangkok - a city of contrasts, where ancient temples stand beside modern skyscrapers. From the bustling street markets to the serene Wat Arun, each moment is a blend of tradition and the contemporary.',
      5, '2023-10-26 14:55:19'),
 

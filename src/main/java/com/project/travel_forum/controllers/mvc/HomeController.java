@@ -86,16 +86,17 @@ public class HomeController {
     public String showSettings(HttpSession session, Model model) {
         User user;
         try {
-           user=authenticationHelper.tryGetCurrentUser(session);
+            user = authenticationHelper.tryGetCurrentUser(session);
 //            model.addAttribute("updateUser", new RegisterDto());
             model.addAttribute("currentUser", user);
-            model.addAttribute("userDto",  new RegisterDto());
+            model.addAttribute("userDto", new RegisterDto());
             return "Settings";
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
     }
-//    @PostMapping("/settings/update")
+
+    //    @PostMapping("/settings/update")
 //    public String updateUser(
 ////            @PathVariable int id,
 //            @Valid @ModelAttribute("updateUser") RegisterDto registerDto,

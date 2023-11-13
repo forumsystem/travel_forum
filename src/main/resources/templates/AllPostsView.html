@@ -96,7 +96,7 @@
 
 <section class="body-content" id="services">
     <div th:if="${posts.isEmpty()}">
-        <h2 th:text="#{post.title.empty}">No Post</h2>
+        <h2 th:text="#{post.title.empty}">No Posts</h2>
     </div>
     <div th:unless="${posts.isEmpty()}">
 
@@ -111,17 +111,16 @@
                     <div class="cell">
                         <a href="#" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Post</a>
                         <br/>
-                        <span th:text="'Created by: ' + ${post.createdBy.username}">user@gmail.com</span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/8atour/people-23.png'" alt="Creator Icon" width="20" height="20"/> <span th:text="${post.createdBy.username}">user@gmail.com</span>
                     </div>
                     <div class="cell"
                          th:text="${#strings.length(post.content) > 40 ? #strings.substring(post.content, 0, 40) + '...' : post.content}"></div>
-                    <div class="cell">
-                        <span th:text="'Likes: ' + ${post.getLikes()}"></span>
+                    <div class="cell"> <img th:src="'https://logowik.com/content/uploads/images/940_like_icon.jpg'" alt="Likes Icon" width="20" height="20"/> <span th:text="${post.getLikes()}"></span>
                         <br/>
-                        <span th:text="'Replies: ' + ${post.getCommentsSize()}"></span>
+                        <img th:src="'https://iconape.com/wp-content/files/jc/11839/png/comment-dots.png'" alt="Comments Icon" width="20" height="20"/> <span th:text="${post.getCommentsSize()}"></span>
                         <br/>
                         <br/>
-                        <span th:text="'Published on: ' + ${post.getTimestamp()}"></span>
+                        <img th:src="'https://icons.veryicon.com/png/o/miscellaneous/effevo/date-63.png'" alt="Date Icon" width="20" height="20"/> <span th:text="${post.getTimestamp()}"></span>
                     </div>
                 </div>
             </div>

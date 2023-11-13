@@ -58,7 +58,7 @@ public class UserMvcController {
             model.addAttribute("users", users);
             model.addAttribute("filterUserOptions", filterUserDto);
             return "AllUsersView";
-        }catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return "AllUsersView";
         }
 
@@ -82,26 +82,68 @@ public class UserMvcController {
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "ErrorView";
-        }catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return "BlockUserView";
         }
 
     }
 
     @GetMapping("/{id}/block")
-    public String blockUser(@PathVariable int id, HttpSession httpSession) {
+    public String blockUser(@PathVariable int id, Model model, HttpSession httpSession) {
         User user;
+        User userToBlock = userService.get(id);
         try {
             user = authenticationHelper.tryGetCurrentUser(httpSession);
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
-        if (user.isBlocked()) {
-            userService.modifyBlock(id, user, false);
+        if (userToBlock.isBlocked()) {
+            try {
+                userService.modifyBlock(id, user, false);
+            } catch (UnauthorizedOperationException e) {
+                model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
+                model.addAttribute("error", e.getMessage());
+                return "ErrorView";
+            }
         } else {
-            userService.modifyBlock(id, user, true);
+            try {
+                userService.modifyBlock(id, user, true);
+            } catch (UnauthorizedOperationException e) {
+                model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
+                model.addAttribute("error", e.getMessage());
+                return "ErrorView";
+            }
         }
         return "redirect:/users/block";
+    }
+
+    @GetMapping("/{id}/admin")
+    public String makeAdmin(@PathVariable int id, Model model, HttpSession httpSession) {
+        User user;
+        User userToMakeAdmin = userService.get(id);
+        try {
+            user = authenticationHelper.tryGetCurrentUser(httpSession);
+        } catch (AuthorizationException e) {
+            return "redirect:/auth/login";
+        }
+        if (userToMakeAdmin.isAdmin()) {
+            try {
+                userService.modifyPermissions(id, user, false);
+            } catch (UnauthorizedOperationException e) {
+                model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
+                model.addAttribute("error", e.getMessage());
+                return "ErrorView";
+            }
+        } else {
+            try {
+                userService.modifyPermissions(id, user, true);
+            } catch (UnauthorizedOperationException e) {
+                model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
+                model.addAttribute("error", e.getMessage());
+                return "ErrorView";
+            }
+        }
+        return "redirect:/users/admins";
     }
 
     @GetMapping("/admins")
@@ -120,7 +162,7 @@ public class UserMvcController {
             model.addAttribute("statusCode", HttpStatus.UNAUTHORIZED.getReasonPhrase());
             model.addAttribute("error", e.getMessage());
             return "ErrorView";
-        }catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return "Admins";
         }
 

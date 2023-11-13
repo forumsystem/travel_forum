@@ -154,7 +154,13 @@
                 <!--                        All users-->
                 <!--                    </div>-->
 
-                <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Blocked Users
+                    </div>
+
+                <div class="card-body"x>
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
@@ -162,6 +168,7 @@
                             <th>Surname</th>
                             <th>Email</th>
                             <th>Username</th>
+                            <th>Unblock</th>
                         </tr>
                         </thead>
 
@@ -171,6 +178,14 @@
                             <td th:text="${user.lastName}">Dimitrov</td>
                             <td th:text="${user.email}">user@gmail.com</td>
                             <td th:text="${user.username}">dorica998</td>
+                            <td>
+                                <a th:href="'/users/' + ${user.id} + '/block'">
+                                    <button style="border-radius: 5px;">
+                                        <span th:if="${user.blocked}">Unblock</span>
+                                        <span th:unless="${user.blocked}">Block</span>
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
