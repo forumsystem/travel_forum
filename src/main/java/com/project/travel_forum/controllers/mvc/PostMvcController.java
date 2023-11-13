@@ -321,13 +321,14 @@ public class PostMvcController {
                                 Model model,
                                 HttpSession httpSession) {
         User user;
+        Comment comment = commentService.getByCommentId(commentId);
         try {
             user = authenticationHelper.tryGetCurrentUser(httpSession);
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
         }
         try {
-            commentService.delete(commentId, user);
+            commentService.delete(commentId, user, comment.getCreatedBy());
             return "redirect:/posts/" + id;
         } catch (EntityNotFoundException e) {
             model.addAttribute("statusCode", HttpStatus.NOT_FOUND.getReasonPhrase());

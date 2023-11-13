@@ -75,7 +75,7 @@ public class CommentController {
     public void delete(@RequestHeader HttpHeaders headers, @PathVariable int id) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
-            commentService.delete(id, user);
+            commentService.delete(id, user, getByCommentId(id).getCreatedBy());
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (AuthorizationException e) {
