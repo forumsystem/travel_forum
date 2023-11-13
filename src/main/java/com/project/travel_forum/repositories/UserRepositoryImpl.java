@@ -37,6 +37,7 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+
     @Override
     public List<User> get(FilterUserOptions filterUserOptions) {
         try (

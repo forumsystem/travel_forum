@@ -81,7 +81,6 @@ public class HomeController {
             updateUserDto.setPasswordConfirm(user.getPassword());
             model.addAttribute("updateUser", updateUserDto);
             model.addAttribute("currentUser", user);
-//            model.addAttribute("userDto", new UpdateUserDto());
             return "Settings";
         } catch (AuthorizationException e) {
             return "redirect:/auth/login";
@@ -89,10 +88,8 @@ public class HomeController {
     }
     @PostMapping("/settings/update")
     public String updateUser(
-//            @PathVariable int id,
             @ModelAttribute("updateUser") UpdateUserDto updateUserDto,
             BindingResult result,
-            Model model,
             HttpSession httpSession) {
         User user;
         try {
@@ -102,7 +99,6 @@ public class HomeController {
             user = authenticationHelper.tryGetCurrentUser(httpSession);
             User userToUpdate = userMapper.fromDto(user.getId(), updateUserDto, user);
             userService.updateUserV2(user, userToUpdate, updateUserDto);
-//            model.addAttribute("updateUser", userToUpdate);
             return "redirect:/settings";
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

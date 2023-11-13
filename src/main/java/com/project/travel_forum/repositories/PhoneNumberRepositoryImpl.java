@@ -40,6 +40,7 @@ public class PhoneNumberRepositoryImpl implements PhoneNumberRepository {
         }
     }
 
+
     @Override
     public void create(PhoneNumber phoneNumber) {
         try (Session session = sessionFactory.openSession()) {

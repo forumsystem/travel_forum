@@ -7,6 +7,7 @@ import com.project.travel_forum.exceptions.UnauthorizedOperationException;
 import com.project.travel_forum.models.FilterUserDto;
 import com.project.travel_forum.models.FilterUserOptions;
 import com.project.travel_forum.models.User;
+import com.project.travel_forum.services.PhoneNumberService;
 import com.project.travel_forum.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -24,10 +25,12 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserMvcController {
     private final UserService userService;
+    private final PhoneNumberService phoneNumberService;
     private final AuthenticationHelper authenticationHelper;
 
-    public UserMvcController(UserService userService, AuthenticationHelper authenticationHelper) {
+    public UserMvcController(UserService userService, PhoneNumberService phoneNumberService, AuthenticationHelper authenticationHelper) {
         this.userService = userService;
+        this.phoneNumberService = phoneNumberService;
         this.authenticationHelper = authenticationHelper;
     }
 
