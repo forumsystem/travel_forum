@@ -50,252 +50,252 @@
 
 <!--                <div class="row">-->
 
-                    <div class=" card-header">
-                        <section class="page-section" id="contact">
-                            <div class="container ">
-                                <div class="text-center">
-                                    <h2 class="section-heading text-uppercase">Edit profile</h2>
-                                    <h3 class="section-subheading text-muted">Change information about you.</h3>
-                                </div>
-<!--                                <form action="#" th:action="@{/settings/update}" th:object="${userDto}" method="post">-->
+<div class=" card-header">
+    <section class="page-section" id="contact">
+        <div class="container ">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Edit profile</h2>
+                <h3 class="section-subheading text-muted">Change information about you.</h3>
+            </div>
+            <form action="#" th:action="@{/settings/update}" th:object="${updateUser}" method="post">
 
 
-<!--                                    <label style="color: white;" th:text="#{user.label.password}">Password</label>-->
-<!--                                    <br/>-->
-<!--                                    <input type="password" th:field="*{password}" style="border-radius: 10px;"/>-->
-<!--                                    <br/>-->
-<!--                                    <label style="color: red;" class="error" th:errors="*{password}">Password error placeholder</label>-->
-<!--                                    <br/><br/>-->
+                <label style="color: white;" th:text="#{user.label.password}">Password</label>
+                <br/>
+                <input type="password" th:field="*{password}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{password}">Password error placeholder</label>
+                <br/><br/>
 
-<!--                                    <label style="color: white;" th:text="#{user.label.password-confirm}">Confirm Password</label>-->
-<!--                                    <br/>-->
-<!--                                    <input type="password" th:field="*{passwordConfirm}" style="border-radius: 10px;" />-->
-<!--                                    <br/>-->
-<!--                                    <label style="color: red;" class="error" th:errors="*{passwordConfirm}">Password confirm error placeholder</label>-->
-<!--                                    <br/><br/>-->
+                <label style="color: white;" th:text="#{user.label.password-confirm}">Confirm Password</label>
+                <br/>
+                <input type="password" th:field="*{passwordConfirm}" style="border-radius: 10px;" />
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{passwordConfirm}">Password confirm error placeholder</label>
+                <br/><br/>
 
-<!--                                    <label style="color: white;" th:text="#{user.label.first-name}">First Name</label>-->
-<!--                                    <br/>-->
-<!--                                    <input type="text" th:field="*{firstName}" style="border-radius: 10px;" />-->
-<!--                                    <br/>-->
-<!--                                    <label style="color: red;" class="error" th:errors="*{firstName}">First name error placeholder</label>-->
-<!--                                    <br/><br/>-->
+                <label style="color: white;" th:text="#{user.label.first-name}">First Name</label>
+                <br/>
+                <input type="text" th:field="*{firstName}" style="border-radius: 10px;" />
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{firstName}">First name error placeholder</label>
+                <br/><br/>
 
-<!--                                    <label style="color: white;" th:text="#{user.label.last-name}">Last Name</label>-->
-<!--                                    <br/>-->
-<!--                                    <input type="text" th:field="*{lastName}" style="border-radius: 10px;"/>-->
-<!--                                    <br/>-->
-<!--                                    <label style="color: red;" class="error" th:errors="*{lastName}">Last name error placeholder</label>-->
-<!--                                    <br/><br/>-->
+                <label style="color: white;" th:text="#{user.label.last-name}">Last Name</label>
+                <br/>
+                <input type="text" th:field="*{lastName}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{lastName}">Last name error placeholder</label>
+                <br/><br/>
 
-<!--                                    <label style="color: white;" th:text="#{user.label.email}">Email</label>-->
-<!--                                    <br/>-->
-<!--                                    <input type="text" th:field="*{email}" style="border-radius: 10px;"/>-->
-<!--                                    <br/>-->
-<!--                                    <label style="color: red;" class="error" th:errors="*{email}">Email error placeholder</label>-->
-<!--                                    <br/><br/>-->
-<!--                                    <div class="text-center"><input type="submit" value="Update"  class="btn btn-primary btn-xl text-uppercase" th:href="@{/settings}"></div>-->
+                <label style="color: white;" th:text="#{user.label.email}">Email</label>
+                <br/>
+                <input type="text" th:field="*{email}" style="border-radius: 10px;"/>
+                <br/>
+                <label style="color: red;" class="error" th:errors="*{email}">Email error placeholder</label>
+                <br/><br/>
+                <div class="text-center"><input type="submit" value="Update"  class="btn btn-primary btn-xl text-uppercase" th:href="@{/settings}"></div>
 
-<!--                                </form>-->
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- * * SB Forms Contact Form * *-->
-                                <!-- * * * * * * * * * * * * * * *-->
-                                <!-- This form is pre-integrated with SB Forms.-->
-                                <!-- To make this form functional, sign up at-->
-                                <!-- https://startbootstrap.com/solution/contact-forms-->
-                                <!-- to get an API token!-->
-<!--                                <form action="#" th:action="@{/auth/settings}" th:object="${register}" method="post"  id="contactForm" data-sb-form-api-token="API_TOKEN">-->
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                    <div class="row align-items-stretch mb-5 columns-change bg-transparent">
-                                        <div class="col-md-6 body-content">
-                                            <br/>
-                                            <br/>
-<!--                                            <form action="#" th:action="@{/settings}" th:object="${updateUser}" method="post">-->
+            </form>
+            <!-- * * * * * * * * * * * * * * *-->
+            <!-- * * SB Forms Contact Form * *-->
+            <!-- * * * * * * * * * * * * * * *-->
+            <!-- This form is pre-integrated with SB Forms.-->
+            <!-- To make this form functional, sign up at-->
+            <!-- https://startbootstrap.com/solution/contact-forms-->
+            <!-- to get an API token!-->
+            <!--                                <form action="#" th:action="@{/auth/settings}" th:object="${register}" method="post"  id="contactForm" data-sb-form-api-token="API_TOKEN">-->
+            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                <div class="row align-items-stretch mb-5 columns-change bg-transparent">
+                    <div class="col-md-6 body-content">
+                        <br/>
+                        <br/>
+                        <!--                                            <form action="#" th:action="@{/settings}" th:object="${updateUser}" method="post">-->
 
 
-<!--                                                <label style="color: white;" th:text="#{user.label.password}">Password</label>-->
-<!--                                                <br/>-->
-<!--                                                <input type="password" th:field="*{password}" style="border-radius: 10px;"/>-->
-<!--                                                <br/>-->
-<!--                                                <label style="color: red;" class="error" th:errors="*{password}">Password error placeholder</label>-->
-<!--                                                <br/><br/>-->
+                        <!--                                                <label style="color: white;" th:text="#{user.label.password}">Password</label>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <input type="password" th:field="*{password}" style="border-radius: 10px;"/>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <label style="color: red;" class="error" th:errors="*{password}">Password error placeholder</label>-->
+                        <!--                                                <br/><br/>-->
 
-<!--                                                <label style="color: white;" th:text="#{user.label.password-confirm}">Confirm Password</label>-->
-<!--                                                <br/>-->
-<!--                                                <input type="password" th:field="*{passwordConfirm}" style="border-radius: 10px;" />-->
-<!--                                                <br/>-->
-<!--                                                <label style="color: red;" class="error" th:errors="*{passwordConfirm}">Password confirm error placeholder</label>-->
-<!--                                                <br/><br/>-->
+                        <!--                                                <label style="color: white;" th:text="#{user.label.password-confirm}">Confirm Password</label>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <input type="password" th:field="*{passwordConfirm}" style="border-radius: 10px;" />-->
+                        <!--                                                <br/>-->
+                        <!--                                                <label style="color: red;" class="error" th:errors="*{passwordConfirm}">Password confirm error placeholder</label>-->
+                        <!--                                                <br/><br/>-->
 
-<!--                                                <label style="color: white;" th:text="#{user.label.first-name}">First Name</label>-->
-<!--                                                <br/>-->
-<!--                                                <input type="text" th:field="*{firstName}" style="border-radius: 10px;" />-->
-<!--                                                <br/>-->
-<!--                                                <label style="color: red;" class="error" th:errors="*{firstName}">First name error placeholder</label>-->
-<!--                                                <br/><br/>-->
+                        <!--                                                <label style="color: white;" th:text="#{user.label.first-name}">First Name</label>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <input type="text" th:field="*{firstName}" style="border-radius: 10px;" />-->
+                        <!--                                                <br/>-->
+                        <!--                                                <label style="color: red;" class="error" th:errors="*{firstName}">First name error placeholder</label>-->
+                        <!--                                                <br/><br/>-->
 
-<!--                                                <label style="color: white;" th:text="#{user.label.last-name}">Last Name</label>-->
-<!--                                                <br/>-->
-<!--                                                <input type="text" th:field="*{lastName}" style="border-radius: 10px;"/>-->
-<!--                                                <br/>-->
-<!--                                                <label style="color: red;" class="error" th:errors="*{lastName}">Last name error placeholder</label>-->
-<!--                                                <br/><br/>-->
+                        <!--                                                <label style="color: white;" th:text="#{user.label.last-name}">Last Name</label>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <input type="text" th:field="*{lastName}" style="border-radius: 10px;"/>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <label style="color: red;" class="error" th:errors="*{lastName}">Last name error placeholder</label>-->
+                        <!--                                                <br/><br/>-->
 
-<!--                                                <label style="color: white;" th:text="#{user.label.email}">Email</label>-->
-<!--                                                <br/>-->
-<!--                                                <input type="text" th:field="*{email}" style="border-radius: 10px;"/>-->
-<!--                                                <br/>-->
-<!--                                                <label style="color: red;" class="error" th:errors="*{email}">Email error placeholder</label>-->
-<!--                                                <br/><br/>-->
-<!--                                                <div class="text-center"><input type="submit" value="Update"  class="btn btn-primary btn-xl text-uppercase" th:href="@{/settings}"></div>-->
+                        <!--                                                <label style="color: white;" th:text="#{user.label.email}">Email</label>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <input type="text" th:field="*{email}" style="border-radius: 10px;"/>-->
+                        <!--                                                <br/>-->
+                        <!--                                                <label style="color: red;" class="error" th:errors="*{email}">Email error placeholder</label>-->
+                        <!--                                                <br/><br/>-->
+                        <!--                                                <div class="text-center"><input type="submit" value="Update"  class="btn btn-primary btn-xl text-uppercase" th:href="@{/settings}"></div>-->
 
-<!--                                            </form>-->
-                                            <div class="form-group">
-                                                <!-- Name input-->
-                                                <input class="form-control" id="name" type="text"
-                                                       placeholder="Your Name *"
-                                                       data-sb-validations="required"/>
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is
-                                                    required.
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <!-- Surname input-->
-                                                <input class="form-control" id="surname" type="text"
-                                                       placeholder="Your Surname *"
-                                                       data-sb-validations="required"/>
-                                                <div class="invalid-feedback" data-sb-feedback="surname:required">A
-                                                    surname is
-                                                    required.
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <!-- Email address input-->
-                                                <input class="form-control" id="email" type="email"
-                                                       placeholder="Your Email *"
-                                                       data-sb-validations="required,email"/>
-                                                <div class="invalid-feedback" data-sb-feedback="email:required">An email
-                                                    is required.
-                                                </div>
-                                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is
-                                                    not valid.
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <!-- Password input-->
-                                                <input class="form-control" id="password" type="password"
-                                                       placeholder="Your Password *"
-                                                       data-sb-validations="required,email"/>
-                                                <div class="invalid-feedback" data-sb-feedback="password:required">An
-                                                    password is
-                                                    required.
-                                                </div>
-                                                <div class="invalid-feedback" data-sb-feedback="password:password">
-                                                    Password must have at
-                                                    least 8
-                                                    character.
-                                                </div>
-                                            </div>
-                                            <div class="form-group mb-md-0">
-                                                <!-- Phone number input-->
-                                                <input class="form-control" id="phone" type="tel"
-                                                       placeholder="Your Phone *"
-                                                       data-sb-validations="required"/>
-                                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone
-                                                    number is
-                                                    required.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 settings" >
-<!--                                            <div class="form-group form-group-textarea mb-md-0">-->
-<!--                                                &lt;!&ndash; Message input&ndash;&gt;-->
-<!--                                                <textarea class="form-control" id="message" placeholder="About you *"-->
-<!--                                                          data-sb-validations="required"></textarea>-->
-<!--                                                <div class="invalid-feedback" data-sb-feedback="message:required">A-->
-<!--                                                    message is-->
-<!--                                                    required.-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <img class="img-fluid" src="../static/assets/img/settings.png" alt="Settings Icon">-->
-                                        </div>
-                                    </div>
-                                    <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center text-white mb-3">
-                                            <div class="fw-bolder">Form submission successful!</div>
-                                            To activate this form, sign up at
-                                            <br/>
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
-                                    </div>
-                                    <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage">
-                                        <div class="text-center text-danger mb-3">Error sending message!</div>
-                                    </div>
-                                    <!-- Submit Button-->
-                                    <div class="text-center">
-<!--                                        <button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton"-->
-<!--                                                type="submit">-->
-<!--                                            Update-->
-<!--                                        </button>-->
-                                        <div class="text-center"><input type="submit" value="Update"  class="btn btn-primary btn-xl text-uppercase" th:href="@{/settings}"></div>
-                                    </div>
-                                </form>
+                        <!--                                            </form>-->
+                        <div class="form-group">
+                            <!-- Name input-->
+                            <input class="form-control" id="name" type="text"
+                                   placeholder="Your Name *"
+                                   data-sb-validations="required"/>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is
+                                required.
                             </div>
-                        </section>
+                        </div>
+                        <div class="form-group">
+                            <!-- Surname input-->
+                            <input class="form-control" id="surname" type="text"
+                                   placeholder="Your Surname *"
+                                   data-sb-validations="required"/>
+                            <div class="invalid-feedback" data-sb-feedback="surname:required">A
+                                surname is
+                                required.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Email address input-->
+                            <input class="form-control" id="email" type="email"
+                                   placeholder="Your Email *"
+                                   data-sb-validations="required,email"/>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">An email
+                                is required.
+                            </div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is
+                                not valid.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Password input-->
+                            <input class="form-control" id="password" type="password"
+                                   placeholder="Your Password *"
+                                   data-sb-validations="required,email"/>
+                            <div class="invalid-feedback" data-sb-feedback="password:required">An
+                                password is
+                                required.
+                            </div>
+                            <div class="invalid-feedback" data-sb-feedback="password:password">
+                                Password must have at
+                                least 8
+                                character.
+                            </div>
+                        </div>
+                        <div class="form-group mb-md-0">
+                            <!-- Phone number input-->
+                            <input class="form-control" id="phone" type="tel"
+                                   placeholder="Your Phone *"
+                                   data-sb-validations="required"/>
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone
+                                number is
+                                required.
+                            </div>
+                        </div>
                     </div>
-                    <!--                    <div class="col-xl-3 col-md-6">-->
-                    <!--                        <div class="card bg-success text-white mb-4">-->
-                    <!--                            <div class="card-body">Admins</div>-->
-                    <!--                            <div class="card-footer d-flex align-items-center justify-content-between">-->
-                    <!--                                <a class="small text-white stretched-link" href="#" th:href="@{/users/admins}">View Details</a>-->
-                    <!--                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="col-xl-3 col-md-6">-->
-                    <!--                        <div class="card bg-danger text-white mb-4">-->
-                    <!--                            <div class="card-body">Block Users</div>-->
-                    <!--                            <div class="card-footer d-flex align-items-center justify-content-between">-->
-                    <!--                                <a class="small text-white stretched-link" href="#" th:href="@{/users/block}">View Details</a>-->
-                    <!--                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+                    <div class="col-md-6 settings" >
+                        <!--                                            <div class="form-group form-group-textarea mb-md-0">-->
+                        <!--                                                &lt;!&ndash; Message input&ndash;&gt;-->
+                        <!--                                                <textarea class="form-control" id="message" placeholder="About you *"-->
+                        <!--                                                          data-sb-validations="required"></textarea>-->
+                        <!--                                                <div class="invalid-feedback" data-sb-feedback="message:required">A-->
+                        <!--                                                    message is-->
+                        <!--                                                    required.-->
+                        <!--                                                </div>-->
+                        <!--                                            </div>-->
+                        <!--                                            <img class="img-fluid" src="../static/assets/img/settings.png" alt="Settings Icon">-->
+                    </div>
+                </div>
+                <!-- Submit success message-->
+                <!---->
+                <!-- This is what your users will see when the form-->
+                <!-- has successfully submitted-->
+                <div class="d-none" id="submitSuccessMessage">
+                    <div class="text-center text-white mb-3">
+                        <div class="fw-bolder">Form submission successful!</div>
+                        To activate this form, sign up at
+                        <br/>
+                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                    </div>
+                </div>
+                <!-- Submit error message-->
+                <!---->
+                <!-- This is what your users will see when there is-->
+                <!-- an error submitting the form-->
+                <div class="d-none" id="submitErrorMessage">
+                    <div class="text-center text-danger mb-3">Error sending message!</div>
+                </div>
+                <!-- Submit Button-->
+                <div class="text-center">
+                    <!--                                        <button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton"-->
+                    <!--                                                type="submit">-->
+                    <!--                                            Update-->
+                    <!--                                        </button>-->
+                    <div class="text-center"><input type="submit" value="Update"  class="btn btn-primary btn-xl text-uppercase" th:href="@{/settings}"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+<!--                    <div class="col-xl-3 col-md-6">-->
+<!--                        <div class="card bg-success text-white mb-4">-->
+<!--                            <div class="card-body">Admins</div>-->
+<!--                            <div class="card-footer d-flex align-items-center justify-content-between">-->
+<!--                                <a class="small text-white stretched-link" href="#" th:href="@{/users/admins}">View Details</a>-->
+<!--                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-xl-3 col-md-6">-->
+<!--                        <div class="card bg-danger text-white mb-4">-->
+<!--                            <div class="card-body">Block Users</div>-->
+<!--                            <div class="card-footer d-flex align-items-center justify-content-between">-->
+<!--                                <a class="small text-white stretched-link" href="#" th:href="@{/users/block}">View Details</a>-->
+<!--                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-            <!--            <div class="row">-->
-            <!--                <div class="col-xl-6">-->
-            <!--                    <div class="card mb-4">-->
-            <!--                        <div class="card-header">-->
-            <!--                            <i class="fas fa-chart-area me-1"></i>-->
-            <!--                            Area Chart Example-->
-            <!--                        </div>-->
-            <!--                        <div class="card-body">-->
-            <!--                            <canvas id="myAreaChart" width="100%" height="40"></canvas>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-xl-6">-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-header">-->
+<!--                            <i class="fas fa-chart-area me-1"></i>-->
+<!--                            Area Chart Example-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <canvas id="myAreaChart" width="100%" height="40"></canvas>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            <!--                <div class="col-xl-6">-->
-            <!--                    <div class="card mb-4">-->
-            <!--                        <div class="card-header">-->
-            <!--                            <i class="fas fa-chart-bar me-1"></i>-->
-            <!--                            Bar Chart Example-->
-            <!--                        </div>-->
-            <!--                        <div class="card-body">-->
-            <!--                            <canvas id="myBarChart" width="100%" height="40"></canvas>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--&lt;!&ndash;                </div>&ndash;&gt;-->
-            <!--            </div>-->
+<!--                <div class="col-xl-6">-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-header">-->
+<!--                            <i class="fas fa-chart-bar me-1"></i>-->
+<!--                            Bar Chart Example-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <canvas id="myBarChart" width="100%" height="40"></canvas>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
 <!--        </main>-->
 <!--    </div>-->
 <!--</div>-->
