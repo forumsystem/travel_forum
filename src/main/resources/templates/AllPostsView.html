@@ -47,7 +47,7 @@
                                         th:if="${isAuthenticated && session.isAdmin}" th:href="@{/admin}"
                                         th:text="#{navigation.admin}">Admin Portal</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"
-                                        th:if="${isAuthenticated && !session.isAdmin}" th:href="@{/settings}"
+                                        th:if="${isAuthenticated}" th:href="@{/settings}"
                                         th:text="#{navigation.settings}">Settings</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"
                                         th:if="${isAuthenticated}" th:href="@{/auth/logout}">Logout</a></li>

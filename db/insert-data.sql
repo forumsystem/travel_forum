@@ -80,59 +80,59 @@ VALUES
      'Bangkok - a city of contrasts, where ancient temples stand beside modern skyscrapers. From the bustling street markets to the serene Wat Arun, each moment is a blend of tradition and the contemporary.',
      5, '2023-10-26 14:55:19'),
 
-    ('Barcelona Journeys',
+    ('Barcelona Journeys - so much fun, art, beaches!',
      'Barcelona - where Gaudí masterpieces dance with the Mediterranean breeze. From the vibrant La Rambla to the architectural marvel of Sagrada Familia, each step is a journey through Catalan culture and artistic brilliance.',
      4, '2023-10-27 19:27:50'),
 
-    ('Berlin Impressions',
+    ('Berlin Impressions - very steady and calm place to retire',
      'Berlin - a city where history meets innovation. From the remnants of the Berlin Wall to the modern architecture of Potsdamer Platz, each corner is a testament to the city’s resilience and creative spirit.',
      8, '2023-10-28 08:10:04'),
 
-    ('Amsterdam Adventures',
+    ('Amsterdam Adventures - you cannot believe what I saw!',
      'Amsterdam - a city of canals and culture. From the historic Anne Frank House to the lively streets of Jordaan, each canal ride unveils a story of art, history, and the Dutch way of life.',
      9, '2023-10-29 17:45:32'),
 
-    ('Prague Symphony',
+    ('Prague Symphony - so much history to enjoy',
      'Prague - where medieval charm and Bohemian allure converge. From the majestic Prague Castle to the quaint streets of Mala Strana, each note of history resonates through the city’s cobblestone pathways.',
      10, '2023-10-30 13:20:17'),
 
-    ('Singapore Sojourn',
+    ('Singapore Sojourn - the future of Asia at your glance',
      'Singapore - a city-state where tradition meets modernity. From the futuristic skyline of Marina Bay Sands to the cultural richness of Chinatown, each moment is a harmonious blend of diverse influences.',
      11, '2023-10-31 11:05:56'),
 
-    ('Dubai Dreams',
+    ('Dubai Dreams - the future is here',
      'Dubai - a city of opulence and architectural marvels. From the iconic Burj Khalifa to the luxury shopping in Dubai Mall, each skyline view is a testament to the city’s ambition and prosperity.',
      12, '2023-11-01 09:42:23'),
 
-    ('Budapest Bliss',
+    ('Budapest Bliss - a place like no other',
      'Budapest - where the Danube River flows through history and thermal baths. From Buda Castle’s panoramic views to the vibrant ruin bars of Pest, each side of the river unveils a different facet of Hungarian charm.',
      13, '2023-11-02 15:18:57'),
 
-    ('Seoul Serenity',
+    ('Seoul Serenity - such a surprise',
      'Seoul - a city that seamlessly blends ancient traditions with modern technology. From the historic Gyeongbokgung Palace to the bustling streets of Gangnam, each moment is a dynamic harmony of past and present.',
      14, '2023-11-03 12:55:32'),
 
-    ('Madrid Mosaic',
+    ('Madrid Mosaic - I cannot wait to come back',
      'Madrid - the heart of Spain, where art, history, and gastronomy converge. From the iconic Prado Museum to the lively Puerta del Sol, each tapas bite is a flavor of Spanish culture.',
      15, '2023-11-04 21:30:09'),
 
-    ('Osaka Odyssey',
+    ('Osaka Odyssey - cannot wait to visit again',
      'Osaka - a city known for its culinary delights and historic landmarks. From the vibrant street food scene in Dotonbori to the serene Osaka Castle, each bite and step is a journey through Japanese culture.',
      16, '2023-11-05 18:12:47'),
 
-    ('Moscow Marvels',
+    ('Moscow Marvels - you have never seen something like it',
      'Moscow - where the Red Square stands as a symbol of Russian history and grandeur. From the iconic St. Basil’s Cathedral to the modern skyscrapers of Moscow City, each sight is a chapter in the city’s narrative.',
      17, '2023-11-06 14:55:21'),
 
-    ('Hanoi Harmony',
+    ('Hanoi Harmony - the best place on Earth',
      'Hanoi - the capital of Vietnam, where ancient temples and French colonial architecture coexist. From the serene Hoan Kiem Lake to the bustling streets of the Old Quarter, each moment is a blend of tradition and dynamism.',
      18, '2023-11-07 09:40:37'),
 
-    ('Zurich Zen',
+    ('Zurich Zen - a place to have fun in',
      'Zurich - a city where pristine lakes meet financial prowess. From the scenic shores of Lake Zurich to the contemporary art scene in Kunsthaus Zurich, each view is a moment of tranquility in the heart of Switzerland.',
      19, '2023-11-08 16:25:14'),
 
-    ('Athens Adventures',
+    ('Athens Adventures - the old soul of Greece',
      'Athens - the cradle of Western civilization, where ancient ruins stand amidst modern life. From the Acropolis majesty to the vibrant Plaka district, each step is a journey through the birthplace of democracy.',
      2, '2023-11-09 12:08:49');
 

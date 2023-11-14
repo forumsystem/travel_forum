@@ -88,17 +88,21 @@
             <div class="body-content">
                 <div class="table-all">
                     <h3>
-                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/update}">Update</a>
-                        <a class="btn btn-primary btn-xl text-uppercase" href="#" th:href="@{__${requestURI}__/delete}">Delete</a>
+                        <a class="btn btn-primary btn-xl text-uppercase"
+                           th:if="${session.currentUser eq post.createdBy.username or session.isAdmin}"
+                           th:href="@{__${requestURI}__/update}">Update</a>
+                        <a class="btn btn-primary btn-xl text-uppercase"
+                           th:if="${session.currentUser eq post.createdBy.username or session.isAdmin}"
+                           th:href="@{__${requestURI}__/delete}">Delete</a>
                     </h3>
-                        <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
-                            <button onclick="Toggle()" id="btnh" class="btn-like" type="submit">
-                                <i class="fa-solid fa-heart"></i>
-                            </button>
-                            <p class="like"
-                               th:text="'Likes: ' + ${post.getLikes()}">
-                            </p>
-                        </form>
+                    <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
+                        <button onclick="Toggle()" id="btnh" class="btn-like" type="submit">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                        <p class="like"
+                           th:text="'Likes: ' + ${post.getLikes()}">
+                        </p>
+                    </form>
                     <script>
                         var btnvar = document.getElementById('btnh');
 
@@ -133,8 +137,10 @@
                 <p class="comment-leave text-light" th:text="${comment.comment}"></p>
                 <h3>
                     <a class="btn btn-primary btn-xl text-uppercase" href="#"
+                       th:if="${session.currentUser eq comment.createdBy.username}"
                        th:href="@{{id}/comment/{commentId}/update(id=${post.id}, commentId=${comment.id})}">Update</a>
                     <a class="btn btn-primary btn-xl text-uppercase" href="#"
+                       th:if="${session.currentUser eq comment.createdBy.username or session.isAdmin}"
                        th:href="@{{id}/comment/{commentId}/delete(id=${post.id}, commentId=${comment.id})}">Delete</a>
                 </h3>
             </div>
@@ -163,7 +169,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                                                                  alt="Close modal"<img/></div>
+                                                                  alt="Close modal"/></div>
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
