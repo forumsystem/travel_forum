@@ -28,7 +28,8 @@ public class UserMvcController {
     private final PhoneNumberService phoneNumberService;
     private final AuthenticationHelper authenticationHelper;
 
-    public UserMvcController(UserService userService, PhoneNumberService phoneNumberService, AuthenticationHelper authenticationHelper) {
+    public UserMvcController(UserService userService, PhoneNumberService phoneNumberService,
+                             AuthenticationHelper authenticationHelper) {
         this.userService = userService;
         this.phoneNumberService = phoneNumberService;
         this.authenticationHelper = authenticationHelper;

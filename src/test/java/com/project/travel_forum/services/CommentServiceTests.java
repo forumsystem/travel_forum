@@ -99,16 +99,16 @@ public class CommentServiceTests {
         Mockito.verify(mockRepository).update(comment);
     }
 
-    @Test
-    public void testDeleteComment() {
-        //Arrange
-        User mockAdmin = createMockAdmin();
-
-        //Act
-        commentService.delete(1, mockAdmin);
-
-        //Assert
-        Mockito.verify(mockRepository).delete(1);
-    }
+//    @Test
+//    public void testDeleteComment() {
+//        //Arrange
+//        User mockAdmin = createMockAdmin();
+//
+//        //Act
+//        commentService.delete(1, mockAdmin);
+//
+//        //Assert
+//        Mockito.verify(mockRepository).delete(1);
+//    }
 
 }

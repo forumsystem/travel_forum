@@ -86,7 +86,9 @@ public class PostController {
     }
 
     @PutMapping
-    public Post update(@RequestHeader HttpHeaders headers, @PathVariable int id, @Valid @RequestBody PostDto postDto) {
+    public Post update(@RequestHeader HttpHeaders headers,
+                       @PathVariable int id,
+                       @Valid @RequestBody PostDto postDto) {
         try {
             User user = authenticationHelper.tryGetUser(headers);
             Post post = postMapper.fromDto(id, postDto);
